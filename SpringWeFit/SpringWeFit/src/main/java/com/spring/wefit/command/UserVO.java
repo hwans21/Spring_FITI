@@ -1,5 +1,11 @@
 package com.spring.wefit.command;
 
+import java.sql.Timestamp;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 /*
  
  CREATE TABLE Member
@@ -32,6 +38,24 @@ CREATE SEQUENCE member_seq
  
  */
 
+@Getter
+@Setter
+@ToString
 public class UserVO {
-	
+	private int mNum;
+    private String mEmail;
+    private String mNick;
+    private String mPasswd;
+    private String mPhone;
+    private Timestamp mRegistDate;
+    private Timestamp mConnDate;
+    private String mHumanYN;
+    private double mLatitude;
+    private double mLongitude;
+    private String mEmailYN;
+    private String mCode;
+    private String mManagerYN;
+    private Timestamp mDelDate;
+    private String sessionId;
+    private Timestamp autoLoginLimit;
 }
