@@ -1,4 +1,4 @@
-package com.spring.wefit;
+package com.spring.wefit.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
