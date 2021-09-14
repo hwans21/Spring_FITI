@@ -29,7 +29,7 @@ public class UserController {
 	@PostMapping("/emailChk")
 	@ResponseBody
 	public String emailChk(@RequestBody String email) {
-		if(service.emailCheck(email) == 1) {
+		if(service.emailCheck(email) == 0) {
 			return "success";
 		}
 		return "duplicate";
