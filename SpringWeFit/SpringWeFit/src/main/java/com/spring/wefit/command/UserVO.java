@@ -58,4 +58,6 @@ public class UserVO {
     private Timestamp mDelDate;
     private String sessionId;
     private Timestamp autoLoginLimit;
+    
+    
 }

@@ -200,44 +200,47 @@
                     <h4 class="modal-title" id="myModalLabel">회원가입</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-join" class="form-horizontal">
+                    <form action="/user/join" method="post" id="form-join" class="form-horizontal">
                         <div class="form-group">
-                            <label for="input-email" class="col-sm-3 control-label">이메일</label>
+                            <label for="mEmail" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" id="input-email" placeholder="이메일을 입력해주세요">
+                                <input type="email" class="form-control" id="mEmail" name="mEmail" placeholder="이메일을 입력해주세요">
                             </div>
                             <div class="col-sm-3">
-                                <button type="button" class="form-control">중복확인</button>
+                                <button id="emailCheckBtn" type="button" class="form-control">이메일확인</button>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="input-nick" class="col-sm-3 control-label">닉네임</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input-nick" placeholder="닉네임을 입력해주세요">
+                            <label for="mNick" class="col-sm-3 control-label">닉네임</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="mNick" name="mNick" placeholder="닉네임을 입력해주세요">
+                            </div>
+                            <div class="col-sm-3">
+                                <button id="nickCheckBtn" type="button" class="form-control">닉네임확인</button>
                             </div>
 
                         </div>
                         <div class="form-group">
-                            <label for="input-password" class="col-sm-3 control-label">비밀번호</label>
+                            <label for="mPasswd" class="col-sm-3 control-label">비밀번호</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="input-password"
+                                <input type="password" class="form-control" id="mPasswd" name="mPasswd"
                                     placeholder="비밀번호를 입력해주세요">
                             </div>
 
                         </div>
                         <div class="form-group">
-                            <label for="input-passwordchk" class="col-sm-3 control-label">비밀번호확인</label>
+                            <label for="passwordchk" class="col-sm-3 control-label">비밀번호확인</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="input-passwordchk"
+                                <input type="password" class="form-control" id="passwordchk"
                                     placeholder="비밀번호를 확인해주세요">
                             </div>
 
                         </div>
 
                         <div class="form-group">
-                            <label for="input-phone" class="col-sm-3 control-label">핸드폰 번호</label>
+                            <label for="mPhone" class="col-sm-3 control-label">핸드폰 번호</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input-passwordchk"
+                                <input type="text" class="form-control" id="mPhone" name="mPhone"
                                     placeholder="'-'빼고 입력해주세요">
                             </div>
 
@@ -250,7 +253,7 @@
 
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">가입하기</button>
+                    <button id="joinBtn" type="button" class="btn btn-primary">가입하기</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
                 </div>
 
@@ -294,8 +297,10 @@
         </div>
     </div>
 
-    <script>
-
+    <script defer>
+		
+    
+    
 
         /*부트스트랩 jquery*/
         $(document).ready(function () {
@@ -304,6 +309,45 @@
                 console.log($(window).width())
                 menuBarLocation();
             });
+            
+            let emailChk = false;
+            let nickChk = false;
+            $('#emailCheckBtn').click(function(){
+            	
+            	$.ajax({
+                    type: "POST",
+                    url: "<c:url value='/user/emailChk' />",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    dataType: "text", //서버로부터 어떤 형식으로 받을지(생략가능)
+                    data: JSON.stringify({
+                        "mEmail": mEmail
+                    }),
+                    success: function (data) {
+                        console.log('통신성공!' + data);
+                      	if(data==="success"){
+                      		alert('사용 가능한 이메일입니다.')
+                      		emailChk = true;
+                      	} else{
+                      		alert('이미 사용중인 이메일입니다.')
+                      	}
+                    },
+                    error: function () {
+                        alert('통신에 실패했습니다. 관리자에게 문의하세요');
+                    }
+                }); //이메일 체크 비동기 통신 끝
+            }); //이메일 체크 이벤트 끝
+
+           
+            $('#nickCheckBtn').click(function(){
+            	
+            });
+            $('#joinBtn').click(function(){
+            	
+            	$('#form-join').submit();
+            }); // 가입버튼 클릭시 이벤트
+            
         });
         function menuBarLocation(){
             if ($(window).width() < 755) {
