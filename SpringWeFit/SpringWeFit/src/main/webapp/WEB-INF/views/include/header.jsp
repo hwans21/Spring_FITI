@@ -175,7 +175,7 @@
                         <div class="form-group">
                             <label for="auto-login-check" class="col-sm-3 control-label">자동로그인</label>
                             <div class="col-sm-1">
-                                <input type="checkbox" class="form-control" id="auto-login-check">
+                                <input type="checkbox" class="form-control" id="auto-login-check" name="autoLoginCheck">
                             </div>
 
                         </div>

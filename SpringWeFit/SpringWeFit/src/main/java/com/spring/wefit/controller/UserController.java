@@ -1,5 +1,9 @@
 package com.spring.wefit.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,13 +66,29 @@ public class UserController {
 		
 	}
 	
+	
+	
 	@PostMapping("/login")
-	public String login(UserVO vo, Model model, RedirectAttributes ra) {
+	public String login(UserVO vo,
+			boolean autoLoginCheck, 
+			HttpSession session, 
+			Model model,
+			RedirectAttributes ra,
+			HttpServletResponse response) {
 		System.out.println("로그인 요청 : "+vo.toString());
+		
 		UserVO login = service.login(vo.getMEmail(), vo.getMPasswd());
 		if(login != null) {
 			if(login.getMEmailYN().equals("Y")) {
-				model.addAttribute("user", login);
+				session.setAttribute("user", login);
+//				if(autoLoginCheck.equals("true")) {
+//					long limitTime = 7*24*60*60;
+//					Cookie cookie = new Cookie("loginCookie", session.getId());
+//					cookie.setPath("/");
+//					cookie.setMaxAge((int) limitTime);
+//					response.addCookie(cookie);
+//				}
+				
 				model.addAttribute("msg", login.getMNick()+"님 환영합니다.");
 				return "/home";			
 			} else {
