@@ -313,6 +313,16 @@
             let emailChk = false;
             let nickChk = false;
             $('#emailCheckBtn').click(function(){
+            	let regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+            	
+            	if ($('#mEmail').val() === "") {
+            		alert('이메일을 입력해주세요');
+            		return;
+            		
+            	} else if(!regExpEmail.test($('#mEmail').val())){
+            		alert('이메일 형식에 맞게 입력해주세요');
+            		return;
+            	}
             	
             	$.ajax({
                     type: "POST",
@@ -322,7 +332,7 @@
                     },
                     dataType: "text", //서버로부터 어떤 형식으로 받을지(생략가능)
                     data: JSON.stringify({
-                        "mEmail": mEmail
+                        "mEmail": $('#mEmail').val()
                     }),
                     success: function (data) {
                         console.log('통신성공!' + data);
@@ -330,6 +340,7 @@
                       		alert('사용 가능한 이메일입니다.')
                       		emailChk = true;
                       	} else{
+                      		$('#mEmail').val('');
                       		alert('이미 사용중인 이메일입니다.')
                       	}
                     },
@@ -338,14 +349,70 @@
                     }
                 }); //이메일 체크 비동기 통신 끝
             }); //이메일 체크 이벤트 끝
+            
+			$('#nickCheckBtn').click(function(){
+				if ($('#mNick').val() === "") {
+            		alert('닉네임을 입력해주세요');
+            		return;
+            		
+            	}
+            	$.ajax({
+                    type: "POST",
+                    url: "<c:url value='/user/nickChk' />",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    dataType: "text", //서버로부터 어떤 형식으로 받을지(생략가능)
+                    data: JSON.stringify({
+                        "mNick": $('#mNick').val()
+                    }),
+                    success: function (data) {
+                        console.log('통신성공!' + data);
+                      	if(data==="success"){
+                      		alert('사용 가능한 닉네임입니다.')
+                      		nickChk = true;
+                      	} else{
+                      		alert('이미 사용중인 닉네임입니다.')
+                      	}
+                    },
+                    error: function () {
+                        alert('통신에 실패했습니다. 관리자에게 문의하세요');
+                    }
+                }); //닉네임 체크 비동기 통신 끝
+            }); //닉네임 체크 이벤트 끝
 
            
-            $('#nickCheckBtn').click(function(){
-            	
-            });
+         
             $('#joinBtn').click(function(){
-            	
+            	if (!emailChk){
+            		alert('이메일 중복확인이 필요합니다.');
+            		return;
+            	} else if(!nickChk){
+            		alert('닉네임 중복확인이 필요합니다.');
+            		return;
+            	} else{
+            		// 비밀번호 규칙 정규식
+            		// : 숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
+            		let regExpPw = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+            		
+            		if($('#mPasswd').val() === ""){
+            			alert('비밀번호는 필수값입니다.');
+            			return;
+            		} else if ($('#passwordchk').val() === ""){
+            			alert('비밀번호확인을 입력해주세요');
+            			return;
+            		} else if(!regExpPw.test($('#mPasswd').val())){
+            			alert('최소 8 자, 문자 및  숫자섞어서 써주세요')
+            			$('#mPasswd').val('');
+            			$('#passwordchk').val('');
+            			return;
+            		} 
+            			
+            		
+            	}
             	$('#form-join').submit();
+            	
+            	
             }); // 가입버튼 클릭시 이벤트
             
         });

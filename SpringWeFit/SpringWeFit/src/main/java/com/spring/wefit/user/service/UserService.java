@@ -20,12 +20,14 @@ public class UserService implements IUserService {
 	@Override
 	public int emailCheck(String email) {
 		// TODO Auto-generated method stub
+		
 		return mapper.emailCheck(email);
 	}
 
 	@Override
 	public int nickCheck(String nick) {
 		// TODO Auto-generated method stub
+		System.out.println(nick);
 		return mapper.nickCheck(nick);
 	}
 
@@ -39,10 +41,14 @@ public class UserService implements IUserService {
 		String securePw = encoder.encode(vo.getMPasswd());
 		System.out.println("암호화 한 후: "+securePw);
 		vo.setMPasswd(securePw);
+		
+		// 이메일 랜덤코드값
 		UUID uuid = UUID.randomUUID();
 		String[] uuids = uuid.toString().split("-");
 		vo.setMCode(uuids[0]);
 		
+		
+		System.out.println(vo.toString());
 		mapper.join(vo);
 	}
 

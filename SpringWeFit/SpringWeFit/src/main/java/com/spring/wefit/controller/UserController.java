@@ -18,11 +18,9 @@ public class UserController {
 	private IUserService service;
 	
 	@PostMapping("/join")
-	@ResponseBody
 	public String join(@RequestBody UserVO vo) {
 		service.join(vo);
-		return "JoinSuccess";
-		
+		return "redirect:/wefit/";
 	}
 	
 	
@@ -35,4 +33,16 @@ public class UserController {
 		return "duplicate";
 		
 	}
+	
+	@PostMapping("/nickChk")
+	@ResponseBody
+	public String nickChk(@RequestBody String nick) {
+		if(service.nickCheck(nick) == 0) {
+			return "success";
+		}
+		return "duplicate";
+		
+	}
+	
+	
 }
