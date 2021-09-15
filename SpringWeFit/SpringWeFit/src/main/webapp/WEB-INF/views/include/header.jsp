@@ -200,7 +200,7 @@
                     <h4 class="modal-title" id="myModalLabel">회원가입</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="/user/join" method="post" id="form-join" class="form-horizontal">
+                    <form action="<c:url value='/user/join' />" method="post" id="form-join" class="form-horizontal">
                         <div class="form-group">
                             <label for="mEmail" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-6">
@@ -356,6 +356,7 @@
             		return;
             		
             	}
+				
             	$.ajax({
                     type: "POST",
                     url: "<c:url value='/user/nickChk' />",
@@ -393,7 +394,7 @@
             	} else{
             		// 비밀번호 규칙 정규식
             		// : 숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
-            		let regExpPw = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+            		let regExpPw = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
             		
             		if($('#mPasswd').val() === ""){
             			alert('비밀번호는 필수값입니다.');
@@ -402,15 +403,13 @@
             			alert('비밀번호확인을 입력해주세요');
             			return;
             		} else if(!regExpPw.test($('#mPasswd').val())){
-            			alert('최소 8 자, 문자 및  숫자섞어서 써주세요')
+            			alert('최소 8 자, 특수문자, 영문 및  숫자섞어서 써주세요')
             			$('#mPasswd').val('');
             			$('#passwordchk').val('');
             			return;
             		} 
-            			
-            		
+	            	$('#form-join').submit();
             	}
-            	$('#form-join').submit();
             	
             	
             }); // 가입버튼 클릭시 이벤트
