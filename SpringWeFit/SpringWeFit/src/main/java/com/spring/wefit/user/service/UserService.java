@@ -49,7 +49,7 @@ public class UserService implements IUserService {
 		
 		
 		System.out.println(vo.toString());
-//		mapper.join(vo);
+		mapper.join(vo);
 	}
 
 	@Override

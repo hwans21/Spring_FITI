@@ -23,7 +23,7 @@ public class UserController {
 	@PostMapping("/join")
 	public String join(UserVO vo,RedirectAttributes ra) {
 		System.out.println("회원가입 컨트롤러 요청"+vo.toString());
-//		service.join(vo);
+		service.join(vo);
 		ra.addFlashAttribute("msg","회원가입이 정상처리되었습니다!!");
 		return "redirect:/";
 	}

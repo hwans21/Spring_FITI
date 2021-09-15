@@ -148,7 +148,7 @@
                     <h4 class="modal-title" id="myModalLabel">로그인</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-join" class="form-horizontal">
+                    <form action="" method="post" id="form-login" class="form-horizontal">
 
                         <div class="form-group">
                             <label for="input-email" class="col-sm-3 control-label">이메일</label>
@@ -189,7 +189,7 @@
         </div>
     </div>
     <!-- Modal join창-->
-    <div id="modal-join" class="modal fade">
+    <div  id="modal-join" class="modal fade">
         <div class="modal-dialog">
 
             <!-- Modal Content-->
@@ -200,7 +200,7 @@
                     <h4 class="modal-title" id="myModalLabel">회원가입</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="form-join" role="form" class="form-horizontal">
+                    <form id="form-join" action="<c:url value='/user/join' />" method="post" role="form" class="form-horizontal">
                         <div class="form-group">
                             <label for="mEmail" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-6">
@@ -272,12 +272,12 @@
                     <h4 class="modal-title" id="myModalLabel">비밀번호찾기</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-join" class="form-horizontal">
+                    <form action="" method="post" id="form-pwSearch" class="form-horizontal">
                        
                         <div class="form-group">
-                            <label for="input-email" class="col-sm-3 control-label">이메일</label>
+                            <label for="search-email" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="input-email" placeholder="이메일을 입력해주세요">
+                                <input type="email" class="form-control" id="search-email" placeholder="이메일을 입력해주세요">
                             </div>
                            
                         </div>
@@ -391,8 +391,7 @@
 
            
          
-            $('#joinBtn').click(function(e){
-            	e.preventDefault();
+            $('#joinBtn').click(function(){
             	if (!emailChk){
             		alert('이메일 중복확인이 필요합니다.');
             		return;
@@ -416,6 +415,7 @@
             			$('#passwordchk').val('');
             			return;
             		} 
+            		
 	            	$('#form-join').submit();
             	}
             	
