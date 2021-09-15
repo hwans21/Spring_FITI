@@ -2,8 +2,11 @@ package com.spring.wefit.dietboard.reply.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.spring.wefit.command.DietBoardReplyVO;
 
+@Service
 public class DietReplyService implements IDietReplyService {
 
 	@Override

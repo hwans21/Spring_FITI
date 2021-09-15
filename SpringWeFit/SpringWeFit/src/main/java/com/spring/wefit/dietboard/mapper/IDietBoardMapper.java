@@ -7,7 +7,7 @@ import com.spring.wefit.command.DietBoardVO;
 public interface IDietBoardMapper {
 	
 	//식단 글 등록
-	void regist();
+	void regist(DietBoardVO vo);
 	
 	//식단 글 목록
 	List<DietBoardVO> getList();
