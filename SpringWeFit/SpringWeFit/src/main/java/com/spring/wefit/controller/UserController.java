@@ -2,6 +2,7 @@ package com.spring.wefit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +21,17 @@ public class UserController {
 	private IUserService service;
 	
 	@PostMapping("/join")
-	public String join(UserVO vo, RedirectAttributes ra) {
-		System.out.println("회원가입 컨트롤러 요청");
-		service.join(vo);
-		
+	public String join(UserVO vo,RedirectAttributes ra) {
+		System.out.println("회원가입 컨트롤러 요청"+vo.toString());
+//		service.join(vo);
+		ra.addFlashAttribute("msg","회원가입이 정상처리되었습니다!!");
 		return "redirect:/";
 	}
 	
+	@GetMapping("/test")
+	public String test() {
+		return "board/diet/diet_board";
+	}
 	
 	@PostMapping("/emailChk")
 	@ResponseBody

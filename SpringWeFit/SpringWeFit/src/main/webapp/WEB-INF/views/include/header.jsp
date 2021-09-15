@@ -200,7 +200,7 @@
                     <h4 class="modal-title" id="myModalLabel">회원가입</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="<c:url value='/user/join' />" method="post" id="form-join" class="form-horizontal">
+                    <form id="form-join" role="form" class="form-horizontal">
                         <div class="form-group">
                             <label for="mEmail" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-6">
@@ -304,6 +304,8 @@
 
         /*부트스트랩 jquery*/
         $(document).ready(function () {
+        	
+        	
             menuBarLocation();
             $(window).resize(function () {
                 console.log($(window).width())
@@ -312,6 +314,11 @@
             
             let emailChk = false;
             let nickChk = false;
+            const msg = '${msg }';
+            if(msg === "회원가입이 정상처리되었습니다!!"){
+            	alert(msg);
+            }
+            
             $('#emailCheckBtn').click(function(){
             	let regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
             	
@@ -384,7 +391,8 @@
 
            
          
-            $('#joinBtn').click(function(){
+            $('#joinBtn').click(function(e){
+            	e.preventDefault();
             	if (!emailChk){
             		alert('이메일 중복확인이 필요합니다.');
             		return;
