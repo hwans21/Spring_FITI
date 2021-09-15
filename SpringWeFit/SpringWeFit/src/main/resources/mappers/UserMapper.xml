@@ -19,5 +19,10 @@
 		VALUES (member_seq.NEXTVAL,#{mEmail},#{mNick},#{mPasswd},#{mPhone},'N','N',#{mCode})
 	</insert>
 	
+	<update id="authUser">
+		UPDATE member SET mEmailYN = 'Y'
+		WHERE mEmail = #{email} AND mCode = #{code}
+	</update>
+	
 	
 </mapper>

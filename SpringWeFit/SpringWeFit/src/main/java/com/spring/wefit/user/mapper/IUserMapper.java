@@ -41,4 +41,10 @@ public interface IUserMapper {
 	
 	//세션 아이디를 통한 회원 정보 조회 기능
 	UserVO getUserWithSessionId(String sessionId);
+	
+	//인증 처리
+	void authUser(@Param("email")String email, @Param("code")String code);
+	
+	//인증 처리 후  인증값 변경
+	void codeChange(UserVO vo);
 }

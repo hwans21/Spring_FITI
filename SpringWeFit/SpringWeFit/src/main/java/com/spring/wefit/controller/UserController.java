@@ -3,10 +3,10 @@ package com.spring.wefit.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,11 +20,20 @@ public class UserController {
 	@Autowired
 	private IUserService service;
 	
+	
 	@PostMapping("/join")
 	public String join(UserVO vo,RedirectAttributes ra) {
 		System.out.println("회원가입 컨트롤러 요청"+vo.toString());
 		service.join(vo);
+		service.mailSendWithUserKey(vo);
 		ra.addFlashAttribute("msg","메일함을 확인해주세요");
+		return "redirect:/";
+	}
+	
+	@GetMapping("/auth/{email}/{code}")
+	public String auth(@PathVariable String email, @PathVariable String code) {
+		
+		service.authUser(email,code);
 		return "redirect:/";
 	}
 	
