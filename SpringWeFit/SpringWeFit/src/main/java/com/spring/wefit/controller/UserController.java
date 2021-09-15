@@ -24,23 +24,19 @@ public class UserController {
 	public String join(UserVO vo,RedirectAttributes ra) {
 		System.out.println("회원가입 컨트롤러 요청"+vo.toString());
 		service.join(vo);
-		ra.addFlashAttribute("msg","회원가입이 정상처리되었습니다!!");
+		ra.addFlashAttribute("msg","메일함을 확인해주세요");
 		return "redirect:/";
 	}
 	
-	@GetMapping("/test")
-	public String test() {
-		return "board/diet/diet_board";
-	}
 	
 	@PostMapping("/emailChk")
 	@ResponseBody
 	public String emailChk(@RequestBody String email) {
-		if(service.emailCheck(email) == 0) {
+		System.out.println(service.emailCheck(email));
+		if((service.emailCheck(email) == 0)) {
 			return "success";
 		}
 		return "duplicate";
-		
 	}
 	
 	@PostMapping("/nickChk")

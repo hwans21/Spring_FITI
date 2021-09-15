@@ -299,9 +299,14 @@
 
     <script defer>
 		
-    
-    
-
+		// 비밀번호 규칙 정규식
+		// : 숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
+		const regExpPw = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+		// 이메일 정규표현식
+		const regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		// 핸드폰 정규표현식
+		const regExpPhone = /^[0-9]*$/;
         /*부트스트랩 jquery*/
         $(document).ready(function () {
         	
@@ -314,13 +319,15 @@
             
             let emailChk = false;
             let nickChk = false;
+            let passwdChk = false;
+           	
             const msg = '${msg }';
             if(msg === "회원가입이 정상처리되었습니다!!"){
             	alert(msg);
             }
             
             $('#emailCheckBtn').click(function(){
-            	let regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+            	
             	
             	if ($('#mEmail').val() === "") {
             		alert('이메일을 입력해주세요');
@@ -338,14 +345,13 @@
                         "Content-Type": "application/json"
                     },
                     dataType: "text", //서버로부터 어떤 형식으로 받을지(생략가능)
-                    data: JSON.stringify({
-                        "mEmail": $('#mEmail').val()
-                    }),
+                    data: $('#mEmail').val(),
                     success: function (data) {
                         console.log('통신성공!' + data);
                       	if(data==="success"){
                       		alert('사용 가능한 이메일입니다.')
                       		emailChk = true;
+                      		$('#mEmail').attr("readonly","true");
                       	} else{
                       		$('#mEmail').val('');
                       		alert('이미 사용중인 이메일입니다.')
@@ -371,13 +377,13 @@
                         "Content-Type": "application/json"
                     },
                     dataType: "text", //서버로부터 어떤 형식으로 받을지(생략가능)
-                    data: JSON.stringify({
-                        "mNick": $('#mNick').val()
-                    }),
+                    data: $('#mNick').val(),
                     success: function (data) {
                         console.log('통신성공!' + data);
+
                       	if(data==="success"){
                       		alert('사용 가능한 닉네임입니다.')
+                      		$('#mNick').attr("readonly","true")
                       		nickChk = true;
                       	} else{
                       		alert('이미 사용중인 닉네임입니다.')
@@ -389,7 +395,32 @@
                 }); //닉네임 체크 비동기 통신 끝
             }); //닉네임 체크 이벤트 끝
 
+           $('#mPasswd').keyup(function(){
+        	   if(!regExpPw.test($('#mPasswd').val())){
+        		   $('#mPasswd').css("background-color","pink");
+        		   passwdChk = false;
+        	   } else {
+        		   $('#mPasswd').css("background-color","skyblue");
+        		   passwdChk = true;
+        	   }
+        	   
+           });
+            
+           $('#passwordchk').keyup(function(){
+        	   if($('#mPasswd').val() !== $('#passwordchk').val()){
+        		   $('#passwordchk').css("background-color","pink");
+        	   } else {
+        		   $('#passwordchk').css("background-color","skyblue");
+        	   }
+        	   
+           });
            
+           $('#mPhone').keyup(function(){
+        	  if(!regExpPhone.test($('#mPhone').val())){
+        		  alert("'-'은 입력하지마세요");
+        		  $('#mPhone').val('');
+        	  } 
+           });
          
             $('#joinBtn').click(function(){
             	if (!emailChk){
@@ -398,26 +429,20 @@
             	} else if(!nickChk){
             		alert('닉네임 중복확인이 필요합니다.');
             		return;
-            	} else{
-            		// 비밀번호 규칙 정규식
-            		// : 숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
-            		let regExpPw = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
-            		
-            		if($('#mPasswd').val() === ""){
-            			alert('비밀번호는 필수값입니다.');
-            			return;
-            		} else if ($('#passwordchk').val() === ""){
-            			alert('비밀번호확인을 입력해주세요');
-            			return;
-            		} else if(!regExpPw.test($('#mPasswd').val())){
-            			alert('최소 8 자, 특수문자, 영문 및  숫자섞어서 써주세요')
-            			$('#mPasswd').val('');
-            			$('#passwordchk').val('');
-            			return;
-            		} 
-            		
-	            	$('#form-join').submit();
-            	}
+            	} else if($('#mPasswd').val() === ""){
+           			alert('비밀번호는 필수값입니다.');
+           			return;
+           		} else if ($('#passwordchk').val() === ""){
+           			alert('비밀번호확인을 입력해주세요');
+           			return;
+           		} else if(!passwdChk){
+           			alert('최소 8 자, 특수문자, 영문 및  숫자섞어서 써주세요')
+           			$('#mPasswd').val('');
+           			$('#passwordchk').val('');
+           			return;
+           		}
+            	$('#form-join').submit();
+            	
             	
             	
             }); // 가입버튼 클릭시 이벤트

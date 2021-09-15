@@ -20,14 +20,14 @@ public class UserService implements IUserService {
 	@Override
 	public int emailCheck(String email) {
 		// TODO Auto-generated method stub
-		
+		System.out.println(email);
 		return mapper.emailCheck(email);
 	}
 
 	@Override
 	public int nickCheck(String nick) {
 		// TODO Auto-generated method stub
-		System.out.println(nick);
+		
 		return mapper.nickCheck(nick);
 	}
 
