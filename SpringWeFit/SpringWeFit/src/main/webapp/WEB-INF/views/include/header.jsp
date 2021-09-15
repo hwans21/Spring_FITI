@@ -97,34 +97,40 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Link 메뉴 -->
 
-                    <!-- DropDown 형식의 메뉴 로그인 했을경우-->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">홍길동님 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-map-marker"
-                                        aria-hidden="true">&nbsp;대흥동</span></a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/FRONT/views/board/user/mypage.html"><span class="glyphicon glyphicon-pencil"
-                                        aria-hidden="true">&nbsp;마이페이지</span></a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-out"
-                                        aria-hidden="true">&nbsp;로그아웃</span></a></li>
-                        </ul>
-                    </li>
-                    <!-- DropDown 형식의 메뉴 로그인을 안했을 경우-->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">로그인하기 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-remove"
-                                        aria-hidden="true">&nbsp;위치정보없음</span></a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#" data-toggle="modal" data-target="#modal-login"><span class="glyphicon glyphicon-pencil"
-                                        aria-hidden="true">&nbsp;로그인</span></a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-out"
-                                        aria-hidden="true" data-toggle="modal" data-target="#modal-join">&nbsp;회원가입</span></a></li>
-                        </ul>
-                    </li>
+                    <!-- 로그인 했을경우 -->
+                    <c:if test="${user != null }">
+                    
+	                    <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+	                            aria-expanded="false">홍길동님 <span class="caret"></span></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="#"><span class="glyphicon glyphicon-map-marker"
+	                                        aria-hidden="true">&nbsp;대흥동</span></a></li>
+	                            <li role="separator" class="divider"></li>
+	                            <li><a href="/FRONT/views/board/user/mypage.html"><span class="glyphicon glyphicon-pencil"
+	                                        aria-hidden="true">&nbsp;마이페이지</span></a></li>
+	                            <li><a href="#"><span class="glyphicon glyphicon-log-out"
+	                                        aria-hidden="true">&nbsp;로그아웃</span></a></li>
+	                        </ul>
+	                    </li>
+                    </c:if>
+                    <!-- 로그인을 안했을 경우 -->
+                    <c:if test="${user == null }">
+	                    <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+	                            aria-expanded="false">로그인하기 <span class="caret"></span></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="#"><span class="glyphicon glyphicon-remove"
+	                                        aria-hidden="true">&nbsp;위치정보없음</span></a></li>
+	                            <li role="separator" class="divider"></li>
+	                            <li><a href="#" data-toggle="modal" data-target="#modal-login"><span class="glyphicon glyphicon-pencil"
+	                                        aria-hidden="true">&nbsp;로그인</span></a></li>
+	                            <li><a href="#"><span class="glyphicon glyphicon-log-out"
+	                                        aria-hidden="true" data-toggle="modal" data-target="#modal-join">&nbsp;회원가입</span></a></li>
+	                        </ul>
+	                    </li>
+                    
+                    </c:if>
 
                 </ul>
             </div>
@@ -148,20 +154,20 @@
                     <h4 class="modal-title" id="myModalLabel">로그인</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-login" class="form-horizontal">
+                    <form action="<c:url value="/user/login" />" method="post" id="form-login" class="form-horizontal">
 
                         <div class="form-group">
-                            <label for="input-email" class="col-sm-3 control-label">이메일</label>
+                            <label for="login-email" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="input-email" placeholder="이메일을 입력해주세요">
+                                <input type="email" class="form-control" id="login-email" name="mEmail" placeholder="이메일을 입력해주세요">
                             </div>
 
                         </div>
                         
                         <div class="form-group">
-                            <label for="input-password" class="col-sm-3 control-label">비밀번호</label>
+                            <label for="login-password" class="col-sm-3 control-label">비밀번호</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="input-password"
+                                <input type="password" class="form-control" id="login-password" name="mPasswd"
                                     placeholder="비밀번호를 입력해주세요">
                             </div>
 
@@ -180,7 +186,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">로그인</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" id="loginBtn">로그인</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#modal-pwsearch" >비밀번호 찾기</button>
                 </div>
 
@@ -261,6 +267,8 @@
             </div>
         </div>
     </div>
+     
+     
      <!-- Modal pwsearch창 -->
      <div id="modal-pwsearch" class="modal fade">
         <div class="modal-dialog">
@@ -322,7 +330,7 @@
             let passwdChk = false;
            	
             const msg = '${msg }';
-            if(msg === "회원가입이 정상처리되었습니다!!"){
+            if(msg !== ""){
             	alert(msg);
             }
             
@@ -445,7 +453,17 @@
             	
             	
             	
-            }); // 가입버튼 클릭시 이벤트
+            }); // 가입버튼 클릭 이벤트
+            
+            $('#loginBtn').click(function(){
+            	if($('#login-email').val() === ""){
+            		alert('이메일을 입력해주세요!');
+            	} else if($('#login-password').val() === ""){
+            		alert('비밀번호를 입력해주세요!');
+            	} else{
+            		$('#form-login').submit();
+            	}
+            }); // 로그인 클릭 이벤트
             
         });
         function menuBarLocation(){

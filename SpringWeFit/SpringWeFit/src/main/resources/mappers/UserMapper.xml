@@ -29,5 +29,10 @@
 		WHERE mNick = #{nick}
 	</update>
 	
+	<select id="login" resultType="com.spring.wefit.command.UserVO">
+		SELECT * FROM member
+		WHERE mEmail = #{email} AND mPasswd = #{pw}
+	</select>
+	
 	
 </mapper>

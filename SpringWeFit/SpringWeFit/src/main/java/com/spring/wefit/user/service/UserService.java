@@ -45,7 +45,7 @@ public class UserService implements IUserService {
 	@Override
 	public void join(UserVO vo) {
 		// TODO Auto-generated method stub
-		
+		System.out.println(vo.getMPasswd());
 		// 회원 비밀번호 암호화 인코딩
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		System.out.println("암호화 하기 전: "+vo.getMPasswd());
@@ -68,7 +68,16 @@ public class UserService implements IUserService {
 	@Override
 	public UserVO login(String email, String pw) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println(pw);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		System.out.println("암호화 하기 전: "+pw);
+		//비밀번호를 암호화해서 user객체에 다시 저장하기
+		String securePw = encoder.encode(pw);
+		String securePw2 = encoder.encode(pw);
+		System.out.println("암호화 한 후: "+securePw);
+		System.out.println("암호화 한 후: "+securePw2);
+		
+		return mapper.login(email, securePw);
 	}
 
 	@Override
@@ -128,7 +137,7 @@ public class UserService implements IUserService {
 			mail.setSubject("[본인인증] WeFit 인증메일입니다", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
 			mail.addRecipient(RecipientType.TO, new InternetAddress(vo.getMEmail()));
-			mailSender.send(mail);
+//			mailSender.send(mail); 실제 이메일 발송버튼 구현할 때만 주석제거
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

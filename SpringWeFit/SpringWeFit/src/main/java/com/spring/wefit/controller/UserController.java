@@ -2,6 +2,7 @@ package com.spring.wefit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +59,25 @@ public class UserController {
 			return "success";
 		}
 		return "duplicate";
+		
+	}
+	
+	@PostMapping("/login")
+	public String login(UserVO vo, Model model, RedirectAttributes ra) {
+		System.out.println("로그인 요청 : "+vo.toString());
+		UserVO login = service.login(vo.getMEmail(), vo.getMPasswd());
+		if(login != null) {
+			if(login.getMEmailYN().equals("Y")) {
+				model.addAttribute("user", login);
+				model.addAttribute("msg", login.getMNick()+"님 환영합니다.");
+				return "/home";			
+			} else {
+				ra.addFlashAttribute("msg","이메일 인증이 필요합니다.");
+				return "redirect:/";
+			}
+		}
+		ra.addFlashAttribute("msg", "이메일 또는 비밀번호가 틀렸습니다.");
+		return "redirect:/";
 		
 	}
 	
