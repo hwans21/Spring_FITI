@@ -43,8 +43,8 @@ public interface IUserMapper {
 	UserVO getUserWithSessionId(String sessionId);
 	
 	//인증 처리
-	void authUser(@Param("email")String email, @Param("code")String code);
+	void authUser(@Param("nick")String nick, @Param("code")String code);
 	
 	//인증 처리 후  인증값 변경
-	void codeChange(UserVO vo);
+	void codeChange(@Param("nick")String nick, @Param("code")String code);
 }

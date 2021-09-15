@@ -21,7 +21,12 @@
 	
 	<update id="authUser">
 		UPDATE member SET mEmailYN = 'Y'
-		WHERE mEmail = #{email} AND mCode = #{code}
+		WHERE mNick = #{nick} AND mCode = #{code}
+	</update>
+	
+	<update id="codeChange">
+		UPDATE member SET mCode = #{code}
+		WHERE mNick = #{nick}
 	</update>
 	
 	

@@ -45,6 +45,7 @@ public class UserService implements IUserService {
 	@Override
 	public void join(UserVO vo) {
 		// TODO Auto-generated method stub
+		
 		// 회원 비밀번호 암호화 인코딩
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		System.out.println("암호화 하기 전: "+vo.getMPasswd());
@@ -121,7 +122,7 @@ public class UserService implements IUserService {
 		String htmlStr = "<h2>안녕하세요 WeFit입니다!</h2><br><br>" 
 				+ "<h3>" + vo.getMNick() + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
 				+ "<a href='http://localhost/wefit"
-				+ "/user/auth/"+vo.getMEmail() +"/"+vo.getMCode()+"'>인증하기</a></p>"
+				+ "/user/auth/"+vo.getMNick() +"/"+vo.getMCode()+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
 			mail.setSubject("[본인인증] WeFit 인증메일입니다", "utf-8");
@@ -135,9 +136,18 @@ public class UserService implements IUserService {
 	}
 	
 	@Override
-	public void authUser(String email, String code) {
+	public void authUser(String nick, String code) {
+		System.out.println("서비스 요청: 인증서비스");
+		System.out.println(nick);
+		System.out.println(code);
+		mapper.authUser(nick, code);
 		
-		mapper.authUser(email, code);
+		// 이메일 랜덤코드값
+		UUID uuid = UUID.randomUUID();
+		String[] uuids = uuid.toString().split("-");
+		
+		mapper.codeChange(nick, uuids[0]);
 	}
+	
 
 }

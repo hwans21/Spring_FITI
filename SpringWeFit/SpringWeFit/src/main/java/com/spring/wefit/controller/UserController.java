@@ -30,10 +30,13 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/auth/{email}/{code}")
-	public String auth(@PathVariable String email, @PathVariable String code) {
+	@GetMapping("/auth/{nick}/{code}")
+	public String auth(@PathVariable String nick, @PathVariable String code) {
+		System.out.println("GET: 인증요청");
+		System.out.println(nick);
+		System.out.println(code);
+		service.authUser(nick,code);
 		
-		service.authUser(email,code);
 		return "redirect:/";
 	}
 	

@@ -47,5 +47,5 @@ public interface IUserService {
 		public void mailSendWithUserKey(UserVO vo);
 		
 		//링크 클릭시 인증하기
-		public void authUser(String email, String code);
+		public void authUser(String nick, String code);
 }
