@@ -1,5 +1,7 @@
 package com.spring.wefit.controller;
 
+import java.sql.Date;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -69,35 +71,39 @@ public class UserController {
 	
 	
 	@PostMapping("/login")
+	@ResponseBody
 	public String login(UserVO vo,
-			boolean autoLoginCheck, 
 			HttpSession session, 
-			Model model,
-			RedirectAttributes ra,
 			HttpServletResponse response) {
+		
 		System.out.println("로그인 요청 : "+vo.toString());
 		
 		UserVO login = service.login(vo.getMEmail(), vo.getMPasswd());
 		if(login != null) {
-			if(login.getMEmailYN().equals("Y")) {
-				session.setAttribute("user", login);
-//				if(autoLoginCheck.equals("true")) {
-//					long limitTime = 7*24*60*60;
-//					Cookie cookie = new Cookie("loginCookie", session.getId());
-//					cookie.setPath("/");
-//					cookie.setMaxAge((int) limitTime);
-//					response.addCookie(cookie);
-//				}
-				
-				model.addAttribute("msg", login.getMNick()+"님 환영합니다.");
-				return "/home";			
+			if(login.getMDelDate() != null) {
+				return "delUser";
+			} else if(login.getMHumanYN().equals("Y")) {
+				return "humanUser";
 			} else {
-				ra.addFlashAttribute("msg","이메일 인증이 필요합니다.");
-				return "redirect:/";
+				session.setAttribute("user", login);
+				if(login.isAutoLoginCheck()) {
+					long limitTime = 7*24*60*60; //7일동안 자동로그인
+					Cookie logincookie = new Cookie("loginCookie", session.getId());
+					logincookie.setPath("/");
+					logincookie.setMaxAge((int) limitTime);
+					response.addCookie(logincookie);
+					
+					long currentTime = System.currentTimeMillis() + (limitTime*1000);
+					Date limitDate = new Date(currentTime);
+					service.keepLogin(session.getId(), limitDate, login.getMEmail());
+				}
+				return "success";
 			}
 		}
-		ra.addFlashAttribute("msg", "이메일 또는 비밀번호가 틀렸습니다.");
-		return "redirect:/";
+		
+		return "fail";
+		
+		
 		
 	}
 	

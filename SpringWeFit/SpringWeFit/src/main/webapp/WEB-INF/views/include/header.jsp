@@ -461,7 +461,37 @@
             	} else if($('#login-password').val() === ""){
             		alert('비밀번호를 입력해주세요!');
             	} else{
-            		$('#form-login').submit();
+            		$.ajax({
+                        type:"POST",
+                        url:"<c:url value='/user/login' />",
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+                        dataType:"text",
+                        data: JSON.stringify({
+                            "mEmail":$('#login-email').val(),
+                            "mPasswd":$('#login-password').val(),
+                            "autoLoginCheck":$('#auto-login-check').val()
+                        }),
+                        success:function(data){
+                            if(data==="delUser"){
+                            	if(confirm("계정을 복구하시겠습니까?")){
+                            		alert('복구로직 실행');
+                            	}
+                            } else if(data==="humanUser"){
+                            	if(confirm("휴먼계정입니다. 활성화하시겠습니까?")){
+                            		alert('복구로직 실행');
+                            	}
+                            } else if(data==="success"){
+                            	alert('${user.mNick}님 환영합니다.');
+                            } else if(data === "fail"){
+                            	alert('이메일 또는 비밀번호가 잘못되었습니다.');
+                            }
+                        },
+                        error: function(){
+                            alert('통신에 실패했습니다. 관리자에게 문의하세요.');
+                        }
+                    });
             	}
             }); // 로그인 클릭 이벤트
             

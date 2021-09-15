@@ -36,7 +36,7 @@ public class ConnectionTest {
 	public void joinTest() {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		UserVO vo = new UserVO();
-		for(int i=1;i<50;i++) {
+		for(int i=1;i<51;i++) {
 			vo.setMEmail("test"+i+"@test.com");
 			vo.setMNick("test"+i);
 			vo.setMPasswd(encoder.encode(Integer.toString(i)));
@@ -46,6 +46,19 @@ public class ConnectionTest {
 			vo.setMCode(UUID.randomUUID().toString().split("-")[0]);
 			System.out.println(vo.toString());
 			usermapper.join(vo);
+		}
+	}
+	
+	@Test
+	public void updateTest() {
+		UserVO vo = new UserVO();
+		for(int i=2;i<51;i=i+2) {
+			
+			vo = usermapper.getInfo("test"+i+"@test.com");
+			if(vo != null) {
+				usermapper.authUser(vo.getMNick(), vo.getMCode());			
+				
+			}
 		}
 	}
 }

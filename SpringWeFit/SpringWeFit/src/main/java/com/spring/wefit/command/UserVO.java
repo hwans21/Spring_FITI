@@ -60,4 +60,5 @@ public class UserVO {
     private Timestamp autoLoginLimit;
     
     
+    private boolean autoLoginCheck;
 }

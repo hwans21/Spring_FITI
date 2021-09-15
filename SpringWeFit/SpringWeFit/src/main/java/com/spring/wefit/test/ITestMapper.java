@@ -5,4 +5,6 @@ public interface ITestMapper {
 	double test();
 	
 	void joinTest();
+	
+	void updateTest();
 }

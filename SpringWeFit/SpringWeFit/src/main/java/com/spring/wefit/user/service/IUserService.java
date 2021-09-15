@@ -20,7 +20,7 @@ public interface IUserService {
 		void join(UserVO vo);
 		
 		//로그인
-		UserVO login(@Param("email")String email, @Param("pw")String pw);
+		UserVO login(String email, String pw);
 		
 		//회원정보 얻어오기
 		UserVO getInfo(String email);
