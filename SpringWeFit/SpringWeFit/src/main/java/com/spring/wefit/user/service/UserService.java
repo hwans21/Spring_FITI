@@ -54,7 +54,7 @@ public class UserService implements IUserService {
 		System.out.println("암호화 한 후: "+securePw);
 		vo.setMPasswd(securePw);
 		
-		// 이메일 랜덤코드값
+		// 이메일 인증 랜덤코드값
 		UUID uuid = UUID.randomUUID();
 		String[] uuids = uuid.toString().split("-");
 		vo.setMCode(uuids[0]);
@@ -68,16 +68,14 @@ public class UserService implements IUserService {
 	@Override
 	public UserVO login(String email, String pw) {
 		// TODO Auto-generated method stub
-		System.out.println(pw);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println("암호화 하기 전: "+pw);
-		//비밀번호를 암호화해서 user객체에 다시 저장하기
-		String securePw = encoder.encode(pw);
-		String securePw2 = encoder.encode(pw);
-		System.out.println("암호화 한 후: "+securePw);
-		System.out.println("암호화 한 후: "+securePw2);
+		System.out.println(pw);
+		UserVO vo = mapper.getInfo(email);
+		if(encoder.matches(pw, vo.getMPasswd())) { // 비밀번호 서로 맞음
+			return vo;
+		}
+		return null;
 		
-		return mapper.login(email, securePw);
 	}
 
 	@Override
