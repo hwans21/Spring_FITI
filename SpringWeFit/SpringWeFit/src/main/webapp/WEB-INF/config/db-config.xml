@@ -43,6 +43,22 @@
 			
 	</bean>
 	
+	<!-- email 인증 관련   -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="이메일입력"/>
+        <property name="password" value="패스워드입력" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+	
 	<!-- 위의 구현체 xml을 빈으로 등록하기 위해서는 타입이 필요하니까 인터페이스를 자동으로 스캔해서 빈으로 등록하기 위한 설정 -->
 	<!-- 스캔 명령은 빈 바깥에! -->
 	<mybatis-spring:scan base-package="com.spring.wefit.test"/>
