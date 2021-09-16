@@ -36,7 +36,7 @@ public class ConnectionTest {
 	public void joinTest() {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		UserVO vo = new UserVO();
-		for(int i=1;i<51;i++) {
+		for(int i=51;i<101;i++) {
 			vo.setMEmail("test"+i+"@test.com");
 			vo.setMNick("test"+i);
 			vo.setMPasswd(encoder.encode(Integer.toString(i)));
