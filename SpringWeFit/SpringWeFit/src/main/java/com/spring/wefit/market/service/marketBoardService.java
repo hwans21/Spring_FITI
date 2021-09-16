@@ -16,14 +16,14 @@ public class marketBoardService implements IMarketBoardService {
 
 	@Override
 	public void regist(marketBoardVO vo) {
-		// TODO Auto-generated method stub
+		mapper.regist(vo);
 
 	}
 
 	@Override
 	public List<marketBoardVO> getList() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return mapper.getList();
 	}
 
 	@Override
