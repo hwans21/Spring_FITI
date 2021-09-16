@@ -3,7 +3,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.spring.wefit.noticereply.mappers.noticereply">
+<mapper namespace="com.spring.wefit.noticereply.mapper.INoticeReplyMapper">
 <!--namespace 수정필요-->
 
 <!-- 댓글 조회 -->
