@@ -19,9 +19,6 @@ public interface IUserService {
 		//회원가입
 		void join(UserVO vo);
 		
-		//로그인
-		UserVO login(String email, String pw);
-		
 		//회원정보 얻어오기
 		UserVO getInfo(String email);
 		

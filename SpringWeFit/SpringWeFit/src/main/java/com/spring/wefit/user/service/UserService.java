@@ -2,6 +2,8 @@ package com.spring.wefit.user.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
@@ -45,36 +47,23 @@ public class UserService implements IUserService {
 	@Override
 	public void join(UserVO vo) {
 		// TODO Auto-generated method stub
-		System.out.println(vo.getMpasswd());
+		System.out.println(vo.getMemberPasswd());
 		// 회원 비밀번호 암호화 인코딩
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println("암호화 하기 전: "+vo.getMpasswd());
+		System.out.println("암호화 하기 전: "+vo.getMemberPasswd());
 		//비밀번호를 암호화해서 user객체에 다시 저장하기
-		String securePw = encoder.encode(vo.getMpasswd());
+		String securePw = encoder.encode(vo.getMemberPasswd());
 		System.out.println("암호화 한 후: "+securePw);
-		vo.setMpasswd(securePw);
+		vo.setMemberPasswd(securePw);
 		
 		// 이메일 인증 랜덤코드값
 		UUID uuid = UUID.randomUUID();
 		String[] uuids = uuid.toString().split("-");
-		vo.setMcode(uuids[0]);
+		vo.setMemberCode(uuids[0]);
 		
 		
 		System.out.println(vo.toString());
 		mapper.join(vo);
-		
-	}
-
-	@Override
-	public UserVO login(String email, String pw) {
-		// TODO Auto-generated method stub
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println(pw);
-		UserVO vo = getInfo(email);
-		if(encoder.matches(pw, vo.getMpasswd())) { // 비밀번호 서로 맞음
-			return vo;
-		}
-		return null;
 		
 	}
 
@@ -105,37 +94,47 @@ public class UserService implements IUserService {
 	@Override
 	public void recovery(String email) {
 		// TODO Auto-generated method stub
-
+		mapper.recovery(email);
 	}
 
 	@Override
-	public void keepLogin(String sessionId, Date limitTime, String account) {
+	public void keepLogin(String sessionId, Date limitTime, String email) {
 		// TODO Auto-generated method stub
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("sessionId", (String) sessionId);
+		map.put("autoLoginLimit", (Date) limitTime);
+		map.put("memberEmail", (String) email);
+		map.forEach((key, value) -> {
+			System.out.println(key + " : " + value);
+		});
+
+		mapper.keepLogin(map);
 
 	}
 
 	@Override
 	public UserVO getUserWithSessionId(String sessionId) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.getUserWithSessionId(sessionId);
 	}
 	
-	// 인증 이메일 발송
+	// 가입인증 이메일 발송
 	@Override
 	public void mailSendWithUserKey(UserVO vo) {
 		
 		
 		MimeMessage mail = mailSender.createMimeMessage();
 		String htmlStr = "<h2>안녕하세요 WeFit입니다!</h2><br><br>" 
-				+ "<h3>" + vo.getMnick() + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
+				+ "<h3>" + vo.getMemberNick() + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
 				+ "<a href='http://localhost/wefit"
-				+ "/user/auth/"+vo.getMnick() +"/"+vo.getMcode()+"'>인증하기</a></p>"
+				+ "/user/auth/"+vo.getMemberNick() +"/"+vo.getMemberCode()+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
 			mail.setSubject("[본인인증] WeFit 인증메일입니다", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
-			mail.addRecipient(RecipientType.TO, new InternetAddress(vo.getMemail()));
-			mailSender.send(mail); 
+			mail.addRecipient(RecipientType.TO, new InternetAddress(vo.getMemberEmail()));
+//			mailSender.send(mail); 
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
