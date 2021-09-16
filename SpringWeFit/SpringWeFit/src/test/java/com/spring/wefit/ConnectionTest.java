@@ -19,14 +19,13 @@ public class ConnectionTest {
 	@Autowired
 	private IDietBoardMapper mapper;
 	
-	
 	@Test
 	public void registTest() {
 		for(int i=1; i<=10; i++) {
 			DietBoardVO vo = new DietBoardVO();
 			vo.setMNum(i);
-			vo.setDbTitle("ì œëª© í…ŒìŠ¤íŠ¸" + i);
-			vo.setDbContent("í…ŒìŠ¤íŠ¸ ë‚´ìš©" + i);
+			vo.setDbTitle("Á¦¸ñ" + i);
+			vo.setDbContent("³»¿ë" + i);
 			vo.setDbLookCount(i);
 			vo.setDbImageCount(i);
 			

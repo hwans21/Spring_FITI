@@ -54,7 +54,7 @@
             </div>
 
             <!--main left-->
-            <form action="#" id="boardWrite" method="POST" enctype="multipart/form-data">
+            <form action="/dietBoard/dietModify" id="boardWrite" method="POST" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>작성자</td>
@@ -74,15 +74,15 @@
                     
                     <tr>
                         <td>사진올리기 </td>
-                        <td><input type="file" name="fileName" size="10" maxlength="10"></td>
+                        <td><input multiple="multiple"  type="file" name="fileName" size="10" maxlength="10"></td>
                     </tr>
                     
                     <tr class="text-right">
                         <td colspan="2">
                             <br>
-                            <button type="button" class="btn btn-primary" onclick="location.href='#'">수정하기</button>
-                            <button type="button" class="btn btn-primary" onclick="location.href='#'">삭제하기</button>
-                            <button type="button" class="btn btn-default" onclick="location.href='/FRONT/views/board/diet/diet_detail.html'">취소하기</button>
+                            <button type="submit" class="btn btn-primary" >수정하기</button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='<c:url value="/dietBoard/dietDelete" />'">삭제하기</button>
+                            <button type="button" class="btn btn-default" onclick="location.href='<c:url value="/dietBoard/dietList" />'">취소하기</button>
                             <br><br><br>
                         </td>
                         

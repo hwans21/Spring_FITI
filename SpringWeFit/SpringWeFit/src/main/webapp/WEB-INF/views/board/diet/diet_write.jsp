@@ -58,17 +58,17 @@
                 <table>
                     <tr>
                         <td>작성자</td>
-                        <td><input type=text name=name size=20> </td>
+                        <td><input type=text name="mNum" size=20> </td>
                     </tr>
 
                     <tr>
                         <td>제목</td>
-                        <td><input type=text name=title size="60"></td>
+                        <td><input type=text name="dbTitle" size="60"></td>
                     </tr>
 
                     <tr>
                         <td>내용</td>
-                        <td><textarea name="content" cols="75" rows="15"></textarea></td>
+                        <td><textarea name="dbContent" cols="75" rows="15"></textarea></td>
                     </tr>
 
                     
@@ -80,7 +80,7 @@
                     <tr class="text-right">
                         <td colspan="2">
                             <br>
-                            <button class="btn btn-primary" id="writeBtn" type="submit">등록하기</button>
+                            <button class="btn btn-primary" id="writeBtn" type="button">등록하기</button>
                             <button class="btn btn-default" id="listBtn" type="button" onclick="location.href='<c:url value='/dietBoard/dietList' />'">취소하기</button>
                             <br><br><br>
                         </td>
@@ -99,19 +99,16 @@
     </div>
 
     <script>
-    	const writeBtn = document.getElementById('writeBtn';)
+    	const writeBtn = document.getElementById('writeBtn');
+    	console.log(writeBtn);
     	writeBtn.onclick = function() {
-			if(document.writeForm.name.value === '') {
+			if(document.writeForm.mNum.value === '') {
 				alert('작성자는 필수 항목 입니다.');
-				document.writeForm.name.focus();
+				document.writeForm.mNum.focus();
 				return;
-			}else if(document.writeForm.title.value === '') {
+			}else if(document.writeForm.dbTitle.value === '') {
 				alert('제목은 필수 항목 입니다.');
-  				document.writeForm.title.focus();
-  				return;
-			}else if(document.writeForm.content.value === '') {
-  				alert('내용은 필수 항목 입니다.');
-  				document.writeForm.content.focus();
+  				document.writeForm.dbTitle.focus();
   				return;
 			}else {
 				document.writeForm.submit();

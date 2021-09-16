@@ -31,13 +31,12 @@ public class DietBoardService implements IDietBoardService {
 
 	@Override
 	public void update(DietBoardVO vo) {
-		// TODO Auto-generated method stub
-
+		mapper.update(vo);
 	}
 
 	@Override
 	public void delete(int dbNum) {
-		// TODO Auto-generated method stub
+		mapper.delete(dbNum);
 
 	}
 

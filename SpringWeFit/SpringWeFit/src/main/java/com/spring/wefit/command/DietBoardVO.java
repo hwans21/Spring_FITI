@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
 public class DietBoardVO {
 	
@@ -29,6 +29,7 @@ public class DietBoardVO {
 	private int dbLookCount;
 	private int dbImageCount;
 	private Timestamp dbRegDate;
+
 	
 /*
 CREATE TABLE DietBoard

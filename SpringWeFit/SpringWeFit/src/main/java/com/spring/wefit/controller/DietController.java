@@ -22,7 +22,7 @@ public class DietController {
 	//글 목록전체보기
 	@GetMapping("/dietList") 
 	public String dietList(Model model) {
-		System.out.println("/board/dietList: GET");
+		System.out.println("/board/dietList: GET 글 목록 전체보기!!");
 		model.addAttribute("dietList", service.getList());
 		return "/board/diet/diet_board";
 	}
@@ -30,14 +30,15 @@ public class DietController {
 	//글쓰기 화면 이동처리
 	@GetMapping("/dietWrite")
 	public String dietWrite() {
-		System.out.println("/diet_Write 요청");
+		System.out.println("/diet_Write 글쓰기 화면 이동!!");
 		return "/board/diet/diet_write";
 	}
 	
 	//글 등록
 	@PostMapping("/dietWrite")
 	public String dietWrite(DietBoardVO vo, RedirectAttributes ra) {
-		System.out.println("/board/dietWrite: POST");
+		System.out.println("/board/dietWrite: POST 등록하기!!");
+		System.out.println(vo);
 		service.regist(vo);
 		ra.addFlashAttribute("msg", "게시물이 등록되었습니다.");
 		return "redirect:/board/diet/diet_write";
@@ -46,14 +47,34 @@ public class DietController {
 	//글 상세보기
 	@GetMapping("/dietDetail")
 	public String dietContent(@RequestParam int dbNum, Model model) {
-		System.out.println("/board/dietContent: GET");
+		System.out.println("/board/dietContent: GET 상세보기!!");
 		System.out.println("요청된 글 번호: " + dbNum);
 		model.addAttribute("dietList", service.getContent(dbNum));
 		return "/board/diet/diet_detail";
 	}
 	
+	//글 수정화면 요청
+	@GetMapping("/dietModify")
+	public String dietModify() {
+		System.out.println("/board/diet/diet_modify: GET 글 수정목록 요청!");
+		return "/board/diet/diet_modify";
+	}
 	
+	//글 수정하기
+	@PostMapping("/dietModify")
+	public String dietModify(DietBoardVO vo) {
+		System.out.println("board/diet/diet_modify: POST 글 수정 요청!");
+		service.update(vo);
+		return "redirect:/board/diet/diet_list";
+	}
 	
+	//글 삭제하기
+	@GetMapping("/dietDelete")
+	public String dietDelete(@RequestParam int dbNum) {
+		System.out.println("GET 글 삭제 요청!");
+		service.delete(dbNum);
+		return "redirect:/board/diet/diet_list";
+	}
 	
 	
 	
