@@ -194,70 +194,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr onclick="location.href='/FRONT/views/board/notice/notice_detail.html'">
-                            <th scope="col" class="text-center">23</th>
-                            <th scope="col">[자유글] 운동 많이 하고 계시나요?</th>
-                            <th scope="col" class="text-center">야옹이</th>
-                            <th scope="col" class="text-center">2021-09-02</th>
-                            <th scope="col" class="text-center">153</th>
-                        </tr>
-
-                        <tr>
-                            <th scope="col" class="text-center">23</th>
-                            <th scope="col">[자유글] 운동 많이 하고 계시나요?</th>
-                            <th scope="col" class="text-center">야옹이</th>
-                            <th scope="col" class="text-center">2021-09-02</th>
-                            <th scope="col" class="text-center">153</th>
-                        </tr>
-
-                        <tr>
-                            <th scope="col" class="text-center">23</th>
-                            <th scope="col">[자유글] 운동 많이 하고 계시나요?</th>
-                            <th scope="col" class="text-center">야옹이</th>
-                            <th scope="col" class="text-center">2021-09-02</th>
-                            <th scope="col" class="text-center">153</th>
-                        </tr>
-
-                        <tr>
-                            <th scope="col" class="text-center">23</th>
-                            <th scope="col">[자유글] 운동 많이 하고 계시나요?</th>
-                            <th scope="col" class="text-center">야옹이</th>
-                            <th scope="col" class="text-center">2021-09-02</th>
-                            <th scope="col" class="text-center">153</th>
-                        </tr>
-
-                        <tr>
-                            <th scope="col" class="text-center">23</th>
-                            <th scope="col">[자유글] 운동 많이 하고 계시나요?</th>
-                            <th scope="col" class="text-center">야옹이</th>
-                            <th scope="col" class="text-center">2021-09-02</th>
-                            <th scope="col" class="text-center">153</th>
-                        </tr>
-
-                        <tr>
-                            <th scope="col" class="text-center">23</th>
-                            <th scope="col">[자유글] 운동 많이 하고 계시나요?</th>
-                            <th scope="col" class="text-center">야옹이</th>
-                            <th scope="col" class="text-center">2021-09-02</th>
-                            <th scope="col" class="text-center">153</th>
-                        </tr>
-
-                        <tr>
-                            <th scope="col" class="text-center">23</th>
-                            <th scope="col">[자유글] 운동 많이 하고 계시나요?</th>
-                            <th scope="col" class="text-center">야옹이</th>
-                            <th scope="col" class="text-center">2021-09-02</th>
-                            <th scope="col" class="text-center">153</th>
-                        </tr>
-
-                        <tr>
-                            <th scope="col" class="text-center">23</th>
-                            <th scope="col">[자유글] 운동 많이 하고 계시나요?</th>
-                            <th scope="col" class="text-center">야옹이</th>
-                            <th scope="col" class="text-center">2021-09-02</th>
-                            <th scope="col" class="text-center">153</th>
-                        </tr>
-
+                    	<c:forEach items="${noticelist}" var="noticelist">
+                        	<tr onclick="location.href='/FRONT/views/board/notice/notice_detail.html'">
+                        		<td scope="col" class="text-center">${noticelist.NBNUM}</td>
+  								<td scope="col"><a href="/noticeboard/view?NBNUM=${noticelist.NBNUM}">${noticelist.NBTITLE}</a></td> <!-- 이거 수정 -->
+  								<td scope="col" class="text-center">${noticelist.MNUM}</td>
+  								<td scope="col" class="text-center">${noticelist.NBREGDATE}</td>
+  								<td scope="col" class="text-center">${noticelist.NBREGDATE}</td>
+  							</tr>
+  						</c:forEach>
+  						
                     </tbody>
                 </table>
 
@@ -265,7 +211,7 @@
             </div>
 
             <div class="row" align="right">
-                    <button type="button" id="write" class="btn btn-outline-primary float-right" onclick="location.href='/FRONT/views/board/notice/notice_write.html'"><b>작성하기</b></button>
+                    <button type="button" id="write" class="btn btn-outline-primary float-right" onclick="location.href='/FRONT/views/board/notice/notice_write.jsp'"><b>작성하기</b></button>
             </div>
 
 

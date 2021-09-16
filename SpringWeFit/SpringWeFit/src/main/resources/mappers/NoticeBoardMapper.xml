@@ -3,5 +3,49 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.wefit.noticeboard.mappers.noticeboard">
-<!--namespace 수정-->
+<!--namespace 수정필요-->
+
+<!-- 게시물 목록 -->
+<select id="noticelist" resultType="com.spring.wefit.command.NoticBoardVO">
+ select
+  NBNUM, MNUM, NBTITLE, NBCONTENT, NBIMAGE1, NBREALIMAGE1, NBLOOKCOUNT, NBIMAGECOUNT, NBREGDATE
+ from SPRINGWEFIT.NOTICEBOARD
+</select>
+
+<!-- 게시물 작성 -->
+<insert id="noticewrite" parameterType="com.spring.wefit.command.NoticeBoardVO">
+ insert into
+  SPRINGWEFIT.NOTICEBOARD(NBTITLE, NBCONTENT, MNUM, NBREALIMAGE1)
+   values(#{NBTITLE}, #{NBCONTENT}, #{MNUM}, #{NBREALIMAGE1})
+</insert>
+
+<!-- 게시물 조회 -->
+<select id="noticeview" parameterType="int" resultType="com.spring.wefit.command.NoticeBoardVO">
+ select 
+  NBNUM, MNUM, NBTITLE, NBCONTENT, NBIMAGE1, NBREALIMAGE1, NBLOOKCOUNT, NBIMAGECOUNT, NBREGDATE
+ from 
+  SPRINGWEFIT.NOTICEBOARD
+ where
+  NBNUM = #{NBNUM}   
+</select>
+
+<!-- 게시물 수정 -->
+<update id="noticemodify" parameterType="com.spring.wefit.command.NoticeBoardVO" >
+ update SPRINGWEFIT.NOTICEBOARD
+  set
+   NBTITLE = #{NBTITLE},
+   NBCONTENT = #{NBCONTENT},
+   MNUM = #{MNUM}
+  where NBNUM = #{NBNUM}
+</update>
+
+<!-- 게시물 삭제 -->
+<delete id="noticedelete" parameterType="int">
+ delete
+  from SPRINGWEFIT.NOTICEBOARD
+ where NBNUM = #{NBNUM}
+</delete>
+
+
+
 </mapper>
