@@ -13,7 +13,7 @@ import lombok.ToString;
 public class DietBoardVO {
 	
 	private int dbNum;
-	private int mNum;
+	private int memberNum;
 	private String dbTitle;
 	private String dbContent;
 	private String dbImage1;

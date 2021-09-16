@@ -54,21 +54,21 @@
             </div>
 
             <!--main left-->
-            <form action="/dietBoard/dietModify" id="boardWrite" method="POST" enctype="multipart/form-data">
+            <form action="<c:url value='/dietBoard/dietModify' />" name="modifyForm" method="POST" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>작성자</td>
-                        <td><input type=text name=name size=20> </td>
+                        <td><input type=text name=memberNum size=20 value="${dietList.memberNum}"> </td>
                     </tr>
 
                     <tr>
                         <td>제목</td>
-                        <td><input type=text name=title size="60"></td>
+                        <td><input type=text name=dbTitle size="60" value="${dietList.dbTitle}"></td>
                     </tr>
 
                     <tr>
                         <td>내용</td>
-                        <td><textarea name="content" cols="75" rows="15"></textarea></td>
+                        <td><textarea name="dbContent" cols="75" rows="15">${dietList.dbContent}</textarea></td>
                     </tr>
 
                     
@@ -80,8 +80,8 @@
                     <tr class="text-right">
                         <td colspan="2">
                             <br>
-                            <button type="submit" class="btn btn-primary" >수정하기</button>
-                            <button type="button" class="btn btn-primary" onclick="location.href='<c:url value="/dietBoard/dietDelete" />'">삭제하기</button>
+                            <button type="submit" class="btn btn-primary" id="modifyBtn">수정하기</button>
+                            <button type="button" class="btn btn-primary" id="delBtn">삭제하기</button>
                             <button type="button" class="btn btn-default" onclick="location.href='<c:url value="/dietBoard/dietList" />'">취소하기</button>
                             <br><br><br>
                         </td>
@@ -98,10 +98,44 @@
     <div class="row">
         <%@ include file="../../include/footer.jsp" %>
     </div>
-
-    </div>
-
     
+	<script>
+	
+	const modifyBtn = document.getElementById('modifyBtn');
+	console.log(modifyBtn);
+	modifyBtn.onclick = function() {
+		if(document.modifyForm.memberNum.value === '') {
+				alert('작성자는 필수 항목 입니다.');
+				document.modifyForm.memberNum.focus();
+				return; //이벤트 함수 강제 종료
+			} else if(document.modifyForm.dbTitle.value === '') {
+				alert('제목은 필수 항목 입니다.');
+				document.modifyForm.dbTitle.focus();
+				return;
+			} else {
+				document.modifyForm.submit();
+			}
+	};
+	
+	
+	$('#delBtn').click(function() {
+		if(confirm('정말 삭제하시겠습니까?')) {
+			$('form[name=modifyForm]').attr('action', '<c:url value="/dietBoard/dietDelete" />');
+			$('form[name=modifyForm]').submit();
+		} else {
+			return;
+		}
+	});
+	
+	
+	</script>
 </body>
 
 </html>
+
+
+
+
+
+
+

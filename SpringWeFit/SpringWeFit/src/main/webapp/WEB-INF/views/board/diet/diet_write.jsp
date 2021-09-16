@@ -58,14 +58,14 @@
                 <table>
                     <tr>
                         <td>작성자</td>
-                        <td><input type=text name="mNum" size=20> </td>
+                        <td><input type=text name="memberNum" size=20> </td>
                     </tr>
 
                     <tr>
                         <td>제목</td>
                         <td><input type=text name="dbTitle" size="60"></td>
                     </tr>
-
+					
                     <tr>
                         <td>내용</td>
                         <td><textarea name="dbContent" cols="75" rows="15"></textarea></td>
@@ -102,9 +102,9 @@
     	const writeBtn = document.getElementById('writeBtn');
     	console.log(writeBtn);
     	writeBtn.onclick = function() {
-			if(document.writeForm.mNum.value === '') {
+			if(document.writeForm.memberNum.value === '') {
 				alert('작성자는 필수 항목 입니다.');
-				document.writeForm.mNum.focus();
+				document.writeForm.memberNum.focus();
 				return;
 			}else if(document.writeForm.dbTitle.value === '') {
 				alert('제목은 필수 항목 입니다.');

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.wefit.command.DietBoardVO;
@@ -36,12 +37,15 @@ public class DietController {
 	
 	//글 등록
 	@PostMapping("/dietWrite")
-	public String dietWrite(DietBoardVO vo, RedirectAttributes ra) {
+	public String dietWrite(MultipartHttpServletRequest request, DietBoardVO vo, RedirectAttributes ra) {
 		System.out.println("/board/dietWrite: POST 등록하기!!");
-		System.out.println(vo);
+		/*
+		System.out.println("제목: " + request.getParameter("dbTitle"));
+		System.out.println("내용: " + request.getParameter("dbContent"));
+		*/
 		service.regist(vo);
 		ra.addFlashAttribute("msg", "게시물이 등록되었습니다.");
-		return "redirect:/board/diet/diet_write";
+		return "redirect:/dietBoard/dietList";
 	}
 	
 	//글 상세보기
@@ -55,25 +59,31 @@ public class DietController {
 	
 	//글 수정화면 요청
 	@GetMapping("/dietModify")
-	public String dietModify() {
+	public String dietModify(@RequestParam int dbNum, Model model) {
 		System.out.println("/board/diet/diet_modify: GET 글 수정목록 요청!");
+		model.addAttribute("dietList", service.getContent(dbNum));
+		System.out.println("수정할 글 번호: " + dbNum);
 		return "/board/diet/diet_modify";
 	}
 	
 	//글 수정하기
 	@PostMapping("/dietModify")
-	public String dietModify(DietBoardVO vo) {
+	public String dietModify(MultipartHttpServletRequest request, DietBoardVO vo, RedirectAttributes ra, Model model) {
 		System.out.println("board/diet/diet_modify: POST 글 수정 요청!");
 		service.update(vo);
-		return "redirect:/board/diet/diet_list";
+		model.addAttribute("dietList", service.getList());
+		ra.addFlashAttribute("msg", "updateSuccess");
+		
+		return "redirect:/dietBoard/dietList";
 	}
 	
 	//글 삭제하기
-	@GetMapping("/dietDelete")
-	public String dietDelete(@RequestParam int dbNum) {
-		System.out.println("GET 글 삭제 요청!");
-		service.delete(dbNum);
-		return "redirect:/board/diet/diet_list";
+	@PostMapping("/dietDelete")
+	public String dietDelete(DietBoardVO vo, RedirectAttributes ra) {
+		service.delete(vo.getDbNum());
+		ra.addFlashAttribute("msg", "게시글이 정상 삭제되었습니다.");
+		System.out.println("삭제완료");
+		return "redirect:/dietBoard/dietList";
 	}
 	
 	

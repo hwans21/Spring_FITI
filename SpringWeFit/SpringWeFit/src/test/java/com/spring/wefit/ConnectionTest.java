@@ -23,9 +23,9 @@ public class ConnectionTest {
 	public void registTest() {
 		for(int i=1; i<=10; i++) {
 			DietBoardVO vo = new DietBoardVO();
-			vo.setMNum(i);
-			vo.setDbTitle("Á¦¸ñ" + i);
-			vo.setDbContent("³»¿ë" + i);
+			vo.setMemberNum(i);
+			vo.setDbTitle("ï¿½ï¿½ï¿½ï¿½" + i);
+			vo.setDbContent("ï¿½ï¿½ï¿½ï¿½" + i);
 			vo.setDbLookCount(i);
 			vo.setDbImageCount(i);
 			
