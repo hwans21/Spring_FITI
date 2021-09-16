@@ -16,7 +16,7 @@
 
 	<insert id="join">
 		INSERT INTO member(mNum, mEmail,mNick,mPasswd,mPhone,mHumanYN,mEmailYN, mCode)
-		VALUES (member_seq.NEXTVAL,#{mEmail},#{mNick},#{mPasswd},#{mPhone},'N','N',#{mCode})
+		VALUES (member_seq.NEXTVAL,#{memail},#{mnick},#{mpasswd},#{mphone},'N','N',#{mcode})
 	</insert>
 	
 	<update id="authUser">

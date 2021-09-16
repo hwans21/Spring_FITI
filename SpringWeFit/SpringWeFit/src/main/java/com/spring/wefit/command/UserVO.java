@@ -43,20 +43,20 @@ CREATE SEQUENCE member_seq
 @Setter
 @ToString
 public class UserVO {
-	private int mNum;
-    private String email;
-    private String mNick;
-    private String mPasswd;
-    private String mPhone;
-    private Timestamp mRegistDate;
-    private Timestamp mConnDate;
-    private String mHumanYN;
-    private double mLatitude;
-    private double mLongitude;
-    private String mEmailYN;
-    private String mCode;
-    private String mManagerYN;
-    private Timestamp mDelDate;
+	private int mnum;
+    private String memail;
+    private String mnick;
+    private String mpasswd;
+    private String mphone;
+    private Timestamp mregistDate;
+    private Timestamp mconnDate;
+    private String mhumanYN;
+    private double mlatitude;
+    private double mlongitude;
+    private String memailYN;
+    private String mcode;
+    private String mmanagerYN;
+    private Timestamp mdelDate;
     private String sessionId;
     private Timestamp autoLoginLimit;
     

@@ -45,19 +45,19 @@ public class UserService implements IUserService {
 	@Override
 	public void join(UserVO vo) {
 		// TODO Auto-generated method stub
-		System.out.println(vo.getMPasswd());
+		System.out.println(vo.getMpasswd());
 		// 회원 비밀번호 암호화 인코딩
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println("암호화 하기 전: "+vo.getMPasswd());
+		System.out.println("암호화 하기 전: "+vo.getMpasswd());
 		//비밀번호를 암호화해서 user객체에 다시 저장하기
-		String securePw = encoder.encode(vo.getMPasswd());
+		String securePw = encoder.encode(vo.getMpasswd());
 		System.out.println("암호화 한 후: "+securePw);
-		vo.setMPasswd(securePw);
+		vo.setMpasswd(securePw);
 		
 		// 이메일 인증 랜덤코드값
 		UUID uuid = UUID.randomUUID();
 		String[] uuids = uuid.toString().split("-");
-		vo.setMCode(uuids[0]);
+		vo.setMcode(uuids[0]);
 		
 		
 		System.out.println(vo.toString());
@@ -70,8 +70,8 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		System.out.println(pw);
-		UserVO vo = mapper.getInfo(email);
-		if(encoder.matches(pw, vo.getMPasswd())) { // 비밀번호 서로 맞음
+		UserVO vo = getInfo(email);
+		if(encoder.matches(pw, vo.getMpasswd())) { // 비밀번호 서로 맞음
 			return vo;
 		}
 		return null;
@@ -81,7 +81,7 @@ public class UserService implements IUserService {
 	@Override
 	public UserVO getInfo(String email) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.getInfo(email);
 	}
 
 	@Override
@@ -127,14 +127,14 @@ public class UserService implements IUserService {
 		
 		MimeMessage mail = mailSender.createMimeMessage();
 		String htmlStr = "<h2>안녕하세요 WeFit입니다!</h2><br><br>" 
-				+ "<h3>" + vo.getMNick() + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
+				+ "<h3>" + vo.getMnick() + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
 				+ "<a href='http://localhost/wefit"
-				+ "/user/auth/"+vo.getMNick() +"/"+vo.getMCode()+"'>인증하기</a></p>"
+				+ "/user/auth/"+vo.getMnick() +"/"+vo.getMcode()+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
 			mail.setSubject("[본인인증] WeFit 인증메일입니다", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
-//			mail.addRecipient(RecipientType.TO, new InternetAddress(vo.getMmail()));
+			mail.addRecipient(RecipientType.TO, new InternetAddress(vo.getMemail()));
 			mailSender.send(mail); 
 		} catch (MessagingException e) {
 			e.printStackTrace();

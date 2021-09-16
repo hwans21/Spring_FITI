@@ -78,11 +78,13 @@ public class UserController {
 		
 		System.out.println("로그인 요청 : "+vo.toString());
 		
-		UserVO login = service.login(vo.getEmail(), vo.getMPasswd());
+		UserVO login = service.login(vo.getMemail(), vo.getMpasswd());
 		if(login != null) {
-			if(login.getMDelDate() != null) {
+			if(login.getMemailYN().equals("N")) {
+				return "emailnone";
+			} else if(login.getMdelDate() != null) {
 				return "delUser";
-			} else if(login.getMHumanYN().equals("Y")) {
+			} else if(login.getMhumanYN().equals("Y")) {
 				return "humanUser";
 			} else {
 				session.setAttribute("user", login);
@@ -95,7 +97,7 @@ public class UserController {
 					
 					long currentTime = System.currentTimeMillis() + (limitTime*1000);
 					Date limitDate = new Date(currentTime);
-					service.keepLogin(session.getId(), limitDate, login.getEmail());
+					service.keepLogin(session.getId(), limitDate, login.getMemail());
 				}
 				return "success";
 			}

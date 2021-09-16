@@ -159,7 +159,7 @@
                         <div class="form-group">
                             <label for="login-email" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="login-email" name="mEmail" placeholder="이메일을 입력해주세요">
+                                <input type="email" class="form-control" id="login-email" name="memail" placeholder="이메일을 입력해주세요">
                             </div>
 
                         </div>
@@ -167,7 +167,7 @@
                         <div class="form-group">
                             <label for="login-password" class="col-sm-3 control-label">비밀번호</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="login-password" name="mPasswd"
+                                <input type="password" class="form-control" id="login-password" name="mpasswd"
                                     placeholder="비밀번호를 입력해주세요">
                             </div>
 
@@ -208,18 +208,18 @@
                 <div class="modal-body">
                     <form id="form-join" action="<c:url value='/user/join' />" method="post" role="form" class="form-horizontal">
                         <div class="form-group">
-                            <label for="mEmail" class="col-sm-3 control-label">이메일</label>
+                            <label for="memail" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" id="mEmail" name="mEmail" placeholder="이메일을 입력해주세요">
+                                <input type="email" class="form-control" id="memail" name="memail" placeholder="이메일을 입력해주세요">
                             </div>
                             <div class="col-sm-3">
                                 <button id="emailCheckBtn" type="button" class="form-control">이메일확인</button>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="mNick" class="col-sm-3 control-label">닉네임</label>
+                            <label for="mnick" class="col-sm-3 control-label">닉네임</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="mNick" name="mNick" placeholder="닉네임을 입력해주세요">
+                                <input type="text" class="form-control" id="mnick" name="mnick" placeholder="닉네임을 입력해주세요">
                             </div>
                             <div class="col-sm-3">
                                 <button id="nickCheckBtn" type="button" class="form-control">닉네임확인</button>
@@ -227,9 +227,9 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="mPasswd" class="col-sm-3 control-label">비밀번호</label>
+                            <label for="mpasswd" class="col-sm-3 control-label">비밀번호</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="mPasswd" name="mPasswd"
+                                <input type="password" class="form-control" id="mpasswd" name="mpasswd"
                                     placeholder="비밀번호를 입력해주세요">
                             </div>
 
@@ -244,9 +244,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="mPhone" class="col-sm-3 control-label">핸드폰 번호</label>
+                            <label for="mphone" class="col-sm-3 control-label">핸드폰 번호</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="mPhone" name="mPhone"
+                                <input type="text" class="form-control" id="mphone" name="mphone"
                                     placeholder="'-'빼고 입력해주세요">
                             </div>
 
@@ -337,11 +337,11 @@
             $('#emailCheckBtn').click(function(){
             	
             	
-            	if ($('#mEmail').val() === "") {
+            	if ($('#memail').val() === "") {
             		alert('이메일을 입력해주세요');
             		return;
             		
-            	} else if(!regExpEmail.test($('#mEmail').val())){
+            	} else if(!regExpEmail.test($('#memail').val())){
             		alert('이메일 형식에 맞게 입력해주세요');
             		return;
             	}
@@ -353,15 +353,15 @@
                         "Content-Type": "application/json"
                     },
                     dataType: "text", //서버로부터 어떤 형식으로 받을지(생략가능)
-                    data: $('#mEmail').val(),
+                    data: $('#memail').val(),
                     success: function (data) {
                         console.log('통신성공!' + data);
                       	if(data==="success"){
                       		alert('사용 가능한 이메일입니다.')
                       		emailChk = true;
-                      		$('#mEmail').attr("readonly","true");
+                      		$('#memail').attr("readonly","true");
                       	} else{
-                      		$('#mEmail').val('');
+                      		$('#memail').val('');
                       		alert('이미 사용중인 이메일입니다.')
                       	}
                     },
@@ -372,7 +372,7 @@
             }); //이메일 체크 이벤트 끝
             
 			$('#nickCheckBtn').click(function(){
-				if ($('#mNick').val() === "") {
+				if ($('#mnick').val() === "") {
             		alert('닉네임을 입력해주세요');
             		return;
             		
@@ -385,13 +385,13 @@
                         "Content-Type": "application/json"
                     },
                     dataType: "text", //서버로부터 어떤 형식으로 받을지(생략가능)
-                    data: $('#mNick').val(),
+                    data: $('#mnick').val(),
                     success: function (data) {
                         console.log('통신성공!' + data);
 
                       	if(data==="success"){
                       		alert('사용 가능한 닉네임입니다.')
-                      		$('#mNick').attr("readonly","true")
+                      		$('#mnick').attr("readonly","true")
                       		nickChk = true;
                       	} else{
                       		alert('이미 사용중인 닉네임입니다.')
@@ -403,19 +403,19 @@
                 }); //닉네임 체크 비동기 통신 끝
             }); //닉네임 체크 이벤트 끝
 
-           $('#mPasswd').keyup(function(){
-        	   if(!regExpPw.test($('#mPasswd').val())){
-        		   $('#mPasswd').css("background-color","pink");
+           $('#mpasswd').keyup(function(){
+        	   if(!regExpPw.test($('#mpasswd').val())){
+        		   $('#mpasswd').css("background-color","pink");
         		   passwdChk = false;
         	   } else {
-        		   $('#mPasswd').css("background-color","skyblue");
+        		   $('#mpasswd').css("background-color","skyblue");
         		   passwdChk = true;
         	   }
         	   
            });
             
            $('#passwordchk').keyup(function(){
-        	   if($('#mPasswd').val() !== $('#passwordchk').val()){
+        	   if($('#mpasswd').val() !== $('#passwordchk').val()){
         		   $('#passwordchk').css("background-color","pink");
         	   } else {
         		   $('#passwordchk').css("background-color","skyblue");
@@ -423,10 +423,10 @@
         	   
            });
            
-           $('#mPhone').keyup(function(){
-        	  if(!regExpPhone.test($('#mPhone').val())){
+           $('#mphone').keyup(function(){
+        	  if(!regExpPhone.test($('#mphone').val())){
         		  alert("'-'은 입력하지마세요");
-        		  $('#mPhone').val('');
+        		  $('#mphone').val('');
         	  } 
            });
          
@@ -437,7 +437,7 @@
             	} else if(!nickChk){
             		alert('닉네임 중복확인이 필요합니다.');
             		return;
-            	} else if($('#mPasswd').val() === ""){
+            	} else if($('#mpasswd').val() === ""){
            			alert('비밀번호는 필수값입니다.');
            			return;
            		} else if ($('#passwordchk').val() === ""){
@@ -445,7 +445,7 @@
            			return;
            		} else if(!passwdChk){
            			alert('최소 8 자, 특수문자, 영문 및  숫자섞어서 써주세요')
-           			$('#mPasswd').val('');
+           			$('#mpasswd').val('');
            			$('#passwordchk').val('');
            			return;
            		}
@@ -465,8 +465,8 @@
             		const pw = $('#login-password').val();
             		
             		const login_user = {
-                        "email" : email,
-                        "mPasswd" : pw,
+                        "memail" : email,
+                        "mpasswd" : pw,
                         "autoLoginCheck" : $('#auto-login-check').is(':checked')
                     };
             		console.log(login_user);
@@ -481,7 +481,9 @@
                         dataType:"text",
                         data: JSON.stringify(login_user),
                         success:function(data){
-                            if(data==="delUser"){
+                        	if(data === "emailnone"){
+								alert('메일함을 확인해주세요');                        	
+                        	} else if(data==="delUser"){
                             	if(confirm("계정을 복구하시겠습니까?")){
                             		alert('복구로직 실행');
                             	}
@@ -490,7 +492,8 @@
                             		alert('복구로직 실행');
                             	}
                             } else if(data==="success"){
-                            	alert('${user.mNick}님 환영합니다.');
+                            	history.go(0);
+                            	alert('${user.mnick}님 환영합니다.');
                             } else if(data === "fail"){
                             	alert('이메일 또는 비밀번호가 잘못되었습니다.');
                             }

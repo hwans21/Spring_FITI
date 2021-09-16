@@ -38,12 +38,12 @@ public class ConnectionTest {
 		UserVO vo = new UserVO();
 		for(int i=51;i<101;i++) {
 			//vo.setMEmail("test"+i+"@test.com");
-			vo.setMNick("test"+i);
-			vo.setMPasswd(encoder.encode(Integer.toString(i)));
-			vo.setMPhone("010111111"+(i<10?"0":"")+i);
-			vo.setMHumanYN("N");
-			vo.setMEmailYN("Y");
-			vo.setMCode(UUID.randomUUID().toString().split("-")[0]);
+			vo.setMnick("test"+i);
+			vo.setMpasswd(encoder.encode(Integer.toString(i)));
+			vo.setMphone("010111111"+(i<10?"0":"")+i);
+			vo.setMhumanYN("N");
+			vo.setMemailYN("Y");
+			vo.setMcode(UUID.randomUUID().toString().split("-")[0]);
 			System.out.println(vo.toString());
 			usermapper.join(vo);
 		}
@@ -56,7 +56,7 @@ public class ConnectionTest {
 			
 			vo = usermapper.getInfo("test"+i+"@test.com");
 			if(vo != null) {
-				usermapper.authUser(vo.getMNick(), vo.getMCode());			
+				usermapper.authUser(vo.getMnick(), vo.getMcode());			
 				
 			}
 		}
