@@ -54,13 +54,12 @@
             </div>
 
             <!--main left-->
-            <form action="<c:url value='/marketBoard/regist' />" id="boardWrite" method="POST" >
+            <form action="<c:url value='/marketBoard/regist' />" id="boardWrite" method="POST" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>카테고리</td>
                         <td>
                             <select id="mbType" name="mbType">
-                                
                                 <option value="sell">사요</option>
                                 <option value="buy">팔아요</option>
                                 <option value="share">나눠요</option>
@@ -71,7 +70,7 @@
 
                     <tr>
                         <td>작성자</td>
-                        <td><input type="text" name="mNum" size=20> </td>
+                        <td><input type="text" name="memberNum" size=20> </td>
                     </tr>
 
                     <tr>
@@ -89,14 +88,21 @@
                             다음 주소 api : 주소를 선택하면 지도도 함께 보여주기
                             https://postcode.map.daum.net/guide#sample
                         -->
-                        <td>주소api</td>
-                        <td></td>
+                        <td>동네</td>
+                        <td>
+                        	<input type="text" name="mbAddrBasic">
+                        	<input type="text" name="mbAddrDetail">
+                        	<input type="text" name="mbLongitude">
+                        	<input type="text" name="mbLatitude">
+                        	<input type="text" name="mbImageCount">
+                        	<input type="text" name="mbLookCount">
+                        </td>
                     </tr>
 
                 
                     <tr>
                         <td>사진올리기 </td>
-                        <td><input type="file" name="mbImage1" size="10" maxlength="10"></td>
+                        <td><input multiple="multiple" type="file" name="mbImage1" size="10" maxlength="10"></td>
                     </tr>
                     <tr>
                         <td>가격 </td>

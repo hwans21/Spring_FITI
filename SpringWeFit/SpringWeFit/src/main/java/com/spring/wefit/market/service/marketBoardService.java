@@ -34,8 +34,7 @@ public class marketBoardService implements IMarketBoardService {
 
 	@Override
 	public marketBoardVO getContent(int mbNum) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.getContent(mbNum);
 	}
 
 	@Override

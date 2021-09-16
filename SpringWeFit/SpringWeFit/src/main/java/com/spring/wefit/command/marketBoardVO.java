@@ -12,7 +12,7 @@ import lombok.ToString;
  CREATE TABLE MarketBoard
 (
     mbNum            NUMBER(10, 0)     NOT NULL, 
-    mNum            NUMBER(20, 0)     NOT NULL, 
+    memberNum            NUMBER(20, 0)     NOT NULL, 
     mbType           VARCHAR2(6)       NOT NULL, 
     mbTitle          VARCHAR2(200)     NOT NULL, 
     mbPrice          NUMBER(10, 0)     NOT NULL, 
@@ -61,7 +61,7 @@ CREATE SEQUENCE marketBoard_seq
 public class marketBoardVO {
 	
 	private int mbNum;
-	private int mNum;
+	private int memberNum;
 	private String mbType;
 	private String mbTitle;
 	private int mbPrice;
@@ -93,5 +93,9 @@ public class marketBoardVO {
 	private int mbLookCount;
 	private int mbImageCount;
 	private Timestamp mbRegDate;
+	
+	
+	
+	
 
 }
