@@ -64,18 +64,18 @@
 
                     <tr>
                         <td>제목</td>
-                        <td><input type=text name=nbtitle size="60" value="${notice_write.NBTITLE}></td>
+                        <td><input type=text name=nbtitle size="60" value="${noticeview.NBTITLE}></td>
                     </tr>
 
                     <tr>
                         <td>내용</td>
-                        <td><textarea name="nbcontent" cols="75" rows="15" value="${notice_write.NBCONTENT}></textarea></td>
+                        <td><textarea name="nbcontent" cols="75" rows="15" value="${noticeview.NBCONTENT}></textarea></td>
                     </tr>
 
                    
                     <tr>
                         <td>사진올리기 </td>
-                        <td><input type="file" name="nbrealimage1" size="10" maxlength="10" value="${notice_write.NBREALIMAGE1}></td>
+                        <td><input type="file" name="nbrealimage1" size="10" maxlength="10" value="${noticeview.NBREALIMAGE1}></td>
                     </tr>
                     
                     <tr class="text-right">

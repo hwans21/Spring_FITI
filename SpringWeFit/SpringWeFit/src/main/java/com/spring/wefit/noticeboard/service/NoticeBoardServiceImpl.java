@@ -40,6 +40,37 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	  
 	 dao.noticemodify(vo);
 	}
+	
+	// 게시물 삭제
+	public void noticedelete(int NBNUM) throws Exception {
+	 dao.noticedelete(NBNUM);
+	}
+	
+	// 게시물 총 갯수
+	@Override
+	public int noticecount() throws Exception {
+	 return dao.noticecount();
+	}
+	
+	// 게시물 목록 + 페이징
+	@Override
+	public List noticelistPage(int displayPost, int postNum) throws Exception {
+	 return dao.noticelistPage(displayPost, postNum);
+	}
+	
+	// 게시물 목록 + 페이징 + 검색
+	@Override
+	public List<BoardVO> listPageSearch(
+	  int displayPost, int postNum, String searchType, String keyword) throws Exception {
+	 return  dao.listPageSearch(displayPost, postNum, searchType, keyword);
+	}
+
+	@Override
+	public List<NoticeBoardVO> noticelistPageSearch(int displayPost, int postNum, String searchType, String keyword)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	}
 

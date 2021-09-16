@@ -46,6 +46,44 @@
  where NBNUM = #{NBNUM}
 </delete>
 
+<!-- 게시물 총 갯수 -->
+<select id="noticecount" resultType="int">
+ select noticecount(NBNUM) from SPRINGWEFIT.NOTICEBOARD
+</select>
 
+<!-- 게시물 목록 + 페이징 -->
+<select id="noticelistPage" parameterType="hashMap" resultType="com.spring.wefit.command.NoticeBoardVO">
+ select
+  NBNUM, MNUM, NBTITLE, NBCONTENT, NBIMAGE1, NBREALIMAGE1, NBLOOKCOUNT, NBIMAGECOUNT, NBREGDATE
+ from SPRINGWEFIT.NOTICEBOARD
+ order by NBNUM desc
+  limit #{displayPost}, #{postNum}
+</select>
 
+<!-- 게시물 목록 + 페이징 + 검색 -->
+<select id="noticelistPageSearch" parameterType="hashMap" resultType="com.spring.wefit.command.NoticeBoardVO">
+ select
+ NBNUM, MNUM, NBTITLE, NBCONTENT, NBIMAGE1, NBREALIMAGE1, NBLOOKCOUNT, NBIMAGECOUNT, NBREGDATE
+ from SPRINGWEFIT.NOTICEBOARD
+ 
+ <if test='searchType.equals("title")'>
+  WHERE NBTITLE LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ <if test='searchType.equals("content")'>
+  WHERE NBCONTENT LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ <if test='searchType.equals("title_content")'>
+  WHERE NBTITLE LIKE concat('%', #{keyword}, '%') 
+   or NBCONTENT LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ <if test='searchType.equals("writer")'>
+  WHERE MNUM LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ order by NBNUM desc
+  limit #{displayPost}, #{postNum}
+</select>
 </mapper>

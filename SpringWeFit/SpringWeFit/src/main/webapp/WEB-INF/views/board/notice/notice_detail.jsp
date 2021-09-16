@@ -1,6 +1,7 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -213,6 +214,8 @@
                 </div>
 
             </div>
+            
+            <!-- 댓글 -->
             <div class="col-md-4 col-sm-12 test">
                 
                 <div class="row">
@@ -239,6 +242,13 @@
                 </div>
 
             </div>
+            
+            <!-- 댓글 --
+            // 댓글 조회
+List<ReplyVO> reply = null;
+reply = replyService.list(bno);
+model.addAttribute("reply", reply);-->
+
         </div>
 
 
