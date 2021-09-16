@@ -18,6 +18,6 @@ import lombok.ToString;
 public class DietReport {
 	
 	private int dbNum;
-	private int mNum;
+	private int memberNum;
 	
 }

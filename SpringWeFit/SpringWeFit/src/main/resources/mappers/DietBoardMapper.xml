@@ -8,18 +8,16 @@
 		  <insert id="regist">
 		  	INSERT INTO DietBoard
 		  	(
-		  	dbNum, mNum, dbTitle, dbContent,
+		  	dbNum, memberNum, dbTitle, dbContent,
 		  	dbImage1, dbImage2, dbImage3, dbImage4, dbImage5,
-		  	dbRealImage1, dbRealImage2, dbRealImage3, dbRealImage4, dbRealImage5,
-		  	dbLookCount, dbImageCount
+		  	dbRealImage1, dbRealImage2, dbRealImage3, dbRealImage4, dbRealImage5
 		  	)
 		  	VALUES
 		  	(
 		  	dietBoard_seq.NEXTVAL, 
-		  	#{mNum}, #{dbTitle}, #{dbContent},
+		  	#{memberNum}, #{dbTitle}, #{dbContent},
 		  	#{dbImage1}, #{dbImage2}, #{dbImage3}, #{dbImage4}, #{dbImage5},
-		  	#{dbRealImage1}, #{dbRealImage2}, #{dbRealImage3}, #{dbRealImage4}, #{dbRealImage5},
-		  	#{dbLookCount}, #{dbImageCount}
+		  	#{dbRealImage1}, #{dbRealImage2}, #{dbRealImage3}, #{dbRealImage4}, #{dbRealImage5}
 		  	)
 		  </insert>
 		  
@@ -47,6 +45,7 @@
 		  	dbRealImage1 = #{dbRealImage1}, dbRealImage2 = #{dbRealImage2}, 
 		  	dbRealImage3 = #{dbRealImage3}, dbRealImage4 = #{dbRealImage4}, 
 		  	dbRealImage5 = #{dbRealImage5}
+		  	WHERE dbNum=#{dbNum}
 		  </update>
 		  
 		  

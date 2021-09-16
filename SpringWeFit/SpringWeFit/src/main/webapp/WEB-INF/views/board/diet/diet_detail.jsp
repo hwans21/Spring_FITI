@@ -105,13 +105,13 @@
         <div class="container-fluid">
             <div class="col-md-8 col-sm-12 test">
                 <div class="row">
-                    <button type="button" class="btn btn-primary pull-right" onclick="location.href='<c:url value="/dietBoard/dietModify" />'">수정하기</button>
+                    <button type="button" class="btn btn-primary pull-right" onclick="location.href='<c:url value="/dietBoard/dietModify?dbNum=${dietList.dbNum}" />'">수정하기</button>
                     <button type="button" class="btn btn-primary pull-right" onclick="location.href='<c:url value="/dietBoard/dietList" />'">목록으로</button>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="titlebox">
-                            <h2>기~~~~~~~~~~~~~~~~~~~~~~~~~다란 제목입니다?? 조금더 긴 제목을 써야하는데 뭐라써야할지 모르겠어요</h2>
+                            <h2>${dietList.dbTitle}</h2>
                         </div>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                             
 
                             <tr>
-                                <td>작성일:21.09.08 </td>
+                                <td>작성일:${dietList.dbRegDate} </td>
                                 <td><span class="glyphicon glyphicon-eye-open"></span>100</td>
                                 <td>
 
@@ -194,17 +194,8 @@
                             <tr>
                                 <td colspan="3">
                                     <p style="line-height: 150%;">
-
-                                        보이는 눈에 주며, 커다란 속잎나고, 동산에는 그들의 그들은 실로 부패뿐이다. 얼마나 따뜻한 얼음 것은 이것이야말로 것이다. 위하여, 싹이 수
-                                        이성은 어디 길지 보라. 청춘의 모래뿐일 황금시대의 인간은 우리의 말이다. 뜨고, 이상, 끓는 구하기 미묘한 원대하고, 우리는 위하여서. 그것은
-                                        같으며, 이것을 그들을 철환하였는가? 소담스러운 있는 찾아 봄바람이다. 거선의 품었기 그들의 충분히 것이다. 것은 할지라도 예가 같지 인간의
-                                        것이다. 청춘의 가슴이 것은 유소년에게서 돋고, 소담스러운 가지에 무한한 뿐이다. 눈이 아니더면, 있는 실현에 속잎나고, 위하여서 있다.
-
-                                        고동을 반짝이는 실로 것은 것은 인생에 철환하였는가? 피가 것은 인도하겠다는 굳세게 생의 미인을 인생에 기관과 약동하다. 인간에 풍부하게
-                                        속잎나고, 싶이 산야에 유소년에게서 것이다. 수 보는 인간의 얼마나 착목한는 것은 피에 얼음이 힘있다. 굳세게 능히 그들에게 것은 이상은
-                                        현저하게 속에서 없는 것이다. 풀이 두손을 인간이 안고, 원질이 피다. 있는 주는 오아이스도 생생하며, 인생에 풀밭에 놀이 같이 듣는다. 주며,
-                                        얼음에 가치를 살 없는 꾸며 그림자는 이것은 말이다. 원대하고, 우리는 노래하며 때까지 꾸며 희망의 것이다. 심장은 그들을 청춘 우리는 산야에
-                                        것이다.
+			
+                                   		${dietList.dbContent}
                                     </p>
                                 </td>
                             </tr>

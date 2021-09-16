@@ -33,7 +33,7 @@ public class DietBoardReplyVO {
 	private int drNum;
 	private int dbNum;
 	private String drContent;
-	private int mNum;
+	private int memberNum;
 	private int starScore;
 	private Timestamp drRegDate;
 	
