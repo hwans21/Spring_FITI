@@ -134,7 +134,7 @@ public class UserService implements IUserService {
 		try {
 			mail.setSubject("[본인인증] WeFit 인증메일입니다", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
-			mail.addRecipient(RecipientType.TO, new InternetAddress(vo.getMEmail()));
+//			mail.addRecipient(RecipientType.TO, new InternetAddress(vo.getMmail()));
 			mailSender.send(mail); 
 		} catch (MessagingException e) {
 			e.printStackTrace();

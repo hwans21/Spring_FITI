@@ -37,7 +37,7 @@ public class ConnectionTest {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		UserVO vo = new UserVO();
 		for(int i=51;i<101;i++) {
-			vo.setMEmail("test"+i+"@test.com");
+			//vo.setMEmail("test"+i+"@test.com");
 			vo.setMNick("test"+i);
 			vo.setMPasswd(encoder.encode(Integer.toString(i)));
 			vo.setMPhone("010111111"+(i<10?"0":"")+i);

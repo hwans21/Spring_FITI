@@ -72,13 +72,13 @@ public class UserController {
 	
 	@PostMapping("/login")
 	@ResponseBody
-	public String login(UserVO vo,
+	public String login(@RequestBody UserVO vo,
 			HttpSession session, 
 			HttpServletResponse response) {
 		
 		System.out.println("로그인 요청 : "+vo.toString());
 		
-		UserVO login = service.login(vo.getMEmail(), vo.getMPasswd());
+		UserVO login = service.login(vo.getEmail(), vo.getMPasswd());
 		if(login != null) {
 			if(login.getMDelDate() != null) {
 				return "delUser";
@@ -95,7 +95,7 @@ public class UserController {
 					
 					long currentTime = System.currentTimeMillis() + (limitTime*1000);
 					Date limitDate = new Date(currentTime);
-					service.keepLogin(session.getId(), limitDate, login.getMEmail());
+					service.keepLogin(session.getId(), limitDate, login.getEmail());
 				}
 				return "success";
 			}

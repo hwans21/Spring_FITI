@@ -38,12 +38,13 @@ CREATE SEQUENCE member_seq
  
  */
 
+
 @Getter
 @Setter
 @ToString
 public class UserVO {
 	private int mNum;
-    private String mEmail;
+    private String email;
     private String mNick;
     private String mPasswd;
     private String mPhone;

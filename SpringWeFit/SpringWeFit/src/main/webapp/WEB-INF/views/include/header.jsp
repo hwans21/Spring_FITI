@@ -461,18 +461,25 @@
             	} else if($('#login-password').val() === ""){
             		alert('비밀번호를 입력해주세요!');
             	} else{
+            		const email =  $('#login-email').val();
+            		const pw = $('#login-password').val();
+            		
+            		const login_user = {
+                        "email" : email,
+                        "mPasswd" : pw,
+                        "autoLoginCheck" : $('#auto-login-check').is(':checked')
+                    };
+            		console.log(login_user);
+            		
+            		
             		$.ajax({
                         type:"POST",
                         url:"<c:url value='/user/login' />",
                         headers:{
-                            "Content-Type":"application/json"
+                            "Content-Type" : "application/json"
                         },
                         dataType:"text",
-                        data: JSON.stringify({
-                            "mEmail":$('#login-email').val(),
-                            "mPasswd":$('#login-password').val(),
-                            "autoLoginCheck":$('#auto-login-check').val()
-                        }),
+                        data: JSON.stringify(login_user),
                         success:function(data){
                             if(data==="delUser"){
                             	if(confirm("계정을 복구하시겠습니까?")){
@@ -491,6 +498,8 @@
                         error: function(){
                             alert('통신에 실패했습니다. 관리자에게 문의하세요.');
                         }
+
+
                     });
             	}
             }); // 로그인 클릭 이벤트
