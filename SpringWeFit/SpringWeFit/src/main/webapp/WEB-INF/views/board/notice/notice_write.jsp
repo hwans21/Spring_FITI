@@ -57,26 +57,25 @@
             <form action="#" id="boardWrite" method="POST" enctype="multipart/form-data">
                 <table>
                     
-
                     <tr>
                         <td>작성자</td>
-                        <td><input type=text name=name size=20 readonly> </td>
+                        <td><input type=text name=mnum size=20 readonly> </td>
                     </tr>
 
                     <tr>
                         <td>제목</td>
-                        <td><input type=text name=title size="60"></td>
+                        <td><input type=text name=nbtitle size="60" value="${noticeview.NBTITLE}></td>
                     </tr>
 
                     <tr>
                         <td>내용</td>
-                        <td><textarea name="content" cols="75" rows="15"></textarea></td>
+                        <td><textarea name="nbcontent" cols="75" rows="15" value="${noticeview.NBCONTENT}></textarea></td>
                     </tr>
 
                    
                     <tr>
                         <td>사진올리기 </td>
-                        <td><input type="file" name="fileName" size="10" maxlength="10"></td>
+                        <td><input type="file" name="nbrealimage1" size="10" maxlength="10" value="${noticeview.NBREALIMAGE1}></td>
                     </tr>
                     
                     <tr class="text-right">

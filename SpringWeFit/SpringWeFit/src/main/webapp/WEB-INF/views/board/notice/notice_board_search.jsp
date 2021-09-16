@@ -154,9 +154,9 @@
         </div>
         <div class="row">
             <ul id="sub_menu3" class="sub_menu">
-                <li class="sub2"><a href="/FRONT/views/board/notice/notice_board.jsp">공지사항</a></li>
-                <li class="sub2"><a href="/FRONT/views/board/free/free_board.jsp">자유게시판</a></li>
-                <li class="sub2"><a href="/FRONT/views/board/qna/qna_board.jsp">질문게시판</a></li>
+                <li class="sub2"><a href="/FRONT/views/board/notice/notice_board.html">공지사항</a></li>
+                <li class="sub2"><a href="/FRONT/views/board/free/free_board.html">자유게시판</a></li>
+                <li class="sub2"><a href="/FRONT/views/board/qna/qna_board.html">질문게시판</a></li>
             </ul>
         </div>
         <div class="container text-center">
@@ -174,9 +174,9 @@
             </div>
 
             <div id="btn-list" class="row" align="right">
-                <input type="text" placeholder="Search" value="${page.keyword}">
+                <input type="text" placeholder="Search">
                 <button type="button" class="btn" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 </button>
 
 

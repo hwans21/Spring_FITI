@@ -27,7 +27,7 @@ public class NoticeBoardVO {
 	  */
 	
 	private int nbnum;
-	private int mnum;
+	private int membernum;
 	private String nbtitle;
 	private String nbcontent;
 	private String nbimage1;
@@ -35,6 +35,7 @@ public class NoticeBoardVO {
 	private int nblookcount;
 	private int nbimagecount;
 	private Date nbregdate;
+	
 	public int getNbnum() {
 		return nbnum;
 	}
@@ -42,10 +43,10 @@ public class NoticeBoardVO {
 		this.nbnum = nbnum;
 	}
 	public int getMnum() {
-		return mnum;
+		return membernum;
 	}
 	public void setMnum(int mnum) {
-		this.mnum = mnum;
+		this.membernum = membernum;
 	}
 	public String getNbtitle() {
 		return nbtitle;
