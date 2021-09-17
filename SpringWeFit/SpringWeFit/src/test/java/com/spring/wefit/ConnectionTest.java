@@ -7,6 +7,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.spring.wefit.command.DietBoardVO;
+import com.spring.wefit.dietboard.mapper.IDietBoardMapper;
 import com.spring.wefit.test.ITestMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -20,6 +22,9 @@ public class ConnectionTest {
 	@Autowired
 	private ITestMapper mapper;
 	
+	@Autowired
+	private IDietBoardMapper dietMapper;
+	
 	@Test
 	public void registTest() {
 		for(int i=1; i<=10; i++) {
@@ -30,9 +35,10 @@ public class ConnectionTest {
 			vo.setDbLookCount(i);
 			vo.setDbImageCount(i);
 			
-			mapper.regist(vo);
+			dietMapper.regist(vo);
 		}
-
+	}
+	
 	@Test
 	public void test(){
 		double d = (double) mapper.test();
