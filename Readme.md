@@ -1128,9 +1128,9 @@ DB변경 작업 및 jsp적용작업 <br>
   - 김환서
     - 회원가입 구현, 이메일 전송 기능 구현, 인증링크 클릭시 오류
   - 문예리
-    - 수업때 했던 코드 참고하면서 하는데 헤매고 있음
+    - 빈 등록 오류 해결중
   - 신민주
-    - 찾아가며 하느라 헤매는 중
+    - 빈 등록 오류 해결중
   - 신수진
     - 글쓰기 구현, 게시판 출력 진행중
   - 이희재
@@ -1141,9 +1141,73 @@ DB변경 작업 및 jsp적용작업 <br>
 [▲맨위로](#wefit)
 
 # 21.09.16
-복사할 블록입니다. <br>
+기능 구현 <br>
+### 오전 작업현황
+  - 김환서
+    - 회원가입 구현, 이메일 전송 기능 구현, 인증링크 오류 수정
+    - 로그인 비동기 처리 중 오류발생
+  - 문예리
+  - 신민주
+  - 신수진
+  - 이희재
+  - 한민호
 
 
 [▲맨위로](#wefit)
 
+
+# 21.09.17
+## 컬럼명 VO객체명 변경 <br>
+- 소문자 1자에 대문자 1자 그 다음 소문자로 구성된 변수들(mNum, mEmail,.....)
+  - 롬복은 자바 빈 규약의 네이밍을 따르지 않아서 생긴 이슈
+ [참고] https://blog.naver.com/PostView.nhn?blogId=adamdoha&logNo=222295678750
+
+### 테이블 컬럼명 변경 sql
+
+ALTER TABLE NoticeBoard Rename column mNum To memberNum;
+ALTER TABLE NoticeReply Rename column mNum To memberNum;
+ALTER TABLE NoticeLikely Rename column mNum To memberNum;
+ALTER TABLE NoticeReport Rename column mNum To memberNum;
+ALTER TABLE MarketBoard Rename column mNum To memberNum;
+ALTER TABLE MarketReply Rename column mNum To memberNum;
+ALTER TABLE MarketLikely Rename column mNum To memberNum;
+ALTER TABLE MarketReport Rename column mNum To memberNum;
+ALTER TABLE PlaceBoard Rename column mNum To memberNum;
+ALTER TABLE PlaceReply Rename column mNum To memberNum;
+ALTER TABLE PlaceLikely Rename column mNum To memberNum;
+ALTER TABLE PlaceReport Rename column mNum To memberNum;
+ALTER TABLE CourseBoard Rename column mNum To memberNum;
+ALTER TABLE CourseReply Rename column mNum To memberNum;
+ALTER TABLE CourseLikely Rename column mNum To memberNum;
+ALTER TABLE CourseReport Rename column mNum To memberNum;
+ALTER TABLE DietBoard Rename column mNum To memberNum;
+ALTER TABLE DietReply Rename column mNum To memberNum;
+ALTER TABLE DietLikely Rename column mNum To memberNum;
+ALTER TABLE DietReport Rename column mNum To memberNum;
+ALTER TABLE FreeBoard Rename column mNum To memberNum;
+ALTER TABLE FreeReply Rename column mNum To memberNum;
+ALTER TABLE FreeReply Rename column bNum To fbNum;
+ALTER TABLE FreeLikely Rename column mNum To memberNum;
+ALTER TABLE FreeReport Rename column mNum To memberNum;
+ALTER TABLE QuesBoard Rename column mNum To memberNum;
+ALTER TABLE QuesReply Rename column mNum To memberNum;
+ALTER TABLE QuesLikely Rename column mNum To memberNum;
+ALTER TABLE QuesReport Rename column mNum To memberNum;
+
+ALTER TABLE member Rename column mNum TO memberNum;
+ALTER TABLE member Rename column mEmail TO memberEmail;
+ALTER TABLE member Rename column mNick TO memberNick;
+ALTER TABLE member Rename column mPasswd TO memberPasswd;
+ALTER TABLE member Rename column mPhone TO memberPhone;
+ALTER TABLE member Rename column mRegistDate TO memberRegistDate;
+ALTER TABLE member Rename column mConnDate TO memberConnDate;
+ALTER TABLE member Rename column mHumanYN TO memberHumanYN;
+ALTER TABLE member Rename column mLatitude TO memberLatitude;
+ALTER TABLE member Rename column mLongitude TO memberLongitude;
+ALTER TABLE member Rename column mEmailYN TO memberEmailYN;
+ALTER TABLE member Rename column mCode TO memberCode;
+ALTER TABLE member Rename column mManagerYN TO memberManagerYN;
+ALTER TABLE member Rename column mDelDate TO memberDelDate;
+
+### VO객체 멤버변수 소문자 1자로 시작하는 모든 변수 변경
 
