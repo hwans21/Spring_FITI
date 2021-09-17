@@ -919,7 +919,7 @@ CREATE TABLE FreeReply
     bNum        NUMBER(10, 0)    NOT NULL, 
     frContent    VARCHAR2(200)    NOT NULL, 
     mNum        NUMBER(20, 0)    NOT NULL,
-    frRegDate    DATE             DEFAULT SYSDATE NOT NULL, 
+    frRegDate    DATE             DEFAULT SYSDATE NOT NULL,   
     CONSTRAINT PK_FreeReply PRIMARY KEY (frNum)
 );
 
