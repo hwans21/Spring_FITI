@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.wefit.command.DietBoardVO;
 import com.spring.wefit.dietboard.service.IDietBoardService;
+import com.spring.wefit.dietboard.util.DietPageCreator;
+import com.spring.wefit.dietboard.util.DietPageVO;
 
 @Controller
 @RequestMapping("/dietBoard")
@@ -22,9 +24,15 @@ public class DietController {
 	
 	//글 목록전체보기
 	@GetMapping("/dietList") 
-	public String dietList(Model model) {
+	public String dietList(Model model, DietPageVO vo) {
 		System.out.println("/board/dietList: GET 글 목록 전체보기!!");
-		model.addAttribute("dietList", service.getList());
+		
+		DietPageCreator dpc = new DietPageCreator();
+		dpc.setPaging(vo);
+		dpc.setArticleTotalCount(service.getTotal(vo));
+		
+		model.addAttribute("dietList", service.getList(vo));
+		model.addAttribute("dpc", dpc);
 		return "/board/diet/diet_board";
 	}
 
@@ -39,11 +47,11 @@ public class DietController {
 	@PostMapping("/dietWrite")
 	public String dietWrite(MultipartHttpServletRequest request, DietBoardVO vo, RedirectAttributes ra) {
 		System.out.println("/board/dietWrite: POST 등록하기!!");
-		/*
+		service.regist(vo);
+		
 		System.out.println("제목: " + request.getParameter("dbTitle"));
 		System.out.println("내용: " + request.getParameter("dbContent"));
-		*/
-		service.regist(vo);
+		
 		ra.addFlashAttribute("msg", "게시물이 등록되었습니다.");
 		return "redirect:/dietBoard/dietList";
 	}
@@ -51,7 +59,7 @@ public class DietController {
 	//글 상세보기
 	@GetMapping("/dietDetail")
 	public String dietContent(@RequestParam int dbNum, Model model) {
-		System.out.println("/board/dietContent: GET 상세보기!!");
+		System.out.println("/board/dietDatail: GET 상세보기!!");
 		System.out.println("요청된 글 번호: " + dbNum);
 		model.addAttribute("dietList", service.getContent(dbNum));
 		return "/board/diet/diet_detail";
@@ -68,13 +76,14 @@ public class DietController {
 	
 	//글 수정하기
 	@PostMapping("/dietModify")
-	public String dietModify(MultipartHttpServletRequest request, DietBoardVO vo, RedirectAttributes ra, Model model) {
-		System.out.println("board/diet/diet_modify: POST 글 수정 요청!");
+	public String dietModify(MultipartHttpServletRequest request, DietBoardVO vo, RedirectAttributes ra) {
+		System.out.println("수정할 내용: " + vo);
 		service.update(vo);
-		model.addAttribute("dietList", service.getList());
-		ra.addFlashAttribute("msg", "updateSuccess");
 		
-		return "redirect:/dietBoard/dietList";
+		ra.addFlashAttribute("msg", "updateSuccess");
+		System.out.println("board/diet/diet_modify: POST 글 수정 요청!");
+		
+		return "redirect:/dietBoard/dietDetail?dbNum=" + vo.getDbNum();
 	}
 	
 	//글 삭제하기
@@ -86,6 +95,8 @@ public class DietController {
 		return "redirect:/dietBoard/dietList";
 	}
 	
+	//다중 사진 업로드
+	//@PostMapping("/upload")
 	
 	
 	

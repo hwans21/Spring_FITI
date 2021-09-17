@@ -21,9 +21,9 @@ public class ConnectionTest {
 	
 	@Test
 	public void registTest() {
-		for(int i=1; i<=10; i++) {
+		for(int i=1; i<=100; i++) {
 			DietBoardVO vo = new DietBoardVO();
-			vo.setMemberNum(i);
+			vo.setNickName("테스트닉네임" + i);
 			vo.setDbTitle("����" + i);
 			vo.setDbContent("����" + i);
 			vo.setDbLookCount(i);
