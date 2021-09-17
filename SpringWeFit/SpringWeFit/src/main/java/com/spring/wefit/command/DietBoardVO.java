@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
+@Setter
 @ToString
 public class DietBoardVO {
 	
@@ -29,6 +29,7 @@ public class DietBoardVO {
 	private int dbLookCount;
 	private int dbImageCount;
 	private Timestamp dbRegDate;
+	private String nickName;
 
 	
 /*
@@ -51,6 +52,7 @@ CREATE TABLE DietBoard
     dbLookCount      NUMBER(20,0)      DEFAULT 0 NOT NULL, 
     dbImageCount     NUMBER(2,0)       NOT NULL, 
     dbRegDate        DATE              DEFAULT SYSDATE NOT NULL, 
+    nickName		 VARCHAR2(30) NOT NULL
     CONSTRAINT PK_DietBoard PRIMARY KEY (dbNum)
 );
 

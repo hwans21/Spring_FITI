@@ -2,6 +2,14 @@ package com.spring.wefit.command;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+
+@Getter
+@Setter
+@ToString
 public class NoticeBoardVO {
 	/*
 	  CREATE TABLE "SPRINGWEFIT"."NOTICEBOARD" 
@@ -26,70 +34,17 @@ public class NoticeBoardVO {
 	  TABLESPACE "SYSTEM" ;
 	  */
 	
-	private int nbnum;
-	private int membernum;
-	private String nbtitle;
-	private String nbcontent;
-	private String nbimage1;
-	private String nbrealimage1;
-	private int nblookcount;
-	private int nbimagecount;
-	private Date nbregdate;
+	private int nbNum;
+	private int memberNum;
+	private String nbTitle;
+	private String nbContent;
+	private String nbImage1;
+	private String nbRealimage1;
+	private int nbLookCount;
+	private int nbImageCount;
+	private Date nbRegDate;
 	
-	public int getNbnum() {
-		return nbnum;
-	}
-	public void setNbnum(int nbnum) {
-		this.nbnum = nbnum;
-	}
-	public int getMnum() {
-		return membernum;
-	}
-	public void setMnum(int mnum) {
-		this.membernum = membernum;
-	}
-	public String getNbtitle() {
-		return nbtitle;
-	}
-	public void setNbtitle(String nbtitle) {
-		this.nbtitle = nbtitle;
-	}
-	public String getBscontent() {
-		return nbcontent;
-	}
-	public void setBscontent(String bscontent) {
-		this.nbcontent = nbcontent;
-	}
-	public String getNbimage1() {
-		return nbimage1;
-	}
-	public void setNbimage1(String nbimage1) {
-		this.nbimage1 = nbimage1;
-	}
-	public String getNbrealimage1() {
-		return nbrealimage1;
-	}
-	public void setNbrealimage1(String nbrealimage1) {
-		this.nbrealimage1 = nbrealimage1;
-	}
-	public int getNblookcount() {
-		return nblookcount;
-	}
-	public void setNblookcount(int nblookcount) {
-		this.nblookcount = nblookcount;
-	}
-	public int getNbimagecount() {
-		return nbimagecount;
-	}
-	public void setNbimagecount(int nbimagecount) {
-		this.nbimagecount = nbimagecount;
-	}
-	public Date getNbregdate() {
-		return nbregdate;
-	}
-	public void setNbregdate(Date nbregdate) {
-		this.nbregdate = nbregdate;
-	}
+	
 	
 	
 	

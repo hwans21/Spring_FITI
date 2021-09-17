@@ -10,9 +10,12 @@
  		ORDER BY mbNum DESC
  	</select>
  	
+ 	
+ 		
+ 	
  	<insert id="regist">
- 		INSERT INTO MarketBoard(mbNum,mNum, mbType, mbTitle, mbPrice, mbContent, mbImage1,mbAddrBasic,mbLongitude, mbLatitude, mbImageCount, mbLookCount)
- 		values(marketBoard_seq.NEXTVAL,#{mNum},#{mbType}, #{mbTitle}, #{mbPrice}, #{mbContent}, #{mbImage1}, #{mbAddrBasic}, #{mbLongitude}, #{mbLatitude},#{mbImageCount},#{mbLookCount})
+ 		INSERT INTO MarketBoard(mbNum,memberNum, mbType, mbTitle, mbPrice, mbContent, mbImage1,mbAddrBasic,mbLongitude, mbLatitude, mbImageCount, mbLookCount)
+ 		values(marketBoard_seq.NEXTVAL,#{memberNum},#{mbType}, #{mbTitle}, #{mbPrice}, #{mbContent}, #{mbImage1}, #{mbAddrBasic}, #{mbLongitude}, #{mbLatitude},#{mbImageCount},#{mbLookCount})
  		
  	</insert>
  	
@@ -20,5 +23,10 @@
  		SELECT * FROM MarketBoard
  		WHERE mbNum = #{mbNum}
  	</select>
+ 	
+ 	<update id="update">
+ 		UPDATE MarketBoard
+ 		SET 
+ 	</update>
  
  </mapper>

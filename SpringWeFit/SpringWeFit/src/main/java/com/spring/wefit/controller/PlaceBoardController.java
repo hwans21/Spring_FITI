@@ -6,16 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.wefit.command.PlaceBoardVO;
-import com.spring.wefit.commons.PageCreator;
 import com.spring.wefit.commons.PageVO;
 import com.spring.wefit.placeboard.service.IPlaceBoardService;
 
@@ -26,7 +23,7 @@ public class PlaceBoardController {
 	@Autowired 
 	private IPlaceBoardService service;
 	
-	//��� ��� ȭ��
+	//장소 목록 화면
 	@GetMapping("/placeList")
 	public String placeList(PageVO vo, Model model) {
 		System.out.println("/placeBoard/placeList: GET");
@@ -37,7 +34,7 @@ public class PlaceBoardController {
 	}
 	
 		
-	//�۾��� ȭ�� ó��
+	//글쓰기 화면 처리
 	@GetMapping("/placeWrite")
 	public String placeWrite() {
 		System.out.println("/placeBoard/placeWrite: GET");
@@ -45,56 +42,59 @@ public class PlaceBoardController {
 	}
 	
 
-	//�� ��� ó��
+	//글 등록 처리
 	@PostMapping("/placeWrite")
-	public String placeWrite(MultipartHttpServletRequest request,  PlaceBoardVO vo, RedirectAttributes ra) {
+	public String placeWrite(MultipartHttpServletRequest request, PlaceBoardVO vo, RedirectAttributes ra) {
 		System.out.println("/placeBoard/placeWrite: POST");
-		System.out.println("����: " + request.getParameter("pbTitle"));
-		System.out.println("����: " + request.getParameter("pbContent"));
-		System.out.println(vo);
+		System.out.println("제목: " + request.getParameter("pbTitle"));
+		System.out.println("내용: " + request.getParameter("pbContent"));
+		System.out.println("카테고리: " + request.getParameter("pbCategory"));
 		service.regist(vo);
-		ra.addFlashAttribute("msg", "���� ��� ó���Ǿ����ϴ�.");
+		ra.addFlashAttribute("msg", "정상 등록 처리되었습니다.");
 			
-		return "redirect:/board/location/loc_board"; //��� �Ŀ� �� ��� ��û���� �����̷�Ʈ
+		return "redirect:/placeBoard/placeList"; //등록 후에 글 목록 요청으로 리다이렉트
 	}
 
 
-	//�� �󼼺��� ó��
+	//글 상세보기 처리
 	@GetMapping("/placeDetail")
 	public String placeContent(@RequestParam int pbNum, Model model) {
 		System.out.println("/placeBoard/placeContent: GET");
-		System.out.println("��û�� �� ��ȣ: " + pbNum);
+		System.out.println("요청된 글 번호: " + pbNum);
 		
 		model.addAttribute("placeList", service.getContent(pbNum));
+		
+		service.upHit(pbNum);
+		
 		return "board/location/loc_detail";
 	}
 		
 			
-	//�� ���� ������ �̵�
+	//글 수정 페이지 이동
 	@GetMapping("/placeModify")
 	public void modify(@RequestParam int pbNum, Model model) {
 		System.out.println("/placeBoard/placeModify: GET");
-		System.out.println("��û�� �� ��ȣ: " + pbNum);
+		System.out.println("요청된 글 번호: " + pbNum);
 		
 		model.addAttribute("placeList", service.getContent(pbNum));
 	}
 		
-	//�� ���� ó��
+	//글 수정 처리
 	@PostMapping("/placeUpdate")
 	public String placeUpdate(PlaceBoardVO vo, RedirectAttributes ra) {
 		System.out.println("/placeBoard/placeUpdate: POST");
 		service.update(vo);
-		ra.addFlashAttribute("msg", "���� ���� ó���Ǿ����ϴ�.");
+		ra.addFlashAttribute("msg", "정상 수정 처리되었습니다.");
 			
 		return "redirect:/location/loc_detail?pbNum=" + vo.getPbNum();
 	}
 	
-	//�� ���� ó��
+	//글 삭제 처리
 	@PostMapping("/placeDelete")
 	public String placeDelete(PlaceBoardVO vo, RedirectAttributes ra) {
 		System.out.println("/placeBoard/placeUpdate: POST");
 		service.delete(vo.getPbNum());
-		ra.addFlashAttribute("msg", "�Խñ��� ���� �����Ǿ����ϴ�.");
+		ra.addFlashAttribute("msg", "게시글이 정상 삭제되었습니다.");
 			
 		return "redirect:/board/location/loc_board";
 	}	

@@ -48,7 +48,15 @@ public class PlaceBoardService implements IPlaceBoardService{
 		mapper.delete(pbNum);
 	}
 
+	@Override
+	   public void upHit(int pbNum) {
+	      mapper.upHit(pbNum);
+	}
 
+	@Override
+		public void upLike(int pbNum) {
+	    	mapper.upLike(pbNum);
+	}
 
 
 	

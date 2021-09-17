@@ -14,19 +14,39 @@
 	<insert id="regist">
 		INSERT INTO PlaceBoard
 		(
-		pbNum, memberNum, pbTitle, pbCategory, 
+		pbNum, memberNum, pbCategory, pbTitle, pbContent, 
+		pbImage1, pbImage2, pbImage3, pbImage4, pbImage5,
+		pbRealImage1, pbRealImage2, pbRealImage3, pbRealImage4, pbRealImage5,
+		<!-- 
 		pbAddrBasic, pbAddrDetail, pbLatitude, pbLongitude, 
-		pbLookCount, pbImageCount, pbRegDate
+		-->
+		pbLookCount, pbImageCount
 		)
 		VALUES
 		(
 		placeboard_seq.NEXTVAL, 
-		#{memberNum}, #{pbTitle}, 
-		#{pbCategory}, #{pbAddrBasic}, #{pbAddrDetail}, 
-		#{pbLatitude}, #{pbLongitude}, 
-		#{pbLookCount}, #{pbImageCount}, #{pbRegDate}
+		#{memberNum}, #{pbCategory}, #{pbTitle}, #{pbContent}, 
+		#{pbImage1}, #{pbImage2}, #{pbImage3}, #{pbImage4}, #{pbImage5},
+		#{pbRealImage1}, #{pbRealImage2},#{pbRealImage3},#{pbRealImage4},#{pbRealImage5},
+		<!-- 
+		#{pbAddrBasic}, #{pbAddrDetail}, #{pbLatitude}, #{pbLongitude}, 
+		 -->
+		#{pbLookCount}, #{pbImageCount}
 		)		
 	</insert>
+	
+	
+	<select id="getContent"
+		resultType="com.spring.wefit.command.PlaceBoardVO">
+		SELECT * FROM PlaceBoard
+		WHERE pbNum = #{pbNum}
+	</select>
+
+	<update id="upHit">
+   		UPDATE CourseBoard
+   		SET cbLookCount = cbLookCount + 1
+  		WHERE cbNum=#{cbNum}
+	</update>
 	
 	
   <!--  
@@ -81,11 +101,6 @@
 
 
 
-	<select id="getContent"
-		resultType="com.spring.wefit.command.PlaceBoardVO">
-		SELECT * FROM PlaceBoard
-		WHERE pbNum = #{pbNum}
-	</select>
 
 	<update id="update">
 		UPDATE PlaceBoard

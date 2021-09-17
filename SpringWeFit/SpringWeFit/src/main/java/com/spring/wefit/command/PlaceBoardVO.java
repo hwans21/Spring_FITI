@@ -11,6 +11,7 @@ import lombok.ToString;
 (
     pbNum            NUMBER(10, 0)     NOT NULL, 
     memberNum        NUMBER(20, 0)     NOT NULL, 
+    pbCategory       VARCHAR(20)      NOT NULL, 
     pbTitle          VARCHAR2(200)     NOT NULL, 
     pbContent        VARCHAR2(2000), 
     pbImage1         VARCHAR2(50)  , 
@@ -23,7 +24,6 @@ import lombok.ToString;
     pbRealImage3     VARCHAR2(50)  , 
     pbRealImage4     VARCHAR2(50)  , 
     pbRealImage5     VARCHAR2(50)  , 
-    pbCategory       VARCHAR(20)      NOT NULL, 
     pbAddrBasic      VARCHAR(300)      NOT NULL, 
     pbLatitude       NUMBER(9, 6)      NOT NULL, 
     pbLongitude      NUMBER(9, 6)      NOT NULL, 
@@ -34,7 +34,7 @@ import lombok.ToString;
 );
 
 ALTER TABLE PlaceBoard 
-ADD pbAddrDetail VARCHAR(300) NOT NULL;
+	ADD pbAddrDetail VARCHAR(300) NOT NULL;
 
 CREATE SEQUENCE placeBoard_seq 
     START WITH 1 
@@ -43,7 +43,31 @@ CREATE SEQUENCE placeBoard_seq
     NOCYCLE 
     NOCACHE;
     
+ALTER TABLE PlaceBoard 
+	Rename column mNum To memberNum;
+ALTER TABLE PlaceReply 
+	Rename column mNum To memberNum;
+ALTER TABLE PlaceLikely 
+	Rename column mNum To memberNum;
+ALTER TABLE PlaceReport 
+	Rename column mNum To memberNum;
 
+ALTER TABLE PlaceBoard 
+	modify pbImageCount null;
+ALTER TABLE PlaceBoard 
+	MODIFY pbLookCount NULL;
+ALTER TABLE PlaceBoard 
+	MODIFY pbImageCount NULL;
+ALTER TABLE PlaceBoard 
+	MODIFY pbImageCount DEFAULT 0;
+	
+ALTER TABLE PlaceBoard 
+	modify pbCategory DEFAULT 0;
+	
+ALTER TABLE PlaceBoard 
+	modify pbAddrBasic, pbAddrDetail, 
+	pbLatitude, pbLongitude, pbImageCount  DEFAULT 0;
+	
  */
 
 
@@ -54,6 +78,7 @@ public class PlaceBoardVO {
 	
 	private int pbNum;
 	private String memberNum;
+	private String pbCategory;
 	private String pbTitle;
 	private String pbContent;
 	private String pbImage1;
@@ -66,7 +91,6 @@ public class PlaceBoardVO {
 	private String pbRealImage3;
 	private String pbRealImage4;
 	private String pbRealImage5;
-	private String pbCategory;
 	private String pbAddrBasic;
 	private String pbAddrDetail;
 	private double pbLatitude;

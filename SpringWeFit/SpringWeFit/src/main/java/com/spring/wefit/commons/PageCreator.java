@@ -34,8 +34,8 @@ public class PageCreator {
 		
 	}
 	
-	//��Ʈ�ѷ��� �� �Խù��� ������ PageCreator���� ������ ���Ŀ� 
-	//�ٷ� ����¡ ��ư �˰����� ���ư� �� �ֵ��� setter�� Ŀ����.
+	//컨트롤러가 총 게시물의 개수를 PageCreator에게 전달한 직후에 
+	//바로 페이징 버튼 알고리즘이 돌아갈 수 있도록 setter를 커스텀.
 	public void setArticleTotalCount(int articleTotalCount) {
 		this.articleTotalCount = articleTotalCount;
 		calcDataOfPage();

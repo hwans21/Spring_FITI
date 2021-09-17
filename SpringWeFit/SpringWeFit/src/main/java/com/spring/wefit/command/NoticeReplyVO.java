@@ -2,6 +2,13 @@ package com.spring.wefit.command;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class NoticeReplyVO {
 	
 	/* CREATE TABLE "SPRINGWEFIT"."NOTICEREPLY" 
@@ -21,42 +28,13 @@ public class NoticeReplyVO {
 	  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
 	  TABLESPACE "SYSTEM" ;*/
 	
-	private int NRNUM;
-	private int NBNUM;
-	private String NRCONTENT;
-	private int MEMBERNUM;
-	private Date NRREGDATE;
+	private int nrNum;
+	private int nbNum;
+	private String nrContent;
+	private int memberNum;
+	private Date nrRegDate;
 	
-	public int getNRNUM() {
-		return NRNUM;
-	}
-	public void setNRNUM(int nRNUM) {
-		NRNUM = nRNUM;
-	}
-	public int getNBNUM() {
-		return NBNUM;
-	}
-	public void setNBNUM(int nBNUM) {
-		NBNUM = nBNUM;
-	}
-	public String getNRCONTENT() {
-		return NRCONTENT;
-	}
-	public void setNRCONTENT(String nRCONTENT) {
-		NRCONTENT = nRCONTENT;
-	}
-	public int getMNUM() {
-		return MEMBERNUM;
-	}
-	public void setMNUM(int memberNUM) {
-		MEMBERNUM = memberNUM;
-	}
-	public Date getNRREGDATE() {
-		return NRREGDATE;
-	}
-	public void setNRREGDATE(Date nRREGDATE) {
-		NRREGDATE = nRREGDATE;
-	}
+	
 	
 	
 	

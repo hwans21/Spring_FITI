@@ -6,22 +6,22 @@ import com.spring.wefit.command.marketBoardVO;
 
 public interface IMarketBoardMapper {
 	
-	//±Û µî·Ï
+	//ê¸€ ë“±ë¡
 	void regist(marketBoardVO vo);
 	
-	//±Û ¸ñ·Ï
+	//ê¸€ ëª©ë¡
 	List<marketBoardVO> getList();
 	
-	//ÃÑ °Ô½Ã¹° ¼ö
+	//ì´ ê²Œì‹œë¬¼ ìˆ˜
 	int getTotal();
 	
-	//»ó¼¼º¸±â
+	//ìƒì„¸ë³´ê¸°
 	marketBoardVO getContent(int mbNum);
 	
-	//¼öÁ¤
+	//ìˆ˜ì •
 	void update(marketBoardVO vo);
 	
-	//»èÁ¦
+	//ì‚­ì œ
 	void delete(int mbNum);
 
 }

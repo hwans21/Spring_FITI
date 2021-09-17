@@ -10,14 +10,14 @@
 		  	(
 		  	dbNum, memberNum, dbTitle, dbContent,
 		  	dbImage1, dbImage2, dbImage3, dbImage4, dbImage5,
-		  	dbRealImage1, dbRealImage2, dbRealImage3, dbRealImage4, dbRealImage5
+		  	dbRealImage1, dbRealImage2, dbRealImage3, dbRealImage4, dbRealImage5, nickName
 		  	)
 		  	VALUES
 		  	(
 		  	dietBoard_seq.NEXTVAL, 
 		  	#{memberNum}, #{dbTitle}, #{dbContent},
 		  	#{dbImage1}, #{dbImage2}, #{dbImage3}, #{dbImage4}, #{dbImage5},
-		  	#{dbRealImage1}, #{dbRealImage2}, #{dbRealImage3}, #{dbRealImage4}, #{dbRealImage5}
+		  	#{dbRealImage1}, #{dbRealImage2}, #{dbRealImage3}, #{dbRealImage4}, #{dbRealImage5}, #{nickName}
 		  	)
 		  </insert>
 		  
@@ -33,6 +33,10 @@
 		  	WHERE dbNum= #{dbNum}
 		  </select>
 		  
+		  <select id="getTotal" resultType="int">
+		  	SELECT COUNT(*)
+			FROM DietBoard
+		  </select>
 		  
 		  <update id="update">
 			UPDATE DietBoard
@@ -44,21 +48,19 @@
 			dbImage5 = #{dbImage5},
 		  	dbRealImage1 = #{dbRealImage1}, dbRealImage2 = #{dbRealImage2}, 
 		  	dbRealImage3 = #{dbRealImage3}, dbRealImage4 = #{dbRealImage4}, 
-		  	dbRealImage5 = #{dbRealImage5}
-		  	WHERE dbNum=#{dbNum}
+		  	dbRealImage5 = #{dbRealImage5},
+		  	nickName = #{nickName}
+		  	
+		  	WHERE dbNum = #{dbNum}
 		  </update>
 		  
 		  
 		  <delete id="delete">
 		  	DELETE FROM DietBoard
-			WHERE dbNum=#{dbNum}
+			WHERE dbNum = #{dbNum}
 		  </delete>
 		  
 		  
-		  <select id="getTotal" resultType="int">
-		  	SELECT COUNT(*)
-			FROM DietBoard
-		  </select>
 		  
 		  
 		  
