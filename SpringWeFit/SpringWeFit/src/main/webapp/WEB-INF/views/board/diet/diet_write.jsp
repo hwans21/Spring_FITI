@@ -1,6 +1,7 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,7 @@
                 <table>
                     <tr>
                         <td>작성자</td>
-                        <td><input type=text name="memberNum" size=20> </td>
+                        <td><input type=text name="nickName" size=20> </td>
                     </tr>
 
                     <tr>
@@ -74,7 +75,7 @@
                     
                     <tr>
                         <td>사진올리기 </td>
-                        <td><input multiple="multiple" type="file" name="fileName" size="10" maxlength="10"></td>
+                        <td><input multiple="multiple" id="upload" type="file" name="fileName" size="10" maxlength="10"></td>
                     </tr>
                     
                     <tr class="text-right">
@@ -82,8 +83,8 @@
                             <br>
                             <button class="btn btn-primary" id="writeBtn" type="button">등록하기</button>
                             <button class="btn btn-default" id="listBtn" type="button" onclick="location.href='<c:url value='/dietBoard/dietList' />'">취소하기</button>
-                            <br><br><br>
-                        </td>
+                            <br><br><br>                    
+                             </td>
                         
                     </tr>
                 </table>
@@ -93,7 +94,7 @@
 
     </div>
 
-
+	
     <div class="row">
         <%@ include file="../../include/footer.jsp" %>
     </div>
@@ -102,9 +103,9 @@
     	const writeBtn = document.getElementById('writeBtn');
     	console.log(writeBtn);
     	writeBtn.onclick = function() {
-			if(document.writeForm.memberNum.value === '') {
+			if(document.writeForm.nickName.value === '') {
 				alert('작성자는 필수 항목 입니다.');
-				document.writeForm.memberNum.focus();
+				document.writeForm.nickName.focus();
 				return;
 			}else if(document.writeForm.dbTitle.value === '') {
 				alert('제목은 필수 항목 입니다.');

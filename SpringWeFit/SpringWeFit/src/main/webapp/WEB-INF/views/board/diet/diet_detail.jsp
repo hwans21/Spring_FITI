@@ -176,12 +176,11 @@
 
                 <div class="row">
                     <div class="container-fluid">
-                        
+                       
                         <table>
                             
-
                             <tr>
-                                <td>작성일:${dietList.dbRegDate} </td>
+                                <td>${dietList.dbRegDate} </td>
                                 <td><span class="glyphicon glyphicon-eye-open"></span>100</td>
                                 <td>
 
@@ -242,7 +241,7 @@
 
             </div>
         </div>
-
+		
 
 
         <div class="row">
@@ -253,6 +252,12 @@
     </div>
 
     <script defer>
+    
+		const msg = '${msg}';
+		if(msg === 'updateSuccess') {
+			alert('게시글이 수정되었습니다.');
+		}
+	
         function sleep(ms) {
             const wakeUpTime = Date.now() + ms;
             while (Date.now() < wakeUpTime) { }

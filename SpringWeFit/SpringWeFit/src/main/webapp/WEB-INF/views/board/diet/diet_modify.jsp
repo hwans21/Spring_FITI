@@ -55,10 +55,11 @@
 
             <!--main left-->
             <form action="<c:url value='/dietBoard/dietModify' />" name="modifyForm" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="dbNum" value="${dietList.dbNum}">
                 <table>
                     <tr>
                         <td>작성자</td>
-                        <td><input type=text name=memberNum size=20 value="${dietList.memberNum}"> </td>
+                        <td><input type=text name=nickName size=20 value="${dietList.nickName}" readonly> </td>
                     </tr>
 
                     <tr>
@@ -82,16 +83,15 @@
                             <br>
                             <button type="submit" class="btn btn-primary" id="modifyBtn">수정하기</button>
                             <button type="button" class="btn btn-primary" id="delBtn">삭제하기</button>
-                            <button type="button" class="btn btn-default" onclick="location.href='<c:url value="/dietBoard/dietList" />'">취소하기</button>
+                            <button type="button" class="btn btn-default" id="listBtn">취소하기</button>
                             <br><br><br>
                         </td>
                         
                     </tr>
                 </table>
-
+			
             </form>
         </div>
-
     </div>
 
 
@@ -101,6 +101,14 @@
     
 	<script>
 	
+	//취소버튼 클릭 후 목록 이동 처리
+	$(function() {
+		$('#listBtn').click(function() {
+			location.href="<c:url value='/dietBoard/dietList' />"
+		});
+	});
+	
+	//수정버튼 처리
 	const modifyBtn = document.getElementById('modifyBtn');
 	console.log(modifyBtn);
 	modifyBtn.onclick = function() {
@@ -117,7 +125,7 @@
 			}
 	};
 	
-	
+	//삭제버튼 처리
 	$('#delBtn').click(function() {
 		if(confirm('정말 삭제하시겠습니까?')) {
 			$('form[name=modifyForm]').attr('action', '<c:url value="/dietBoard/dietDelete" />');
