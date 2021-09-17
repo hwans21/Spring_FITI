@@ -156,86 +156,24 @@
 
                         </tr>
                     </thead>
+                     
                     <tr>
-                        <td onclick="location.href='/FRONT/views/board/market/market_detail.html'">
-                            
-                            <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="" class="">
-                            <h2>제목</h2>
-                            <h3>가격</h3>
-                            <br><h3>아이디<br>지역</h3>
-                            
-                        </td>
+
+                    
+                    	<c:forEach var="product" items="${product }">
                         <td>
-                            <a href="">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="">
-                                <h2>제목</h2>
-                                <h3>가격</h3>
-                                <br><h3>아이디<br>지역</h3>
-                            </a>
+                            <img src="${pageContext.request.contextPath }/resource/img/${product.mbImage1 }" alt="" class="">
+                            <h2><a href="<c:url value='/marketBoard/market_detail?mbNum=${product.mbNum }'/>">[${product.mbType}]${product.mbTitle }</a></h2>
+                           
+                            <h3>${product.mbPrice }</h3>
+                            <br>
+                            <h3>아이디<br>${product.mbAddrBasic }</h3>
                         </td>
-                        <td>
-                            <a href="">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="">
-                                <h2>제목</h2>
-                                <h3>가격</h3>
-                                <br><h3>아이디<br>지역</h3>
-                            </a>
-                        </td>
+                        </c:forEach>
+                        
 
                     </tr>
-                    <tr>
-                        <td>
-                            <a href="">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="">
-                                <h2>제목</h2>
-                                <h3>가격</h3>
-                                <br><h3>아이디<br>지역</h3>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="">
-                                <h2>제목</h2>
-                                <h3>가격</h3>
-                                <br><h3>아이디<br>지역</h3>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="">
-                                <h2>제목</h2>
-                                <h3>가격</h3>
-                                <br><h3>아이디<br>지역</h3>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="">
-                                <h2>제목</h2>
-                                <h3>가격</h3>
-                                <br><h3>아이디<br>지역</h3>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="">
-                                <h2>제목</h2>
-                                <h3>가격</h3>
-                                <br><h3>아이디<br>지역</h3>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="">
-                                <h2>제목</h2>
-                                <h3>가격</h3>
-                                <br><h3>아이디<br>지역</h3>
-                            </a>
-                        </td>
-
-                    </tr>
+                     
 
                 </table>
             </div>
@@ -245,13 +183,15 @@
 
 
         </div>
-        
+
+        </div>
         <div class="tools">
 
             <!--글쓰기 버튼-->
-            <a href="/FRONT/views/board/market/market_write.html">
-                <button type="button" class="btn btn-outline-primary" onclick="location.href='/FRONT/views/board/market/market_write.html'">
-                    글쓰기
+            <a href="<c:url value='/marketBoard/market_write' />">
+                <button type="button" class="btn btn-outline-primary">
+                    	글쓰기
+
                 </button>
 
             </a>

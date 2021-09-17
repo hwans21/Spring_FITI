@@ -1155,7 +1155,6 @@ DB변경 작업 및 jsp적용작업 <br>
 
 [▲맨위로](#wefit)
 
-
 # 21.09.17
 ## 컬럼명 VO객체명 변경 <br>
 - 소문자 1자에 대문자 1자 그 다음 소문자로 구성된 변수들(mNum, mEmail,.....)
@@ -1210,4 +1209,5 @@ ALTER TABLE member Rename column mManagerYN TO memberManagerYN;
 ALTER TABLE member Rename column mDelDate TO memberDelDate;
 
 ### VO객체 멤버변수 소문자 1자로 시작하는 모든 변수 변경
+
 
