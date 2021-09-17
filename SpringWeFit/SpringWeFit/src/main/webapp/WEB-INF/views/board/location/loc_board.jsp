@@ -1,6 +1,10 @@
 
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 
 <!DOCTYPE html>
@@ -214,7 +218,9 @@
                                   
                     <!-- 종목 -->
 
+
                     <div id="sportsBtn" class="btn-group text-center " role="group" aria-label="Basic outlined example">
+
                         <button type="button" class="btn btn-info btn-active id="all">전체</button>
                         <button type="button" class="btn btn-info">수영</button>
                         <button type="button" class="btn btn-info">배드민턴</button>
@@ -252,6 +258,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                         	<c:forEach var="vo" items="${placeList}">
                         		<tr>
                         		
@@ -270,13 +277,16 @@
                         	</c:forEach>
                         	
 
+
                         </tbody>
 
                     </table>
                 </div>
                     
+
                 <div class="row" align="right">													
                     <button type="button" id="write" class="btn btn-outline-primary float-right"  onclick="location.href='<c:url value='/placeBoard/placeWrite' />' "><b>새 장소 등록</b></button>
+
 
                 </div>
 
@@ -295,8 +305,10 @@
                 </div>     
         </div>
 
+
         
         </div>
+
 
         <div class="row">
             <%@ include file="../../include/footer.jsp" %>
@@ -304,6 +316,7 @@
         
     </div>
     
+
 
     <script>
      // 종목별 클릭 시 

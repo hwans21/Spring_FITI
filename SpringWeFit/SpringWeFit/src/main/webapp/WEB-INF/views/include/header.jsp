@@ -84,7 +84,9 @@
                     <!-- Link 메뉴 (class가 active가 포함되어 있기 때문에 선택된 메뉴 뜻) -->
                     <li>
 
+
                         <a href="<c:url value='/placeBoard/placeList' />">함께 운동해요 <span
+
 
                                 class="sr-only">(current)</span></a>
                     </li>
@@ -98,6 +100,7 @@
                 <!-- 오른쪽 정렬의 메뉴 -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Link 메뉴 -->
+
 
 
                     <!-- 로그인 했을경우 -->
@@ -136,6 +139,7 @@
                     </c:if>
 
                    
+
                 </ul>
             </div>
         </div>
@@ -159,6 +163,7 @@
                 </div>
                 <div class="modal-body">
 
+
                     <form action="<c:url value="/user/login" />" method="post" id="form-login" class="form-horizontal">
 
                         <div class="form-group">
@@ -173,6 +178,7 @@
                             <label for="login-password" class="col-sm-3 control-label">비밀번호</label>
                             <div class="col-sm-9">
                                 <input type="password" class="form-control" id="login-password" name="memberPasswd"
+
                                     placeholder="비밀번호를 입력해주세요">
                             </div>
 
@@ -181,7 +187,9 @@
                             <label for="auto-login-check" class="col-sm-3 control-label">자동로그인</label>
                             <div class="col-sm-1">
 
+
                                 <input type="checkbox" class="form-control" id="auto-login-check" name="autoLoginCheck">
+
 
                             </div>
 
@@ -194,7 +202,9 @@
                 </div>
                 <div class="modal-footer">
 
+
                     <button type="button" class="btn btn-info" data-dismiss="modal" id="loginBtn">로그인</button>
+
 
                     <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#modal-pwsearch" >비밀번호 찾기</button>
                 </div>
@@ -205,7 +215,9 @@
     </div>
     <!-- Modal join창-->
 
+
     <div  id="modal-join" class="modal fade">
+
 
         <div class="modal-dialog">
 
@@ -217,6 +229,7 @@
                     <h4 class="modal-title" id="myModalLabel">회원가입</h4>
                 </div>
                 <div class="modal-body">
+
 
                     <form id="form-join" action="<c:url value='/user/join' />" method="post" role="form" class="form-horizontal">
                         <div class="form-group">
@@ -236,23 +249,28 @@
                             <div class="col-sm-3">
                                 <button id="nickCheckBtn" type="button" class="form-control">닉네임확인</button>
 
+
                             </div>
 
                         </div>
                         <div class="form-group">
 
+
                             <label for="mpasswd" class="col-sm-3 control-label">비밀번호</label>
                             <div class="col-sm-9">
                                 <input type="password" class="form-control" id="join-passwd" name="memberPasswd"
+
                                     placeholder="비밀번호를 입력해주세요">
                             </div>
 
                         </div>
                         <div class="form-group">
 
+
                             <label for="passwordchk" class="col-sm-3 control-label">비밀번호확인</label>
                             <div class="col-sm-9">
                                 <input type="password" class="form-control" id="passwordchk"
+
 
                                     placeholder="비밀번호를 확인해주세요">
                             </div>
@@ -261,9 +279,11 @@
 
                         <div class="form-group">
 
+
                             <label for="mphone" class="col-sm-3 control-label">핸드폰 번호</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="join-phone" name="memberPhone"
+
 
                                     placeholder="'-'빼고 입력해주세요">
                             </div>
@@ -278,7 +298,9 @@
 
                 <div class="modal-footer">
 
+
                     <button id="joinBtn" type="button" class="btn btn-primary">가입하기</button>
+
 
                     <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
                 </div>
@@ -299,6 +321,7 @@
                     <h4 class="modal-title" id="myModalLabel">비밀번호찾기</h4>
                 </div>
                 <div class="modal-body">
+
 \
                     <form action="" method="post" id="form-pwSearch" class="form-horizontal">
                        
@@ -306,6 +329,7 @@
                             <label for="search-email" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-9">
                                 <input type="email" class="form-control" id="search-email" placeholder="이메일을 입력해주세요">
+
 
                             </div>
                            
@@ -327,6 +351,7 @@
     </div>
 
 
+
     <script defer>
 		
 		// 비밀번호 규칙 정규식
@@ -341,11 +366,13 @@
         $(document).ready(function () {
         	
         	
+
             menuBarLocation();
             $(window).resize(function () {
                 console.log($(window).width())
                 menuBarLocation();
             });
+
             
             let emailChk = false;
             let nickChk = false;
@@ -494,6 +521,7 @@
             	}
             }); // 로그인 클릭 이벤트
             
+
         });
         function menuBarLocation(){
             if ($(window).width() < 755) {

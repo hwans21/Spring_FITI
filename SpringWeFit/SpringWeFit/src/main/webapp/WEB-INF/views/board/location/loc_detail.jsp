@@ -108,8 +108,10 @@
             <div class="col-md-8 col-sm-12 test">
                 <div class="row">
 
+
                     <button class="btn btn-primary pull-right" onclick="location.href='<c:url value='/location/placeModify' />' ">수정하기</button>
                     <button class="btn btn-primary pull-right" onclick="location.href='<c:url value='/location/placeList' />' ">목록으로</button>
+
 
                 </div>
                 <div class="row">

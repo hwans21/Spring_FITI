@@ -107,9 +107,11 @@
                         <td colspan="2">
                             <br>
 
+
                             <button type="button" class="btn btn-primary" onclick="location.href='<c:url value='/placeBoard/placeModify' />' ">수정하기</button>
                             <button type="button" class="btn btn-primary" onclick="location.href='<c:url value='/placeBoard/placeDelete' />' ">삭제하기</button>
                             <button type="button" class="btn btn-default" onclick="location.href='<c:url value='/placeBoard/placeList' />' ">취소하기</button>
+
 
                             <br><br><br>
                         </td>

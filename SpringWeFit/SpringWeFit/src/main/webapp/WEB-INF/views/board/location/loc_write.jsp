@@ -55,6 +55,7 @@
 
             <!--main left-->
 
+
             <form action="<c:url value='/placeBoard/placeWrite' />" id="boardWrite" name="writeForm" method="post" enctype="multipart/form-data">
 
                 <table>
@@ -62,6 +63,7 @@
                         <td>종목</td>
                         <td>
                             <select id="sports" name="sports">
+
 
                                 <option value='category'>종목선택</option>
                                 <option>수영</option>
@@ -83,7 +85,9 @@
                     <tr>
                         <td>작성자</td>
 
+
                         <td><input type=text name=memberNum size=20> </td>
+
 
                     </tr>
 
@@ -97,7 +101,9 @@
                     <tr>
                         <td>내용</td>
 
+
                         <td><textarea name="pbContent" cols="75" rows="15"></textarea></td>
+
 
                     </tr>
 
@@ -114,13 +120,16 @@
                     <tr>
                         <td>사진올리기 </td>
 
+
                         <td><input type="file" multiple="multiple" name="fileName" size="10" maxlength="10"></td>
+
 
                     </tr>
                     
                     <tr class="text-right">
                         <td colspan="2">
                             <br>
+
 
                             <button class="btn" id="writeBtn" type="button">등록하기</button>
                             <button class="btn" id="listBtn" type="button"  onclick="location.href='<c:url value='/placeBoard/placeList' />' ">취소하기</button>
@@ -184,7 +193,6 @@
 		});
     </script>
     
-
    
 </body>
 
