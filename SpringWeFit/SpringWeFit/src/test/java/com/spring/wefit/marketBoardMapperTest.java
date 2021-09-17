@@ -23,21 +23,20 @@ public class marketBoardMapperTest {
 		for(int i=1; i<30; i++) {
 			marketBoardVO vo = new marketBoardVO();
 			vo.setMbNum(i);
-			vo.setMNum(i);
-			vo.setMbType("테스트타입" + i);
-			vo.setMbTitle("테스트제목" + i);
+			vo.setMemberNum(i);
+			vo.setMbType("테스트" +i);
 			vo.setMbContent("테스트" + i);
-			vo.setMbPrice(i);
-			vo.setMbAddrBasic("테스트주소" + i);
-			vo.setMbAddrDetail("테스트주소상세" + i);
-			vo.setMbLatitude(i);
-			vo.setMbLongitude(i);
-			vo.setMbLookCount(i);
-			vo.setMbImage1("테스트" + i);
-			vo.setMbRealImage1("테스트" + i);
+			vo.setMbAddrBasic("test"+ i);
+			vo.setMbAddrDetail("test");
+			
 			mapper.regist(vo);
 			
 		}
+	}
+	
+	@Test
+	public void testModify() {
+		
 	}
 
 }

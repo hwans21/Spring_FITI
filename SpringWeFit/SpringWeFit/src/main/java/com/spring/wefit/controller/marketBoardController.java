@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.wefit.command.marketBoardVO;
@@ -37,11 +40,20 @@ public class marketBoardController {
 	}
 	
 	@PostMapping("/regist")
-	public String regist(marketBoardVO vo, RedirectAttributes ra) {
+	public String regist(MultipartRequest request, RedirectAttributes ra) {
 		
-		service.regist(vo);
 		
-		return "redirect:/board/market/market_board";
+		
+		return "redirect:/marketBoard/market_board";
+	}
+	
+	@GetMapping("/market_detail")
+	public String detail(marketBoardVO vo) {
+		
+		
+		service.getContent(vo.getMbNum());
+		
+		return "marketBoard/market_detail?mbNum=" +vo.getMbNum();
 	}
 	
 	

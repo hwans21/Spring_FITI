@@ -156,22 +156,24 @@
 
                         </tr>
                     </thead>
+                     
                     <tr>
 
                     
                     	<c:forEach var="product" items="${product }">
-                        <td onclick="location.href='/FRONT/views/board/market/market_detail.html'">
-                            
-                            <img src="${pageContext.request.contextPath }/resources/img/product/슈펜 테크 운동화.jpg" alt="" class="">
-                            <h2>${product.title }</h2>
-                            <h3>${product.price }</h3>
-                            <br><h3>아이디<br>지역</h3>
-                            
+                        <td>
+                            <img src="${pageContext.request.contextPath }/resource/img/${product.mbImage1 }" alt="" class="">
+                            <h2><a href="<c:url value='/marketBoard/market_detail?mbNum=${product.mbNum }'/>">[${product.mbType}]${product.mbTitle }</a></h2>
+                           
+                            <h3>${product.mbPrice }</h3>
+                            <br>
+                            <h3>아이디<br>${product.mbAddrBasic }</h3>
                         </td>
                         </c:forEach>
                         
 
                     </tr>
+                     
 
                 </table>
             </div>

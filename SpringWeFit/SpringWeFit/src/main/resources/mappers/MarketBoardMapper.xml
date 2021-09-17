@@ -7,11 +7,18 @@
  
  	<select id="getList" resultType="com.spring.wefit.command.marketBoardVO">
  		SELECT * FROM MarketBoard
+ 		ORDER BY mbNum DESC
  	</select>
  	
  	<insert id="regist">
- 		INSERT INTO MarketBoard(mbNum,mNum, mbType, mbTitle, mbPrice, mbContent, mbImage1 )
- 		values(marketBoard_seq.NEXTVAL,#{mNum},#{mbType}, #{mbTitle}, #{mbPrice}, #{mbContent}, #{mbImage1})
+ 		INSERT INTO MarketBoard(mbNum,mNum, mbType, mbTitle, mbPrice, mbContent, mbImage1,mbAddrBasic,mbLongitude, mbLatitude, mbImageCount, mbLookCount)
+ 		values(marketBoard_seq.NEXTVAL,#{mNum},#{mbType}, #{mbTitle}, #{mbPrice}, #{mbContent}, #{mbImage1}, #{mbAddrBasic}, #{mbLongitude}, #{mbLatitude},#{mbImageCount},#{mbLookCount})
+ 		
  	</insert>
+ 	
+ 	<select id="getContent" resultType="com.spring.wefit.command.marketBoardVO">
+ 		SELECT * FROM MarketBoard
+ 		WHERE mbNum = #{mbNum}
+ 	</select>
  
  </mapper>
