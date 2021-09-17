@@ -54,16 +54,20 @@
             </div>
 
             <!--main left-->
+
             <form action="<c:url value='/marketBoard/regist' />" id="boardWrite" method="POST" >
+
                 <table>
                     <tr>
                         <td>카테고리</td>
                         <td>
+
                             <select id="mbType" name="mbType">
                                 
                                 <option value="sell">사요</option>
                                 <option value="buy">팔아요</option>
                                 <option value="share">나눠요</option>
+
                                 
                             </select>
                         </td>
@@ -71,17 +75,23 @@
 
                     <tr>
                         <td>작성자</td>
+
                         <td><input type="text" name="mNum" size=20> </td>
+
                     </tr>
 
                     <tr>
                         <td>제목</td>
+
                         <td><input type="text" name="mbTitle" size="60"></td>
+
                     </tr>
 
                     <tr>
                         <td>내용</td>
+
                         <td><textarea name="mbContent" cols="75" rows="15"></textarea></td>
+
                     </tr>
 
                     <tr>
@@ -96,11 +106,13 @@
                 
                     <tr>
                         <td>사진올리기 </td>
+
                         <td><input type="file" name="mbImage1" size="10" maxlength="10"></td>
                     </tr>
                     <tr>
                         <td>가격 </td>
                         <td><input type=text name=mbPrice size="60"></td>
+
                     </tr>
                     <tr class="text-right">
                         <td colspan="2">

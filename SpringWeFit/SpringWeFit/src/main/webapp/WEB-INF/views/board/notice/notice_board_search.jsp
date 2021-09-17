@@ -154,12 +154,9 @@
         </div>
         <div class="row">
             <ul id="sub_menu3" class="sub_menu">
-
-
-                <li class="sub2"><a href="/FRONT/views/board/notice/notice_board.jsp">공지사항</a></li>
-                <li class="sub2"><a href="/FRONT/views/board/free/free_board.jsp">자유게시판</a></li>
-                <li class="sub2"><a href="/FRONT/views/board/qna/qna_board.jsp">질문게시판</a></li>
-
+                <li class="sub2"><a href="/FRONT/views/board/notice/notice_board.html">공지사항</a></li>
+                <li class="sub2"><a href="/FRONT/views/board/free/free_board.html">자유게시판</a></li>
+                <li class="sub2"><a href="/FRONT/views/board/qna/qna_board.html">질문게시판</a></li>
             </ul>
         </div>
         <div class="container text-center">
@@ -177,13 +174,9 @@
             </div>
 
             <div id="btn-list" class="row" align="right">
-
-
-                <input type="text" placeholder="Search" value="${page.keyword}">
+                <input type="text" placeholder="Search">
                 <button type="button" class="btn" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
-
-
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 </button>
 
 
@@ -201,8 +194,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
                     	<c:forEach items="${noticelist}" var="noticelist">
                         	<tr onclick="location.href='/FRONT/views/board/notice/notice_detail.html'">
                         		<td scope="col" class="text-center">${noticelist.NBNUM}</td>
@@ -213,8 +204,6 @@
   							</tr>
   						</c:forEach>
   						
-
-
                     </tbody>
                 </table>
 
@@ -222,11 +211,7 @@
             </div>
 
             <div class="row" align="right">
-
-
-                    <button type="button" id="write" class="btn btn-outline-primary float-right" onclick="location.href='/FRONT/views/board/notice/notice_write.html'"><b>작성하기</b></button>
-
-
+                    <button type="button" id="write" class="btn btn-outline-primary float-right" onclick="location.href='/FRONT/views/board/notice/notice_write.jsp'"><b>작성하기</b></button>
             </div>
 
 
@@ -239,11 +224,7 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-
-
                         <li class="page-item"><a class="page-link" href="/noticeboard/noticelistPage?num=${num}">${num}</a></li>
-
-
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item"><a class="page-link" href="#">4</a></li>
