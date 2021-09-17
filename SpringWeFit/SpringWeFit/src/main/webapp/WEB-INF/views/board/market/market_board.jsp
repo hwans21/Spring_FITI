@@ -158,6 +158,7 @@
                     </thead>
                      
                     <tr>
+
                     
                     	<c:forEach var="product" items="${product }">
                         <td>
@@ -170,6 +171,7 @@
                         </td>
                         </c:forEach>
                         
+
                     </tr>
                      
 
@@ -181,6 +183,7 @@
 
 
         </div>
+
         </div>
         <div class="tools">
 
@@ -188,6 +191,7 @@
             <a href="<c:url value='/marketBoard/market_write' />">
                 <button type="button" class="btn btn-outline-primary">
                     	글쓰기
+
                 </button>
 
             </a>

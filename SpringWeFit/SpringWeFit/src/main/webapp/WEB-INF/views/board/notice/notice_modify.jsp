@@ -65,26 +65,34 @@
 
                     <tr>
                         <td>제목</td>
-                        <td><input type=text name=title size="60"></td>
+
+                        <td><input type=text name=title size="60" value="${noticeview.NBTITLE}"></td>
+
                     </tr>
 
                     <tr>
                         <td>내용</td>
-                        <td><textarea name="content" cols="75" rows="15"></textarea></td>
+
+                        <td><textarea name="content" cols="75" rows="15">${noticeview.NBCONTENT}</textarea></td>
+
                     </tr>
 
                    
                     <tr>
                         <td>사진올리기 </td>
-                        <td><input type="file" name="fileName" size="10" maxlength="10"></td>
+
+                        <td><input type="file" name="fileName" size="10" maxlength="10" value="${noticeview.NBIMAGE1}"></td>
                     </tr>
                     
                     <tr class="text-right">
                         <td colspan="2">
                             <br>
-                            <button class="btn btn-primary">수정하기</button>
-                            <button class="btn btn-primary">삭제하기</button>
-                            <button class="btn btn-default" type="button" onclick="location.href='/FRONT/views/board/notice/notice_detail.html'">취소하기</button>
+
+
+                            <button class="btn btn-primary" type="submit">수정하기</button>
+                            <button class="btn btn-primary" type="submit">삭제하기</button>
+                            <button class="btn btn-default" type="submit" onclick="location.href='/FRONT/views/board/notice/notice_detail.html'">취소하기</button>
+
                             <br><br><br>
                         </td>
                         
