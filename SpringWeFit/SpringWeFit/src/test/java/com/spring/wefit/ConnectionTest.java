@@ -21,8 +21,22 @@ public class ConnectionTest {
 	private ITestMapper mapper;
 	
 	@Test
+	public void registTest() {
+		for(int i=1; i<=10; i++) {
+			DietBoardVO vo = new DietBoardVO();
+			vo.setMemberNum(i);
+			vo.setDbTitle("����" + i);
+			vo.setDbContent("����" + i);
+			vo.setDbLookCount(i);
+			vo.setDbImageCount(i);
+			
+			mapper.regist(vo);
+		}
+
+	@Test
 	public void test(){
 		double d = (double) mapper.test();
 		System.out.println(d);
+
 	}
 }

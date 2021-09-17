@@ -54,34 +54,34 @@
             </div>
 
             <!--main left-->
-            <form action="#" id="boardWrite" method="POST" enctype="multipart/form-data">
+            <form action="<c:url value='/dietBoard/dietWrite' />" id="boardWrite" name="writeForm" method="POST" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>작성자</td>
-                        <td><input type=text name=name size=20> </td>
+                        <td><input type=text name="memberNum" size=20> </td>
                     </tr>
 
                     <tr>
                         <td>제목</td>
-                        <td><input type=text name=title size="60"></td>
+                        <td><input type=text name="dbTitle" size="60"></td>
                     </tr>
-
+					
                     <tr>
                         <td>내용</td>
-                        <td><textarea name="content" cols="75" rows="15"></textarea></td>
+                        <td><textarea name="dbContent" cols="75" rows="15"></textarea></td>
                     </tr>
 
                     
                     <tr>
                         <td>사진올리기 </td>
-                        <td><input type="file" name="fileName" size="10" maxlength="10"></td>
+                        <td><input multiple="multiple" type="file" name="fileName" size="10" maxlength="10"></td>
                     </tr>
                     
                     <tr class="text-right">
                         <td colspan="2">
                             <br>
-                            <button class="btn btn-primary" type="submit">등록하기</button>
-                            <button class="btn btn-default" type="button" onclick="location.href='/FRONT/views/board/diet/diet_board.html'">취소하기</button>
+                            <button class="btn btn-primary" id="writeBtn" type="button">등록하기</button>
+                            <button class="btn btn-default" id="listBtn" type="button" onclick="location.href='<c:url value='/dietBoard/dietList' />'">취소하기</button>
                             <br><br><br>
                         </td>
                         
@@ -98,9 +98,40 @@
         <%@ include file="../../include/footer.jsp" %>
     </div>
 
-    </div>
+    <script>
+    	const writeBtn = document.getElementById('writeBtn');
+    	console.log(writeBtn);
+    	writeBtn.onclick = function() {
+			if(document.writeForm.memberNum.value === '') {
+				alert('작성자는 필수 항목 입니다.');
+				document.writeForm.memberNum.focus();
+				return;
+			}else if(document.writeForm.dbTitle.value === '') {
+				alert('제목은 필수 항목 입니다.');
+  				document.writeForm.dbTitle.focus();
+  				return;
+			}else {
+				document.writeForm.submit();
+			}
+		}
+    	
+  		$('#listBtn').click(function() {
+			if(confirm('목록으로 돌아가시겠습니까?')) {
+				location.href='<c:url value="/dietBoard/dietList" />';
+			} else {
+				return;
+			}
+		});
+    </script>
+    
+    
+    
+    
+    
 
     
 </body>
 
 </html>
+
+
