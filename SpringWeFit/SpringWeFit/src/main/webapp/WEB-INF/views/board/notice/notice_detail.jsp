@@ -1,7 +1,9 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,14 +109,18 @@
         <div class="container-fluid">
             <div class="col-md-8 col-sm-12 test">
                 <div class="row">
+
                     <button class="btn btn-primary pull-right" type="button" onclick="location.href='/FRONT/views/board/notice/notice_modify.jsp'">수정하기</button>
                     <button class="btn btn-primary pull-right" type="button" onclick="location.href="/noticeboard/noticedelete?NBNUM=${noticeview.NBNUM}">삭제하기</button>
                     <button class="btn btn-primary pull-right" type="button" onclick="location.href='/FRONT/views/board/notice/notice_board.jsp'">목록으로</button>
+
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="titlebox">
+
                             <h2>${noticeview.NBTITLE}</h2>
+
                         </div>
                     </div>
                 </div>
@@ -180,21 +186,27 @@
                         <table>
 
                             <tr>
+
                                 <td>작성일 : ${noticeview.NBREGDATE}</td>
                                 <td><span class="glyphicon glyphicon-eye-open"></span>${noticeview.NBLOOKCOUNT}</td>
+
                                 <td>
 
                                     <button class="btn btn-info pull-right"><span
                                             class="glyphicon glyphicon-heart"></span> 좋아요</button>
 
-                                </td>11
+
+                                </td>
+
                             </tr>
 
                             <tr>
                                 <td colspan="3">
                                     <p style="line-height: 150%;">
 
+
                                         ${noticeview.NBCONTENT}
+
                                     </p>
                                 </td>
                             </tr>
@@ -214,8 +226,7 @@
                 </div>
 
             </div>
-            
-            <!-- 댓글 -->
+
             <div class="col-md-4 col-sm-12 test">
                 
                 <div class="row">
@@ -242,6 +253,7 @@
                 </div>
 
             </div>
+
             
             <!-- 댓글 --
             // 댓글 조회
@@ -327,7 +339,7 @@ model.addAttribute("reply", reply);-->
 
 
     </script>
- 
+
 </body>
 
 </html>

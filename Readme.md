@@ -1155,4 +1155,11 @@ DB변경 작업 및 jsp적용작업 <br>
 
 [▲맨위로](#wefit)
 
+# 21.09.17
+## 컬럼명 VO객체명 변경 <br>
+- 소문자 1자에 대문자 1자 그 다음 소문자로 구성된 변수들(mNum, mEmail,.....)
+  - VO에서 @Getter와 @Setter아노테이션을 하면
+     - getMNum()이런식으로 되는데 
+  - 
+ [참고] https://blog.naver.com/PostView.nhn?blogId=adamdoha&logNo=222295678750
 

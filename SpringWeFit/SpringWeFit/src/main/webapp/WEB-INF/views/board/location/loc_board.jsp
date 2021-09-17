@@ -1,6 +1,11 @@
+
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -212,7 +217,10 @@
                 <div id="btn-list" class="row" align="right">
                                   
                     <!-- 종목 -->
-                    <div class="btn-group text-center " role="group" aria-label="Basic outlined example">
+
+
+                    <div id="sportsBtn" class="btn-group text-center " role="group" aria-label="Basic outlined example">
+
                         <button type="button" class="btn btn-info btn-active id="all">전체</button>
                         <button type="button" class="btn btn-info">수영</button>
                         <button type="button" class="btn btn-info">배드민턴</button>
@@ -250,103 +258,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr onclick="location.href='/FRONT/views/board/location/loc_detail.html'">
-                                <th scope="col" class="text-center">1</th>
-                                <th scope="col">[테니스] VTG 여의도실내테니스장</th>
-                                <th scope="col">서울 영등포구 여의나루로 42 여의도종합상가 4층</th>
-                                <th scope="col" class="text-center">닥스훈트</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
 
-                            <tr>
-                                <th scope="col" class="text-center">2</th>
-                                <th scope="col">[요가] 아메리카요가 당산점</th>
-                                <th scope="col">서울 영등포구 당산로 222 당산디오빌 지하 110호</th>
-                                <th scope="col" class="text-center">푸들</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
+                        	<c:forEach var="vo" items="${placeList}">
+                        		<tr>
+                        		
+	                                <td>${vo.pbNum}</td>
+	                                <td>
+	                                	<a href="<c:url value='/placeBoard/placeDetail?pbNum=${vo.pbNum}&pageNum=${pc.paging.pageNum}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}' />">${vo.pbTitle}</a>
+	                                	&nbsp;&nbsp;&nbsp;
+	                               
+	                                </td>
+	                                <td>${vo.pbAddrBasic}</td>
+	                                <td>${vo.memberNum}</td>
+	                                <td><fmt:formatDate value="${vo.pbRegDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+	                                <td>${vo.pbLookCount}</td> 
+	                             
+	                            </tr>
+                        	</c:forEach>
+                        	
 
-                            <tr>
-                                <th scope="col" class="text-center">3</th>
-                                <th scope="col">[골프] 동진골프앤피트니스클럽</th>
-                                <th scope="col">서울 영등포구 여의대방로61길 55</th>
-                                <th scope="col" class="text-center">말티즈</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="col" class="text-center">4</th>
-                                <th scope="col">[스케이트] 목동종합운동장실내아이스링크</th>
-                                <th scope="col">서울 양천구 안양천로 939</th>
-                                <th scope="col" class="text-center">보더콜리</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="col" class="text-center">5</th>
-                                <th scope="col">[달리기] 여의도 한강공원</th>
-                                <th scope="col">서울 영등포구 여의동로 330 한강사업본부 여의도안내센터</th>
-                                <th scope="col" class="text-center">치와와</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="col" class="text-center">6</th>
-                                <th scope="col">[테니스] VTG 여의도실내테니스장</th>
-                                <th scope="col">서울 영등포구 여의나루로 42 여의도종합상가 4층</th>
-                                <th scope="col" class="text-center">닥스훈트</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="col" class="text-center">7</th>
-                                <th scope="col">[요가] 아메리카요가 당산점</th>
-                                <th scope="col">서울 영등포구 당산로 222 당산디오빌 지하 110호</th>
-                                <th scope="col" class="text-center">푸들</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="col" class="text-center">8</th>
-                                <th scope="col">[골프] 동진골프앤피트니스클럽</th>
-                                <th scope="col">서울 영등포구 여의대방로61길 55</th>
-                                <th scope="col" class="text-center">말티즈</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="col" class="text-center">9</th>
-                                <th scope="col">[스케이트] 목동종합운동장실내아이스링크</th>
-                                <th scope="col">서울 양천구 안양천로 939</th>
-                                <th scope="col" class="text-center">보더콜리</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="col" class="text-center">10</th>
-                                <th scope="col">[달리기] 여의도 한강공원</th>
-                                <th scope="col">서울 영등포구 여의동로 330 한강사업본부 여의도안내센터</th>
-                                <th scope="col" class="text-center">치와와</th>
-                                <th scope="col" class="text-center">2021-09-02</th>
-                                <th scope="col" class="text-center">43</th>
-                            </tr>
 
                         </tbody>
 
                     </table>
                 </div>
                     
-                <div class="row" align="right">
-                    <button type="button" id="write" class="btn btn-outline-primary float-right"  onclick="location.href='/FRONT/views/board/location/loc_write.html' "><b>새 장소 등록</b></button>
+
+                <div class="row" align="right">													
+                    <button type="button" id="write" class="btn btn-outline-primary float-right"  onclick="location.href='<c:url value='/placeBoard/placeWrite' />' "><b>새 장소 등록</b></button>
+
+
                 </div>
 
                 <div class="row text-center">
@@ -363,12 +304,31 @@
                       </nav>
                 </div>     
         </div>
+
+
+        
+        </div>
+
+
         <div class="row">
             <%@ include file="../../include/footer.jsp" %>
         </div>
         
     </div>
     
+
+
+    <script>
+     // 종목별 클릭 시 
+     const sportsBtn = document.getElementById('sportsBtn';)
+     writeBtn.onclick = function() {
+    	 
+    	 
+    	 
+     }
+    </script>
+    
+
     
 </body>
 </html>

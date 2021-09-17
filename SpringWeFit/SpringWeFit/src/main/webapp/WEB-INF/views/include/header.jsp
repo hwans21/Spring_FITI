@@ -83,7 +83,11 @@
                 <ul class="nav navbar-nav">
                     <!-- Link 메뉴 (class가 active가 포함되어 있기 때문에 선택된 메뉴 뜻) -->
                     <li>
-                        <a href="">함께 운동해요 <span
+
+
+                        <a href="<c:url value='/placeBoard/placeList' />">함께 운동해요 <span
+
+
                                 class="sr-only">(current)</span></a>
                     </li>
                     <!-- Link 메뉴 -->
@@ -97,34 +101,44 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Link 메뉴 -->
 
-                    <!-- DropDown 형식의 메뉴 로그인 했을경우-->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">홍길동님 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-map-marker"
-                                        aria-hidden="true">&nbsp;대흥동</span></a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/FRONT/views/board/user/mypage.html"><span class="glyphicon glyphicon-pencil"
-                                        aria-hidden="true">&nbsp;마이페이지</span></a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-out"
-                                        aria-hidden="true">&nbsp;로그아웃</span></a></li>
-                        </ul>
-                    </li>
-                    <!-- DropDown 형식의 메뉴 로그인을 안했을 경우-->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">로그인하기 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-remove"
-                                        aria-hidden="true">&nbsp;위치정보없음</span></a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#" data-toggle="modal" data-target="#modal-login"><span class="glyphicon glyphicon-pencil"
-                                        aria-hidden="true">&nbsp;로그인</span></a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-out"
-                                        aria-hidden="true" data-toggle="modal" data-target="#modal-join">&nbsp;회원가입</span></a></li>
-                        </ul>
-                    </li>
+
+
+                    <!-- 로그인 했을경우 -->
+                    <c:if test="${loginuser != null }">
+                    
+	                    <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+	                            aria-expanded="false">${loginuser.memberNick }님 <span class="caret"></span></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="#"><span class="glyphicon glyphicon-map-marker"
+	                                        aria-hidden="true">&nbsp;대흥동</span></a></li>
+	                            <li role="separator" class="divider"></li>
+	                            <li><a href="/FRONT/views/board/user/mypage.html"><span class="glyphicon glyphicon-pencil"
+	                                        aria-hidden="true">&nbsp;마이페이지</span></a></li>
+	                            <li><a href="#"><span class="glyphicon glyphicon-log-out"
+	                                        aria-hidden="true">&nbsp;로그아웃</span></a></li>
+	                        </ul>
+	                    </li>
+                    </c:if>
+                    <!-- 로그인을 안했을 경우 -->
+                    <c:if test="${loginuser == null }">
+	                    <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+	                            aria-expanded="false">로그인하기 <span class="caret"></span></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="#"><span class="glyphicon glyphicon-remove"
+	                                        aria-hidden="true">&nbsp;위치정보없음</span></a></li>
+	                            <li role="separator" class="divider"></li>
+	                            <li><a href="#" data-toggle="modal" data-target="#modal-login"><span class="glyphicon glyphicon-pencil"
+	                                        aria-hidden="true">&nbsp;로그인</span></a></li>
+	                            <li><a href="#"><span class="glyphicon glyphicon-log-out"
+	                                        aria-hidden="true" data-toggle="modal" data-target="#modal-join">&nbsp;회원가입</span></a></li>
+	                        </ul>
+	                    </li>
+                    
+                    </c:if>
+
+                   
 
                 </ul>
             </div>
@@ -148,20 +162,23 @@
                     <h4 class="modal-title" id="myModalLabel">로그인</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-join" class="form-horizontal">
+
+
+                    <form action="<c:url value="/user/login" />" method="post" id="form-login" class="form-horizontal">
 
                         <div class="form-group">
-                            <label for="input-email" class="col-sm-3 control-label">이메일</label>
+                            <label for="login-email" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="input-email" placeholder="이메일을 입력해주세요">
+                                <input type="email" class="form-control" id="login-email" name="memberEmail" placeholder="이메일을 입력해주세요">
                             </div>
 
                         </div>
-                        
+                       
                         <div class="form-group">
-                            <label for="input-password" class="col-sm-3 control-label">비밀번호</label>
+                            <label for="login-password" class="col-sm-3 control-label">비밀번호</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="input-password"
+                                <input type="password" class="form-control" id="login-password" name="memberPasswd"
+
                                     placeholder="비밀번호를 입력해주세요">
                             </div>
 
@@ -169,7 +186,11 @@
                         <div class="form-group">
                             <label for="auto-login-check" class="col-sm-3 control-label">자동로그인</label>
                             <div class="col-sm-1">
-                                <input type="checkbox" class="form-control" id="auto-login-check">
+
+
+                                <input type="checkbox" class="form-control" id="auto-login-check" name="autoLoginCheck">
+
+
                             </div>
 
                         </div>
@@ -180,7 +201,11 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">로그인</button>
+
+
+                    <button type="button" class="btn btn-info" data-dismiss="modal" id="loginBtn">로그인</button>
+
+
                     <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#modal-pwsearch" >비밀번호 찾기</button>
                 </div>
 
@@ -189,7 +214,11 @@
         </div>
     </div>
     <!-- Modal join창-->
-    <div id="modal-join" class="modal fade">
+
+
+    <div  id="modal-join" class="modal fade">
+
+
         <div class="modal-dialog">
 
             <!-- Modal Content-->
@@ -200,44 +229,62 @@
                     <h4 class="modal-title" id="myModalLabel">회원가입</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-join" class="form-horizontal">
+
+
+                    <form id="form-join" action="<c:url value='/user/join' />" method="post" role="form" class="form-horizontal">
                         <div class="form-group">
-                            <label for="input-email" class="col-sm-3 control-label">이메일</label>
+                            <label for="memail" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" id="input-email" placeholder="이메일을 입력해주세요">
+                                <input type="email" class="form-control" id="join-email" name="memberEmail" placeholder="이메일을 입력해주세요">
                             </div>
                             <div class="col-sm-3">
-                                <button type="button" class="form-control">중복확인</button>
+                                <button id="emailCheckBtn" type="button" class="form-control">이메일확인</button>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="input-nick" class="col-sm-3 control-label">닉네임</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input-nick" placeholder="닉네임을 입력해주세요">
+                            <label for="mnick" class="col-sm-3 control-label">닉네임</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="join-nick" name="memberNick" placeholder="닉네임을 입력해주세요">
+                            </div>
+                            <div class="col-sm-3">
+                                <button id="nickCheckBtn" type="button" class="form-control">닉네임확인</button>
+
+
                             </div>
 
                         </div>
                         <div class="form-group">
-                            <label for="input-password" class="col-sm-3 control-label">비밀번호</label>
+
+
+                            <label for="mpasswd" class="col-sm-3 control-label">비밀번호</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="input-password"
+                                <input type="password" class="form-control" id="join-passwd" name="memberPasswd"
+
                                     placeholder="비밀번호를 입력해주세요">
                             </div>
 
                         </div>
                         <div class="form-group">
-                            <label for="input-passwordchk" class="col-sm-3 control-label">비밀번호확인</label>
+
+
+                            <label for="passwordchk" class="col-sm-3 control-label">비밀번호확인</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="input-passwordchk"
+                                <input type="password" class="form-control" id="passwordchk"
+
+
                                     placeholder="비밀번호를 확인해주세요">
                             </div>
 
                         </div>
 
                         <div class="form-group">
-                            <label for="input-phone" class="col-sm-3 control-label">핸드폰 번호</label>
+
+
+                            <label for="mphone" class="col-sm-3 control-label">핸드폰 번호</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input-passwordchk"
+                                <input type="text" class="form-control" id="join-phone" name="memberPhone"
+
+
                                     placeholder="'-'빼고 입력해주세요">
                             </div>
 
@@ -250,7 +297,11 @@
 
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">가입하기</button>
+
+
+                    <button id="joinBtn" type="button" class="btn btn-primary">가입하기</button>
+
+
                     <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
                 </div>
 
@@ -258,6 +309,7 @@
             </div>
         </div>
     </div>
+
      <!-- Modal pwsearch창 -->
      <div id="modal-pwsearch" class="modal fade">
         <div class="modal-dialog">
@@ -269,12 +321,16 @@
                     <h4 class="modal-title" id="myModalLabel">비밀번호찾기</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-join" class="form-horizontal">
+
+\
+                    <form action="" method="post" id="form-pwSearch" class="form-horizontal">
                        
                         <div class="form-group">
-                            <label for="input-email" class="col-sm-3 control-label">이메일</label>
+                            <label for="search-email" class="col-sm-3 control-label">이메일</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="input-email" placeholder="이메일을 입력해주세요">
+                                <input type="email" class="form-control" id="search-email" placeholder="이메일을 입력해주세요">
+
+
                             </div>
                            
                         </div>
@@ -294,16 +350,178 @@
         </div>
     </div>
 
-    <script>
 
 
+    <script defer>
+		
+		// 비밀번호 규칙 정규식
+		// : 숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
+		const regExpPw = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+		// 이메일 정규표현식
+		const regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		// 핸드폰 정규표현식
+		const regExpPhone = /^[0-9]*$/;
         /*부트스트랩 jquery*/
         $(document).ready(function () {
+        	
+        	
+
             menuBarLocation();
             $(window).resize(function () {
                 console.log($(window).width())
                 menuBarLocation();
             });
+
+            
+            let emailChk = false;
+            let nickChk = false;
+            let passwdChk = false;
+           	
+            const msg = '${msg }';
+           	if(msg === "복구 필요"){
+           		if(confirm("계정이 복구가 필요합니다.\n복구를 진행하시겠습니까?")){
+           			$('#form-login').attr("action","<c:url value='/user/recovery'/>");
+           			$('#form-login').submit();
+           		}
+           	}
+           	else if(msg !== ""){
+            	
+            	alert(msg);
+            }
+            
+            $('#emailCheckBtn').click(function(){
+            	
+            	if ($('#join-email').val() === "") {
+            		alert('이메일을 입력해주세요');
+            		return;
+            		
+            	} else if(!regExpEmail.test($('#join-email').val())){
+            		alert('이메일 형식에 맞게 입력해주세요');
+            		return;
+            	}
+            	
+            	$.ajax({
+                    type: "POST",
+                    url: "<c:url value='/user/emailChk' />",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    dataType: "text", //서버로부터 어떤 형식으로 받을지(생략가능)
+                    data: $('#join-email').val(),
+                    success: function (data) {
+                        console.log('통신성공!' + data);
+                      	if(data==="success"){
+                      		alert('사용 가능한 이메일입니다.')
+                      		emailChk = true;
+                      		$('#join-email').attr("readonly","true");
+                      	} else{
+                      		$('#join-email').val('');
+                      		alert('이미 사용중인 이메일입니다.')
+                      	}
+                    },
+                    error: function () {
+                        alert('통신에 실패했습니다. 관리자에게 문의하세요');
+                    }
+                }); //이메일 체크 비동기 통신 끝
+            }); //이메일 체크 이벤트 끝
+            
+			$('#nickCheckBtn').click(function(){
+				if ($('#join-nick').val() === "") {
+            		alert('닉네임을 입력해주세요');
+            		return;
+            		
+            	}
+				
+            	$.ajax({
+                    type: "POST",
+                    url: "<c:url value='/user/nickChk' />",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    dataType: "text", //서버로부터 어떤 형식으로 받을지(생략가능)
+                    data: $('#join-nick').val(),
+                    success: function (data) {
+                        console.log('통신성공!' + data);
+
+                      	if(data==="success"){
+                      		alert('사용 가능한 닉네임입니다.')
+                      		$('#join-nick').attr("readonly","true")
+                      		nickChk = true;
+                      	} else{
+                      		alert('이미 사용중인 닉네임입니다.')
+                      	}
+                    },
+                    error: function () {
+                        alert('통신에 실패했습니다. 관리자에게 문의하세요');
+                    }
+                }); //닉네임 체크 비동기 통신 끝
+            }); //닉네임 체크 이벤트 끝
+
+           $('#join-passwd').keyup(function(){
+        	   if(!regExpPw.test($('#join-passwd').val())){
+        		   $('#join-passwd').css("background-color","pink");
+        		   passwdChk = false;
+        	   } else {
+        		   $('#join-passwd').css("background-color","skyblue");
+        		   passwdChk = true;
+        	   }
+        	   
+           });
+            
+           $('#passwordchk').keyup(function(){
+        	   if($('#join-passwd').val() !== $('#passwordchk').val()){
+        		   $('#passwordchk').css("background-color","pink");
+        	   } else {
+        		   $('#passwordchk').css("background-color","skyblue");
+        	   }
+        	   
+           });
+           
+           $('#join-phone').keyup(function(){
+        	  if(!regExpPhone.test($('#join-phone').val())){
+        		  alert("'-'은 입력하지마세요");
+        		  $('#join-phone').val('');
+        	  } 
+           });
+         
+            $('#joinBtn').click(function(){
+            	if (!emailChk){
+            		alert('이메일 중복확인이 필요합니다.');
+            		return;
+            	} else if(!nickChk){
+            		alert('닉네임 중복확인이 필요합니다.');
+            		return;
+            	} else if($('#join-passwd').val() === ""){
+           			alert('비밀번호는 필수값입니다.');
+           			return;
+           		} else if ($('#passwordchk').val() === ""){
+           			alert('비밀번호확인을 입력해주세요');
+           			return;
+           		} else if(!passwdChk){
+           			alert('최소 8 자, 특수문자, 영문 및  숫자섞어서 써주세요')
+           			$('#join-passwd').val('');
+           			$('#passwordchk').val('');
+           			return;
+           		}
+            	$('#form-join').submit();
+            	
+            	
+            	
+            }); // 가입버튼 클릭 이벤트
+            
+            $('#loginBtn').click(function(){
+            	if($('#login-email').val() === ""){
+            		alert('이메일을 입력해주세요!');
+            	} else if($('#login-password').val() === ""){
+            		alert('비밀번호를 입력해주세요!');
+            	} else{
+            		
+            		$('#form-login').submit();
+            	}
+            }); // 로그인 클릭 이벤트
+            
+
         });
         function menuBarLocation(){
             if ($(window).width() < 755) {
