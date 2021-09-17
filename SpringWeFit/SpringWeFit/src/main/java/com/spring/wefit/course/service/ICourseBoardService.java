@@ -2,7 +2,7 @@ package com.spring.wefit.course.service;
 
 import java.util.List;
 
-import com.spring.wefit.course.command.CourseBoardVO;
+import com.spring.wefit.command.CourseBoardVO;
 
 public interface ICourseBoardService {
 	

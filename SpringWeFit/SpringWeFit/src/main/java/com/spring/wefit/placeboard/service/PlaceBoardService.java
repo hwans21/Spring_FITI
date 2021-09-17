@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.wefit.command.PlaceBoardVO;
+import com.spring.wefit.commons.PageVO;
 import com.spring.wefit.placeboard.mapper.IPlaceBoardMapper;
-import com.spring.wefit.util.PageVO;
 
 
 @Service

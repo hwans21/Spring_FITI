@@ -1,4 +1,4 @@
-package com.spring.wefit.util;
+package com.spring.wefit.commons;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -34,8 +34,8 @@ public class PageCreator {
 		
 	}
 	
-	//ÄÁÆ®·Ñ·¯°¡ ÃÑ °Ô½Ã¹°ÀÇ °³¼ö¸¦ PageCreator¿¡°Ô Àü´ÞÇÑ Á÷ÈÄ¿¡ 
-	//¹Ù·Î ÆäÀÌÂ¡ ¹öÆ° ¾Ë°í¸®ÁòÀÌ µ¹¾Æ°¥ ¼ö ÀÖµµ·Ï setter¸¦ Ä¿½ºÅÒ.
+	//ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PageCreatorï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¿ï¿½ 
+	//ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½Æ° ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ setterï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½.
 	public void setArticleTotalCount(int articleTotalCount) {
 		this.articleTotalCount = articleTotalCount;
 		calcDataOfPage();

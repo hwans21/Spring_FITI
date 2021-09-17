@@ -15,9 +15,9 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.wefit.command.PlaceBoardVO;
+import com.spring.wefit.commons.PageCreator;
+import com.spring.wefit.commons.PageVO;
 import com.spring.wefit.placeboard.service.IPlaceBoardService;
-import com.spring.wefit.util.PageCreator;
-import com.spring.wefit.util.PageVO;
 
 @Controller
 @RequestMapping("/placeBoard")
@@ -26,7 +26,7 @@ public class PlaceBoardController {
 	@Autowired 
 	private IPlaceBoardService service;
 	
-	//Àå¼Ò ¸ñ·Ï È­¸é
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ È­ï¿½ï¿½
 	@GetMapping("/placeList")
 	public String placeList(PageVO vo, Model model) {
 		System.out.println("/placeBoard/placeList: GET");
@@ -37,7 +37,7 @@ public class PlaceBoardController {
 	}
 	
 		
-	//±Û¾²±â È­¸é Ã³¸®
+	//ï¿½Û¾ï¿½ï¿½ï¿½ È­ï¿½ï¿½ Ã³ï¿½ï¿½
 	@GetMapping("/placeWrite")
 	public String placeWrite() {
 		System.out.println("/placeBoard/placeWrite: GET");
@@ -45,56 +45,56 @@ public class PlaceBoardController {
 	}
 	
 
-	//±Û µî·Ï Ã³¸®
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	@PostMapping("/placeWrite")
 	public String placeWrite(MultipartHttpServletRequest request,  PlaceBoardVO vo, RedirectAttributes ra) {
 		System.out.println("/placeBoard/placeWrite: POST");
-		System.out.println("Á¦¸ñ: " + request.getParameter("pbTitle"));
-		System.out.println("³»¿ë: " + request.getParameter("pbContent"));
+		System.out.println("ï¿½ï¿½ï¿½ï¿½: " + request.getParameter("pbTitle"));
+		System.out.println("ï¿½ï¿½ï¿½ï¿½: " + request.getParameter("pbContent"));
 		System.out.println(vo);
 		service.regist(vo);
-		ra.addFlashAttribute("msg", "Á¤»ó µî·Ï Ã³¸®µÇ¾ú½À´Ï´Ù.");
+		ra.addFlashAttribute("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			
-		return "redirect:/board/location/loc_board"; //µî·Ï ÈÄ¿¡ ±Û ¸ñ·Ï ¿äÃ»À¸·Î ¸®´ÙÀÌ·ºÆ®
+		return "redirect:/board/location/loc_board"; //ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½Æ®
 	}
 
 
-	//±Û »ó¼¼º¸±â Ã³¸®
+	//ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	@GetMapping("/placeDetail")
 	public String placeContent(@RequestParam int pbNum, Model model) {
 		System.out.println("/placeBoard/placeContent: GET");
-		System.out.println("¿äÃ»µÈ ±Û ¹øÈ£: " + pbNum);
+		System.out.println("ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£: " + pbNum);
 		
 		model.addAttribute("placeList", service.getContent(pbNum));
 		return "board/location/loc_detail";
 	}
 		
 			
-	//±Û ¼öÁ¤ ÆäÀÌÁö ÀÌµ¿
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@GetMapping("/placeModify")
 	public void modify(@RequestParam int pbNum, Model model) {
 		System.out.println("/placeBoard/placeModify: GET");
-		System.out.println("¿äÃ»µÈ ±Û ¹øÈ£: " + pbNum);
+		System.out.println("ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£: " + pbNum);
 		
 		model.addAttribute("placeList", service.getContent(pbNum));
 	}
 		
-	//±Û ¼öÁ¤ Ã³¸®
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	@PostMapping("/placeUpdate")
 	public String placeUpdate(PlaceBoardVO vo, RedirectAttributes ra) {
 		System.out.println("/placeBoard/placeUpdate: POST");
 		service.update(vo);
-		ra.addFlashAttribute("msg", "Á¤»ó ¼öÁ¤ Ã³¸®µÇ¾ú½À´Ï´Ù.");
+		ra.addFlashAttribute("msg", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			
 		return "redirect:/location/loc_detail?pbNum=" + vo.getPbNum();
 	}
 	
-	//±Û »èÁ¦ Ã³¸®
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	@PostMapping("/placeDelete")
 	public String placeDelete(PlaceBoardVO vo, RedirectAttributes ra) {
 		System.out.println("/placeBoard/placeUpdate: POST");
 		service.delete(vo.getPbNum());
-		ra.addFlashAttribute("msg", "°Ô½Ã±ÛÀÌ Á¤»ó »èÁ¦µÇ¾ú½À´Ï´Ù.");
+		ra.addFlashAttribute("msg", "ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			
 		return "redirect:/board/location/loc_board";
 	}	

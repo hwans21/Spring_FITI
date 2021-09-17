@@ -1210,4 +1210,5 @@ ALTER TABLE member Rename column mDelDate TO memberDelDate;
 
 ### VO객체 멤버변수 소문자 1자로 시작하는 모든 변수 변경
 
-
+# 21.09.17
+## 기능 구현 <br>

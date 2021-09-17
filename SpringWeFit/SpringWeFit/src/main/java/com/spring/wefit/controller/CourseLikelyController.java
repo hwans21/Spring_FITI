@@ -1,4 +1,4 @@
-package com.spring.wefit.course.controller;
+package com.spring.wefit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

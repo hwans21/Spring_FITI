@@ -1,4 +1,4 @@
-package com.spring.wefit.dietboard.reply.service;
+package com.spring.wefit.dietboard.service;
 
 import java.util.List;
 

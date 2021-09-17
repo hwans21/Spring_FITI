@@ -1,4 +1,4 @@
-package com.spring.wefit.dietboard.reply.mapper;
+package com.spring.wefit.dietboard.mapper;
 
 import java.util.List;
 import java.util.Map;

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.wefit.course.command.CourseBoardVO;
+import com.spring.wefit.command.CourseBoardVO;
 import com.spring.wefit.course.mapper.ICourseBoardMapper;
 
 @Service

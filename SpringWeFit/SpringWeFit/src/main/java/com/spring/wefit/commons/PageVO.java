@@ -1,4 +1,4 @@
-package com.spring.wefit.util;
+package com.spring.wefit.commons;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,11 +7,11 @@ import lombok.Setter;
 @Setter
 public class PageVO {
 
-		//»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ ÆäÀÌÁö Á¤º¸¸¦ ´ãÀ» º¯¼ö.
+		//ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		private int pageNum;
 		private int countPerPage;
 		
-		//°Ë»ö¿¡ ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¦ º¯¼ö·Î ¼±¾ð.
+		//ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		private String keyword;
 		private String condition;
 		

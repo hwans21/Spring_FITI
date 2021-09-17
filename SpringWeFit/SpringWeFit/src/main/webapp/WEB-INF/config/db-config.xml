@@ -55,7 +55,9 @@
 	<mybatis-spring:scan base-package="com.spring.wefit.course.mapper"/>
 	<mybatis-spring:scan base-package="com.spring.wefit.user.mapper"/>
 	<mybatis-spring:scan base-package="com.spring.wefit.placeboard.mapper"/>
-  <mybatis-spring:scan base-package="com.spring.wefit.market.mapper"/>
+  	<mybatis-spring:scan base-package="com.spring.wefit.market.mapper"/>
+  	<mybatis-spring:scan base-package="com.spring.wefit.dietboard.mapper"/>
+  	
 
 	
 </beans>

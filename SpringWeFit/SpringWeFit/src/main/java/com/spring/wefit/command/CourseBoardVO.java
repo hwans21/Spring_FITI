@@ -1,4 +1,4 @@
-package com.spring.wefit.course.command;
+package com.spring.wefit.command;
 
 import java.sql.Timestamp;
 

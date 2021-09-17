@@ -3,26 +3,26 @@ package com.spring.wefit.placeboard.service;
 import java.util.List;
 
 import com.spring.wefit.command.PlaceBoardVO;
-import com.spring.wefit.util.PageVO;
+import com.spring.wefit.commons.PageVO;
 
 public interface IPlaceBoardService {
 
-	//Àå¼Ò ±Û µî·Ï
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 	void regist(PlaceBoardVO vo);
 
-	//Àå¼Ò ±Û ¸ñ·Ï
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 	List<PlaceBoardVO> getList(PageVO vo);
 
-	//Àå¼Ò ÃÑ °Ô½Ã¹° ¼ö
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½
 	int getTotal(PageVO vo);
 
-	//Àå¼Ò ±Û »ó¼¼º¸±â
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	PlaceBoardVO getContent(int pbNum);
 
-	//Àå¼Ò ±Û ¼öÁ¤
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	void update(PlaceBoardVO vo);
 
-	//Àå¼Ò ±Û »èÁ¦
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	void delete(int pbNum);
 
 	
