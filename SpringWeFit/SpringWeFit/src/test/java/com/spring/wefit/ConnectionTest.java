@@ -28,29 +28,9 @@ public class ConnectionTest {
 	
 	private IUserMapper usermapper;
 	
-	 
+	private ITestMapper mapper;
 	
-	@Test
-	public void test2() {
-		System.out.println(usermapper.emailCheck("test@emi.com"));
-	}
 	
-	@Test
-	public void joinTest() {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		UserVO vo = new UserVO();
-		for(int i=51;i<101;i++) {
-			//vo.setMEmail("test"+i+"@test.com");
-			vo.setMemberNick("test"+i);
-			vo.setMemberPasswd(encoder.encode(Integer.toString(i)));
-			vo.setMemberPhone("010111111"+(i<10?"0":"")+i);
-			vo.setMemberHumanYN("N");
-			vo.setMemberEmailYN("Y");
-			vo.setMemberCode(UUID.randomUUID().toString().split("-")[0]);
-			System.out.println(vo.toString());
-			usermapper.join(vo);
-		}
-	}
 	
 	@Autowired
 	private IDietBoardMapper dietMapper;
@@ -73,7 +53,7 @@ public class ConnectionTest {
 	public void test(){
 		double d = (double) mapper.test();
 		System.out.println(d);
-
+	}
 	@Test
 	public void updateTest() {
 		UserVO vo = new UserVO();
@@ -84,6 +64,28 @@ public class ConnectionTest {
 				usermapper.authUser(vo.getMemberNick(), vo.getMemberCode());			
 				
 			}
+		}
+	}
+	
+	@Test
+	public void test2() {
+		System.out.println(usermapper.emailCheck("test@emi.com"));
+	}
+	
+	@Test
+	public void joinTest() {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		UserVO vo = new UserVO();
+		for(int i=51;i<101;i++) {
+			//vo.setMEmail("test"+i+"@test.com");
+			vo.setMemberNick("test"+i);
+			vo.setMemberPasswd(encoder.encode(Integer.toString(i)));
+			vo.setMemberPhone("010111111"+(i<10?"0":"")+i);
+			vo.setMemberHumanYN("N");
+			vo.setMemberEmailYN("Y");
+			vo.setMemberCode(UUID.randomUUID().toString().split("-")[0]);
+			System.out.println(vo.toString());
+			usermapper.join(vo);
 		}
 	}
 }
