@@ -7,17 +7,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.spring.wefit.command.DietBoardVO;
-import com.spring.wefit.dietboard.mapper.IDietBoardMapper;
+import com.spring.wefit.test.ITestMapper;
 
+import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/config/db-config.xml")
+@Log4j
 @WebAppConfiguration
 public class ConnectionTest {
 	
 	@Autowired
-	private IDietBoardMapper mapper;
+	private ITestMapper mapper;
 	
 	@Test
 	public void registTest() {
@@ -31,13 +32,11 @@ public class ConnectionTest {
 			
 			mapper.regist(vo);
 		}
+
+	@Test
+	public void test(){
+		double d = (double) mapper.test();
+		System.out.println(d);
+
 	}
 }
-
-
-
-
-
-
-
-

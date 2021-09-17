@@ -74,7 +74,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- 메뉴의 홈페이지 이름 -->
-                <a class="navbar-brand" href="<c:url value='/' />"><img src="${pageContext.request.contextPath }/resources/img/logo/logo2.png"
+                <a class="navbar-brand" href="/FRONT/views/main.html"><img src="${pageContext.request.contextPath }/resources/img/logo/logo2.png"
                         width="230px" alt="logo"></a>
             </div>
 
@@ -87,8 +87,8 @@
                                 class="sr-only">(current)</span></a>
                     </li>
                     <!-- Link 메뉴 -->
-                    <li><a href="">운동강의</a></li>
-                    <li><a href="<c:url value='/dietBoard/dietList' />">오늘먹은식단</a></li>
+                    <li><a href='<c:url value='/courseBoard/' />'>운동강의</a></li>
+                    <li><a href="">오늘먹은식단</a></li>
                     <li><a href="">게시판</a></li>
                     <li><a href="">장터</a></li>
                 </ul>

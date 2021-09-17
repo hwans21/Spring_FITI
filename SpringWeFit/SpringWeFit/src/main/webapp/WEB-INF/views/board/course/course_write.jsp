@@ -1,6 +1,8 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,59 +57,77 @@
             </div>
 
             <!--main left-->
-            <form action="#" id="boardWrite" method="POST" enctype="multipart/form-data">
+            <form action='<c:url value="/courseBoard/regist" />' id="registForm" method="POST">
+			<%-- <form action='<c:url value="/courseBoard/regist" />' id="registForm" method="POST" enctype="multipart/form-data"> --%>
                 <table>
                     <tr>
                         <td>종목</td>
                         <td>
-                            <select id="sports" name="sports">
-                                <option value="">종목선택</option>
-                                <option value="">수영</option>
-                                <option value="">자전거</option>
-                                <option value="">달리기</option>
-                                <option value="">등산</option>
-                                <option value="">홈트</option>
-                                <option value="">필라테스/요가</option>
-                                <option value="">골프</option>
-                                <option value="">스케이트(빙상)</option>
+                            <select id="sports" name="cbCategory">
+                                <option value="category">종목선택</option>
+                                <option>수영</option>
+                                <option>배드민턴</option>
+                                <option>스쿼시</option>
+                                <option>자전거</option>
+                                <option>달리기</option>
+                                <option>등산</option>
+                                <option>홈트짐트</option>
+                                <option>필라테스</option>
+                                <option>골프</option>
+                                <option>스케이트</option>
+                                <option>기타</option>
+								<!--  
+								<option value="category">종목선택</option>                               
+                                <option value="swimming">수영</option>
+                                <option value="badminton">배드민턴</option>
+                                <option value="squash">스쿼시</option>
+                                <option value="bicycle">자전거</option>
+                                <option value="running">달리기</option>
+                                <option value="hiking">등산</option>
+                                <option value="training">홈트짐트</option>
+                                <option value="pilates">필라테스</option>
+                                <option value="golf">골프</option>
+                                <option value="skate">스케이트</option>
+                                <option value="etc">기타</option> -->
                             </select>
                         </td>
                     </tr>
 
                     <tr>
                         <td>작성자</td>
-                        <td><input type=text name=name size=20> </td>
+                        <td><input type="text" size="20" value="관리자" readonly></td>
+                        <!-- <td><input type="hidden" name="mNum" size="20" value="1"></td> --> <!-- 관리자번호 넣어줌 -->
                     </tr>
 
                     <tr>
                         <td>제목</td>
-                        <td><input type=text name=title size="60"></td>
+                        <td><input type="text" id="cbTitle" name="cbTitle" size="60"></td>
                     </tr>
 
                     <tr>
                         <td>내용</td>
-                        <td><textarea name="content" cols="75" rows="15"></textarea></td>
+                        <td><textarea id="cbContent" name="cbContent" cols="75" rows="15"></textarea></td>
                     </tr>
 
 
                     <tr>
-                        <td>youtube주소 </td>
-                        <td><input type=text name=title size="60"></td>
+                        <td>youtube 주소</td>
+                        <td><input type="text" id="cbYouCode" name="cbYouCode" size="60"></td>
                     </tr>
                     
-                    
+                   
                     <tr class="text-right">
                         <td colspan="2">
                             <br>
-                            <button type="button" class="btn btn-primary">등록하기</button>
-                            <button type="button" class="btn btn-default" onclick="location.href='/FRONT/views/board/course/course_board.html'">취소하기</button>
+                            <button type="button" id="registBtn" class="btn btn-primary">등록하기</button>
+                            <button type="button" class="btn btn-default" onclick="location.href='<c:url value="/courseBoard/" />'">취소하기</button>
                             <br><br><br>
                         </td>
                         
                     </tr>
                 </table>
-
-            </form>
+			</form> 
+            
         </div>
 
     </div>
@@ -116,10 +136,32 @@
     <div class="row">
         <%@ include file="../../include/footer.jsp" %>
     </div>
-
-   </div>
-
     
+    
+
+	<script>
+		$(function() { // start jQuery
+			
+			$('#registBtn').click(function() {
+				if($('#sports').val() === 'category') {
+					alert('종목을 선택해주세요.');
+					return;				
+				} else if($('#cbTitle').val().trim() === '') {
+					alert('제목을 입력해주세요');	
+					return;
+				} else if($('#cbYouCode').val().trim() === '') {
+					alert('youtube 주소를 입력해주세요');	
+					return;
+				} else {
+					$('#registForm').submit();				
+				}			
+			}); // 글 등록 검증 끝
+		
+		
+		}); // end jQuery
+		
+	</script>
+   
 </body>
 
 </html>
