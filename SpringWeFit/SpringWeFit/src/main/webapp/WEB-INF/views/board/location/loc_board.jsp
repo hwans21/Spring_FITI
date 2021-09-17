@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -212,6 +213,7 @@
                 <div id="btn-list" class="row" align="right">
                                   
                     <!-- 종목 -->
+
                     <div id="sportsBtn" class="btn-group text-center " role="group" aria-label="Basic outlined example">
                         <button type="button" class="btn btn-info btn-active id="all">전체</button>
                         <button type="button" class="btn btn-info">수영</button>
@@ -267,10 +269,6 @@
 	                            </tr>
                         	</c:forEach>
                         	
-           
-                        
-                        
-                    
 
                         </tbody>
 
@@ -279,6 +277,7 @@
                     
                 <div class="row" align="right">													
                     <button type="button" id="write" class="btn btn-outline-primary float-right"  onclick="location.href='<c:url value='/placeBoard/placeWrite' />' "><b>새 장소 등록</b></button>
+
                 </div>
 
                 <div class="row text-center">
@@ -295,14 +294,17 @@
                       </nav>
                 </div>     
         </div>
+
         
         </div>
+
         <div class="row">
             <%@ include file="../../include/footer.jsp" %>
         </div>
         
     </div>
     
+
     <script>
      // 종목별 클릭 시 
      const sportsBtn = document.getElementById('sportsBtn';)
@@ -313,6 +315,7 @@
      }
     </script>
     
+
     
 </body>
 </html>
