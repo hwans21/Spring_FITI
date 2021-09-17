@@ -7,5 +7,6 @@
 	<select id="test" resultType="double">
 		select radians(37.482479) FROM dual
 	</select>
+	<insert id=""></insert>
 
 </mapper>
