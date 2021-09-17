@@ -7,4 +7,7 @@ public interface ITestMapper {
 	void joinTest();
 	
 	void updateTest();
+
+	void inserttest();
+
 }

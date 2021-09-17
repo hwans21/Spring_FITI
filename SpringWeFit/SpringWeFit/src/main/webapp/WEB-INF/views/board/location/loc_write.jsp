@@ -54,38 +54,51 @@
             </div>
 
             <!--main left-->
-            <form action="#" id="boardWrite" method="POST" enctype="multipart/form-data">
+
+            <form action="<c:url value='/placeBoard/placeWrite' />" id="boardWrite" name="writeForm" method="post" enctype="multipart/form-data">
+
                 <table>
                     <tr>
                         <td>종목</td>
                         <td>
                             <select id="sports" name="sports">
-                                <option value="">종목선택</option>
-                                <option value="">수영</option>
-                                <option value="">자전거</option>
-                                <option value="">달리기</option>
-                                <option value="">등산</option>
-                                <option value="">홈트</option>
-                                <option value="">필라테스/요가</option>
-                                <option value="">골프</option>
-                                <option value="">스케이트(빙상)</option>
+
+                                <option value='category'>종목선택</option>
+                                <option>수영</option>
+                                <option>배드민턴</option>
+                                <option>스쿼시</option>
+                                <option>자전거</option>
+                                <option>달리기</option>
+                                <option>등산</option>
+                                <option>홈트짐트</option>
+                                <option>필라테스</option>
+                                <option>골프</option>
+                                <option>스케이트</option>
+                                <option>기타</option>
+
                             </select>
                         </td>
                     </tr>
 
                     <tr>
                         <td>작성자</td>
-                        <td><input type=text name=name size=20> </td>
+
+                        <td><input type=text name=memberNum size=20> </td>
+
                     </tr>
 
                     <tr>
                         <td>제목</td>
-                        <td><input type=text name=title size="60"></td>
+
+                        <td><input type=text name=pbTitle size="60"></td>
+
                     </tr>
 
                     <tr>
                         <td>내용</td>
-                        <td><textarea name="content" cols="75" rows="15"></textarea></td>
+
+                        <td><textarea name="pbContent" cols="75" rows="15"></textarea></td>
+
                     </tr>
 
                     <tr>
@@ -100,14 +113,18 @@
                     
                     <tr>
                         <td>사진올리기 </td>
-                        <td><input type="file" name="fileName" size="10" maxlength="10"></td>
+
+                        <td><input type="file" multiple="multiple" name="fileName" size="10" maxlength="10"></td>
+
                     </tr>
                     
                     <tr class="text-right">
                         <td colspan="2">
                             <br>
-                            <button type="button" class="btn btn-primary" >등록하기</button>
-                            <button type="button" class="btn btn-default"  onclick="location.href='/FRONT/views/board/location/loc_board.html' ">취소하기</button>
+
+                            <button class="btn" id="writeBtn" type="button">등록하기</button>
+                            <button class="btn" id="listBtn" type="button"  onclick="location.href='<c:url value='/placeBoard/placeList' />' ">취소하기</button>
+
                             <br><br><br>
                         </td>
                         
@@ -125,6 +142,48 @@
     </div>
 
     </div>
+
+
+
+	<script>
+    	const writeBtn = document.getElementById('writeBtn');
+    	writeBtn.onclick = function() {
+    			if(document.writeForm.sports.value === 'category'){
+    				alert('종목은 필수 항목 입니다.');
+    				document.writeForm.sports.focus();
+    				return;
+    			} else if(document.writeForm.name.value === '') {
+					alert('작성자는 필수 항목 입니다.');
+					document.writeForm.name.focus();
+					return;
+				} else if(document.writeForm.title.value === '') {
+					alert('제목은 필수 항목 입니다.');
+	  				document.writeForm.title.focus();
+	  				return;
+	  			/*
+				} else if(document.writeForm.addrbasic.value === '') {
+					alert('주소는 필수 항목 입니다.');
+	  				document.writeForm.title.focus();
+	  				return;
+				} else if(document.writeForm.addrdetail.value === '') {
+					alert('상세주소는 필수 항목 입니다.');
+	  				document.writeForm.title.focus();
+	  				return;
+	  				*/
+				} else {
+					document.writeForm.submit();
+				}
+		};
+    	
+  		$('#listBtn').click(function() {
+			if(confirm('목록으로 돌아가시겠습니까?')) {
+				location.href='<c:url value="/placeBoard/placeList" />';
+			} else {
+				return;
+			}
+		});
+    </script>
+    
 
    
 </body>
