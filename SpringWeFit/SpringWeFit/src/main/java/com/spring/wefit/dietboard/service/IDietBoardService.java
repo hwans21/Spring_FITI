@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.spring.wefit.command.DietBoardVO;
+import com.spring.wefit.commons.PageVO;
 
 @Service
 public interface IDietBoardService {
@@ -16,7 +17,7 @@ public interface IDietBoardService {
 	List<DietBoardVO> getList();
 	
 	//식단 총 게시물 수 (페이징 할 때)
-	int getTotal();
+	int getTotal(PageVO vo);
 	
 	//식단 글 상세보기
 	DietBoardVO getContent(int dbNum);

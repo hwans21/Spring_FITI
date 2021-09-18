@@ -74,7 +74,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- 메뉴의 홈페이지 이름 -->
-                <a class="navbar-brand" href="/FRONT/views/main.html"><img src="${pageContext.request.contextPath }/resources/img/logo/logo2.png"
+                <a class="navbar-brand" href="<c:url value='/' />"><img src="${pageContext.request.contextPath }/resources/img/logo/logo2.png"
                         width="230px" alt="logo"></a>
             </div>
 
@@ -83,13 +83,12 @@
                 <ul class="nav navbar-nav">
                     <!-- Link 메뉴 (class가 active가 포함되어 있기 때문에 선택된 메뉴 뜻) -->
                     <li>
-                        <a href=""<c:url value='/placeBoard/placeList' />">함께 운동해요 <span
-                                class="sr-only">(current)</span></a>
+                        <a href="<c:url value='/placeBoard/placeList' />">함께 운동해요 <span class="sr-only">(current)</span></a>
                     </li>
                     <!-- Link 메뉴 -->
                     <li><a href='<c:url value='/courseBoard/' />'>운동강의</a></li>
-                    <li><a href="">오늘먹은식단</a></li>
-                    <li><a href="">게시판</a></li>
+                    <li><a href="<c:url value='/dietBoard/dietList' />">오늘먹은식단</a></li>
+                    <li><a href="<c:url value='/noticeBoard/' />">게시판</a></li>
                     <li><a href="<c:url value='/marketBoard/market_board' />">장터</a></li>
                 </ul>
 
@@ -357,6 +356,7 @@
             const msg = '${msg }';
            	if(msg === "복구 필요"){
            		if(confirm("계정이 복구가 필요합니다.\n복구를 진행하시겠습니까?")){
+           			$('#login-email').val('${login.memberEmail }');
            			$('#form-login').attr("action","<c:url value='/user/recovery'/>");
            			$('#form-login').submit();
            		}

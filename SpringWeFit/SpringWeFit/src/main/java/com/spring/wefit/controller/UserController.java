@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -83,7 +84,7 @@ public class UserController {
 	
 	
 	@PostMapping("/login")
-	public String login(UserVO vo,
+	public ModelAndView login(UserVO vo,
 			HttpSession session, 
 			HttpServletResponse response,
 			RedirectAttributes ra) {
@@ -98,10 +99,11 @@ public class UserController {
 			if(encoder.matches(vo.getMemberPasswd(), login.getMemberPasswd())) {
 				if(login.getMemberEmailYN().equals("N")) {
 					ra.addFlashAttribute("msg", "이메일 확인 필요");
-					return "redirect:/";
-				} else if(login.getMemberHumanYN().equals("Y")||!login.getMemberDelDate().equals(null)) {
+					return new ModelAndView("redirect:/");
+				} else if(login.getMemberHumanYN().equals("Y")||!(login.getMemberDelDate() == null)) {
 					ra.addFlashAttribute("msg", "복구 필요");
-					return "redirect:/";
+					ra.addFlashAttribute("login", login);
+					return new ModelAndView("redirect:/");
 				}
 				session.setAttribute("loginuser", login);
 				long limitTime = 7*24*60*60; //7일동안 자동로그인
@@ -115,13 +117,16 @@ public class UserController {
 					Date limitDate = new Date(currentTime);
 					service.keepLogin(session.getId(), limitDate, login.getMemberEmail());
 				}
+				ra.addFlashAttribute("msg","로그인 성공!");
+				return new ModelAndView("redirect:/");
 			}
 			
 		}
 		ra.addFlashAttribute("msg", "이메일 또는 비밀번호가 맞지 않습니다.");
-		return "redirect:/";
+		return new ModelAndView("redirect:/");
 		
 	}
+	
 	
 	
 }

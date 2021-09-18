@@ -64,7 +64,7 @@
                     <tr>
                         <td>종목</td>
                         <td>
-                            <select id="sports" name="sports">
+                            <select id="sports" name="pbCategory">
 
 
 

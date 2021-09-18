@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.wefit.command.DietBoardVO;
+import com.spring.wefit.commons.PageVO;
 import com.spring.wefit.dietboard.mapper.IDietBoardMapper;
 
 @Service
@@ -20,8 +21,8 @@ public class DietBoardService implements IDietBoardService {
 	}
 
 	@Override
-	public List<DietBoardVO> getList() {
-		return mapper.getList();
+	public List<DietBoardVO> getList(PageVO vo) {
+		return mapper.getList(vo);
 	}
 
 	@Override
@@ -41,9 +42,8 @@ public class DietBoardService implements IDietBoardService {
 	}
 
 	@Override
-	public int getTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getTotal(PageVO vo) {
+		return mapper.getTotal(vo);
 	}
 
 }
