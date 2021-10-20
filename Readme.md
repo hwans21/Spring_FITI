@@ -18,6 +18,7 @@
  [21.09.13 : DB작업 및 STS프로젝트 생성 ](#210913) <br>
  [21.09.14 : DB생성 및 마이바티스연동 후 작업나누기](#210914) <br>
  [21.09.15 : DB변경 및 html->jsp적용](#210915) <br>
+ [21.10.06 : Git주소 변경](#211006) <br>
  
 # 21.08.31
 첫 팀회의 진행(비대면) <br>
@@ -1212,3 +1213,6 @@ ALTER TABLE member Rename column mDelDate TO memberDelDate;
 
 # 21.09.17
 ## 기능 구현 <br>
+
+# 21.10.06
+https://github.com/hwans21/SpringWeFit
