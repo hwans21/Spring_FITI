@@ -1217,5 +1217,6 @@ ALTER TABLE member Rename column mDelDate TO memberDelDate;
 # 21.09.18
 ## 기능 구현 <br>
 
-# 21.10.06 깃 레포지토리 변경
+# 21.10.06
+## 깃 레포지토리 변경 <br>
 https://github.com/hwans21/SpringWeFit
